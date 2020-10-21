@@ -1,0 +1,51 @@
+/* Add here all your css styles (customizations) */
+/*totall Result*/
+.totall-result li {
+	display: block;
+}
+
+.totall-result li:after,
+.totall-result li:before {
+	content: " ";
+	display: table;
+}
+
+.totall-result li:after {
+	clear: both;
+}
+
+.totall-result li.divider {
+	height: 1px;
+	margin: 9px 0;
+	overflow: hidden;
+	background: #eee;
+}
+
+.totall-result h4 {
+	float: left;
+	margin-right: 15px;
+}
+
+.totall-result-in {
+	overflow: hidden;
+	text-align: right;
+}
+
+.totall-result-in h4,
+.totall-result-in span {
+	color: #687074;
+	font-size: 18px;
+}
+
+.totall-result .totall-price h4,
+.totall-result .totall-price span {
+	font-weight: 600;
+}
+
+.totall-result .totall-price h4 {
+	margin: 0 auto;
+}
+
+.totall-result .totall-price span {
+	color: #c9253c;
+}
