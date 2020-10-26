@@ -121,7 +121,7 @@ class CourseController extends Controller
         // return Session::getId();
 
         $ffmpeg = FFMpeg::create();
-        $video = $ffmpeg->open($request['file']);
+        $video = $ffmpeg->open('/vid/Harmonize.mp4');
         $video
             ->filters()
             ->resize(new \FFMpeg\Coordinate\Dimension(320, 240))
