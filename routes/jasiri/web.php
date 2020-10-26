@@ -15,4 +15,8 @@
      // Cart Purchase
      Route::get('/course/purchase/{id}', 'CartController@createCart');
      Route::get('/course/purchase/chekout/{id}', 'CartController@payment');
+
+
+
+     Route::post('home/upload/demo', 'CourseController@upload');
       

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jasiri\Course;
 use Jwplayer\JwplatformAPI;
+use FFMpeg\FFMpeg;
+use Session;
 
 class CourseController extends Controller
 {
@@ -111,6 +113,26 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function upload(Request $request)
+    {
+
+        // return Session::getId();
+
+        $ffmpeg = FFMpeg::create();
+        $video = $ffmpeg->open($request['file']);
+        $video
+            ->filters()
+            ->resize(new FFMpeg\Coordinate\Dimension(320, 240))
+            ->synchronize();
+        $video
+            ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(10))
+            ->save('frame.jpg');
+        $video
+            ->save(new FFMpeg\Format\Video\X264(), 'export-x264.mp4')
+            ->save(new FFMpeg\Format\Video\WMV(), 'export-wmv.wmv')
+            ->save(new FFMpeg\Format\Video\WebM(), 'export-webm.webm');
     }
 
     /**

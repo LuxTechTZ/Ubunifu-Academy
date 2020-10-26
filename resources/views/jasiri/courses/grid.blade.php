@@ -76,4 +76,9 @@
     </div>
     <!-- /bg_color_1 -->
 </main>
+<form action="/home/upload/demo" method="post" enctype="multipart/form-data">
+    @csrf
+    <input type="file" name="file">
+    <button type="submit">Upload</button>
+</form>
 @endsection

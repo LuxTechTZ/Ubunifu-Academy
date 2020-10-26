@@ -1,130 +1,130 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus>
-
-                                @if ($errors->has('first_name'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus>
-
-                                @if ($errors->has('last_name'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
+<!DOCTYPE html>
+<html lang="en">
 
 
-                        @if(config('settings.reCaptchStatus'))
-                            <div class="form-group">
-                                <div class="col-sm-6 col-sm-offset-4">
-                                    <div class="g-recaptcha" data-sitekey="{{ config('settings.reCaptchSite') }}"></div>
-                                </div>
-                            </div>
-                        @endif
+<!-- Mirrored from www.ansonika.com/udema/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Oct 2020 22:34:20 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Udema a modern educational site template">
+    <meta name="author" content="Ansonika">
+    <title>UDEMA | Modern Educational site template</title>
 
-                        <div class="form-group row mb-4">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="{{url('/')}}/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{{url('/')}}/img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{url('/')}}/img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{url('/')}}/img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{url('/')}}/img/apple-touch-icon-144x144-precomposed.png">
 
-                        <div class="row">
-                            <div class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
-                                <p class="text-center mb-4">
-                                    Or Use Social Logins to Register
-                                </p>
-                                @include('partials.socials')
-                            </div>
-                        </div>
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
-                    </form>
-                </div>
-            </div>
-        </div>
+    <!-- BASE CSS -->
+    <link href="{{url('/')}}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('/')}}/css/style.css" rel="stylesheet">
+    <link href="{{url('/')}}/css/vendors.css" rel="stylesheet">
+    <link href="{{url('/')}}/css/icon_fonts/css/all_icons.min.css" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="{{url('/')}}/css/custom.css" rel="stylesheet">
+
+</head>
+
+<body id="register_bg">
+    
+    <nav id="menu" class="fake_menu"></nav>
+    
+    <div id="preloader">
+        <div data-loader="circle-side"></div>
     </div>
-</div>
-@endsection
+    <!-- End Preload -->
+    
+    <div id="login">
+        <aside>
+            <figure>
+                <a href="{{url('/')}}/index.html"><img src="img/logo.png" width="149" height="42" alt=""></a>
+            </figure>
+            <form autocomplete="off" method="POST" action="{{ route('register') }}">
+                @csrf
+                <div class="form-group">
 
-@section('footer_scripts')
-    @if(config('settings.reCaptchStatus'))
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-    @endif
-@endsection
+                    <span class="input">
+                    <input id="first_name" class="input_field {{ $errors->has('first_name') ? ' is-invalid' : '' }}" type="text"  name="first_name" value="{{ old('first_name') }}" required autofocus>
+                        <label class="input_label">
+                        <span class="input__label-content">Your {{ __('First Name') }}</span>
+                    </label>
+                        @if ($errors->has('first_name'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('first_name') }}</strong>
+                            </span>
+                        @endif
+                    </span>
+
+                    <span class="input">
+                    <input id="last_name" class="input_field {{ $errors->has('last_name') ? ' is-invalid' : '' }}" type="text" name="last_name" value="{{ old('last_name') }}" required autofocus>
+                        <label class="input_label">
+                        <span class="input__label-content">Your {{ __('Last Name') }}</span>
+                    </label>
+                        @if ($errors->has('last_name'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('last_name') }}</strong>
+                            </span>
+                        @endif
+                    </span>
+
+                    <span class="input">
+                    <input id="email" class="input_field{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"  type="email" value="{{ old('email') }}" required>
+                        <label class="input_label">
+                        <span class="input__label-content">Your {{ __('E-Mail Address') }}</span>
+                    </label>
+                    @if ($errors->has('email'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                    </span>
+
+                    <span class="input">
+                    <input id="password1" class="input_field{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" type="password" required>
+                        <label class="input_label">
+                        <span class="input__label-content">Your {{ __('Password') }}</span>
+                    </label>
+                    @if ($errors->has('password'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+                    </span>
+
+                    <span class="input">
+                    <input class="input_field" type="password" id="password2" name="password_confirmation">
+                        <label class="input_label">
+                        <span class="input__label-content">Confirm {{ __('Password') }}</span>
+                    </label>
+                    </span>
+                    
+                    <div id="pass-info" class="clearfix"></div>
+                </div>
+                <button type="submit" href="{{url('/')}}/#0" class="btn_1 rounded full-width add_top_30">Register to {{ config('app.name', Lang::get('titles.app')) }}</button>
+                <div class="text-center add_top_10">Already have an acccount? <strong><a href="{{url('/')}}/login">Sign In</a></strong></div>
+            </form>
+            <div class="copy">© 2020 {{ config('app.name', Lang::get('titles.app')) }}</div>
+        </aside>
+    </div>
+    <!-- /login -->
+    
+    <!-- COMMON SCRIPTS -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/common_scripts.js"></script>
+    <script src="js/main.js"></script>
+    <script src="assets/validate.js"></script>
+    
+    <!-- SPECIFIC SCRIPTS -->
+    <script src="js/pw_strenght.js"></script>
+  
+</body>
+
+<!-- Mirrored from www.ansonika.com/udema/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Oct 2020 22:34:22 GMT -->
+</html>

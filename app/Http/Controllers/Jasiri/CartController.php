@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Jasiri\Cart;
 use App\Models\Jasiri\CartItem;
 use App\Http\Controllers\Jasiri\CourseController;
+use Session;
 use Auth;
 
 class CartController extends Controller
@@ -23,10 +24,27 @@ class CartController extends Controller
     {
     	$course = $this->course->getCourse($product_id);
 
-    	$cart = $this->cart->where('user_id','=',Auth::user()->id)->first();
+    	if (isset(Auth::user()->id)) {
+    		$user_id = Auth::user()->id;
+    	}
+
+    	if (isset($user_id)) {
+    		$cart = $this->cart
+    			->where('user_id','=',$user_id)
+    			->first();
+
+    	}else{
+	    	$cart = $this->cart
+    			->where('session_id','=',Session::getId())
+    			->first();
+    	}
+
     	if (!isset($cart)) {
     		$cart = new Cart;
-	    	$cart->user_id = Auth::user()->id;
+    		if (isset($user_id)) {
+		    	$cart->user_id = $user_id;
+    		}
+		    $cart->session_id = Session::getId();
 	    	$cart->save();
     	}
     	// return $cart;
@@ -47,8 +65,13 @@ class CartController extends Controller
 
     public function addItem($course,$cart_id)
     {
-    	$cart_item = $this->cart_item->where('course_id','=',$course->id)->first();
+    	$cart_item = $this->cart_item
+    			->where('course_id','=',$course->id)
+    			->where('cart_id','=',$cart_id)
+    			->first();
+
     	if (isset($cart_item)) {
+    		$this->updateCart($cart_id);
     		return;
     	}
 
@@ -60,8 +83,11 @@ class CartController extends Controller
     	$cart_item->status 		= 	"active";
 
     	if ($cart_item->save()) {
+    		$this->updateCart($cart_id);
     		return;
     	}
+
+
     }
 
     public function updateCart($cart_id)
