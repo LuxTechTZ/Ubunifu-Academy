@@ -8,6 +8,12 @@ use App\Models\Jasiri\Course;
 use Jwplayer\JwplatformAPI;
 use FFMpeg\FFMpeg;
 use Session;
+use Streaming\Representation;
+
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
+use Streaming\FFMpeg as STFFMpeg;
 
 class CourseController extends Controller
 {
@@ -81,6 +87,61 @@ class CourseController extends Controller
      */
     public function show($category,$course_name)
     {
+
+        $config = [
+            'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe',
+            'timeout'          => 3600, // The timeout for the underlying process
+            'ffmpeg.threads'   => 12,   // The number of threads that FFmpeg should use
+        ];
+
+        $log = new Logger('FFmpeg_Streaming');
+        $log->pushHandler(new StreamHandler('var/log/ffmpeg-streaming.log')); // path to log file
+            
+        $ffmpeg = STFFMpeg::create();
+
+        $video = $ffmpeg->open('vid/Harmonize.mp4');
+
+
+        // $r_144p  = (new Representation)->setKiloBitrate(95)->setResize(256, 144);
+        // $r_240p  = (new Representation)->setKiloBitrate(150)->setResize(426, 240);
+        // $r_360p  = (new Representation)->setKiloBitrate(276)->setResize(640, 360);
+        // $r_480p  = (new Representation)->setKiloBitrate(750)->setResize(854, 480);
+        // $r_720p  = (new Representation)->setKiloBitrate(2048)->setResize(1280, 720);
+        // $r_1080p = (new Representation)->setKiloBitrate(4096)->setResize(1920, 1080);
+        // $r_2k    = (new Representation)->setKiloBitrate(6144)->setResize(2560, 1440);
+        // $r_4k    = (new Representation)->setKiloBitrate(17408)->setResize(3840, 2160);
+
+        // $video->dash()
+        //     ->setSegDuration(30) // Default value is 10 
+        //     ->setAdaption('id=0,streams=v id=1,streams=a')
+        //     ->x264()
+        //     ->addRepresentations([$r_144p, $r_240p, $r_360p, $r_480p, $r_720p, $r_1080p, $r_2k, $r_4k])
+        //     ->save('var/media/dash-stream.mpd');
+
+        $video->hls()
+            ->fragmentedMP4()
+            ->x264()
+            ->autoGenerateRepresentations([720, 360]) // You can limit the numbers of representatons
+            ->save('vids/hamo2.mpd');
+
+        $video->dash()
+                ->setAdaption('id=0,streams=v id=1,streams=a') // Set the adaption.
+                ->x264() // Format of the video. Alternatives: x264() and vp9()
+                ->autoGenerateRepresentations() // Auto generate representations
+                ->save('vids/hamo.mpd'); // It can be passed a path to the method or it can be null
+
+        return "Hello";
+        $video->dash()
+            ->generateHlsPlaylist()
+            ->setAdaption('id=0,streams=v id=1,streams=a')
+            ->x264()
+            ->autoGenerateRepresentations()
+            ->save('vids/');
+
+
+
+        // Olde code 
         $course = $this->course
                     ->where('title','=',$course_name)
                     ->first();
@@ -121,18 +182,18 @@ class CourseController extends Controller
         // return Session::getId();
 
         $ffmpeg = FFMpeg::create();
-        $video = $ffmpeg->open('vid/Harmonize.mp4');
+        $video = $ffmpeg->open('vid/Jasiri Test_Trim.mp4');
         $video
             ->filters()
             ->resize(new \FFMpeg\Coordinate\Dimension(320, 240))
             ->synchronize();
         $video
             ->frame(\FFMpeg\Coordinate\TimeCode::fromSeconds(10))
-            ->save('frame.jpg');
+            ->save('export/frame.jpg');
         $video
-            ->save(new \FFMpeg\Format\Video\X264(), 'export-x264.mp4')
-            ->save(new \FFMpeg\Format\Video\WMV(), 'export-wmv.wmv')
-            ->save(new \FFMpeg\Format\Video\WebM(), 'export-webm.webm');
+            // ->save(new \FFMpeg\Format\Video\X264(), 'export/export-x264.mp4')
+            ->save(new \FFMpeg\Format\Video\WMV(), 'export/export-wmv.wmv')
+            ->save(new \FFMpeg\Format\Video\WebM(), 'export/export-webm.webm');
     }
 
     /**
