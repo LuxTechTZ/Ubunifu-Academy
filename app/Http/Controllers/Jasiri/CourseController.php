@@ -121,7 +121,7 @@ class CourseController extends Controller
         // return Session::getId();
 
         $ffmpeg = FFMpeg::create();
-        $video = $ffmpeg->open('/vid/Harmonize.mp4');
+        $video = $ffmpeg->open('vid/Harmonize.mp4');
         $video
             ->filters()
             ->resize(new \FFMpeg\Coordinate\Dimension(320, 240))
@@ -174,5 +174,10 @@ class CourseController extends Controller
     public function getCourse($id)
     {
         return Course::findOrFail($id);
+    }
+
+    public function playdemo()
+    {
+        return view('jasiri.courses.vid');
     }
 }

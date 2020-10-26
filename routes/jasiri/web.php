@@ -19,4 +19,5 @@
 
 
      Route::post('home/upload/demo', 'CourseController@upload');
+     Route::get('home/upload/demo/play', 'CourseController@playdemo');
       
