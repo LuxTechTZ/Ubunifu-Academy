@@ -145,6 +145,26 @@ class CourseController extends Controller
     public function upload(Request $request)
     {
 
+        // // $image = new Image;
+
+        // $file_type = $img->extension();
+                
+        // $file_name  = microtime(true).".".$file_type;
+
+        // $file_name = '/uploads/products/'.$file_name;
+                
+        // // $file_size = $img->getClientSize();
+               
+        // $img->move('uploads/products',$file_name);
+
+        // $image->product_id = $id;
+        // $image->image = $file_name;
+        // $image->extension = $file_type;
+        
+        // if ($image->save()) {
+        //     return true;
+        // }
+
         // return Session::getId();
         // $video = Storage::get('videos/raw-videoHarmonize.mp4');
 
@@ -160,7 +180,9 @@ class CourseController extends Controller
         $file      = $validation['file']; // get the validated file
         $extension = $file->getClientOriginalExtension();
         $filename = 'raw-video' . $file->getClientOriginalName();
-        $path = $file->storeAs('videos', $filename);
+        $file->move('uploads/videos',$filename);
+
+        $path = 'uploads/videos'.$filename;
 
         $uploaded_video             = new VideoUpload;
         $uploaded_video->user_id    = 1; //Auth::user()->id;
@@ -249,22 +271,17 @@ class CourseController extends Controller
 
     public function convertVideo($video_data='')
     {
-        $last_vid = $this->vodeo_upload->first();
+        $last_vid = $this->vodeo_upload
+                ->where('lesson_id','=',1)
+                ->first();
 
-        $this->convertVideo($last_vid);
-
-        // return $last_vid;
-
-
+        $stored_video = 'video/'.$last_vid->path;
+        return $stored_video;
 
         $ffmpeg = STFFMpeg::create();
 
-        $stored_video = Storage::get($last_vid->path);
 
         $video = $ffmpeg->open($stored_video);
-
-
-
 
         // $r_144p  = (new Representation)->setKiloBitrate(95)->setResize(256, 144);
         // $r_240p  = (new Representation)->setKiloBitrate(150)->setResize(426, 240);
