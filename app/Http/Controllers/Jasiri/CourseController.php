@@ -100,7 +100,7 @@ class CourseController extends Controller
             
         $ffmpeg = STFFMpeg::create();
 
-        $video = $ffmpeg->open('vid/Harmonize.mp4');
+        $video = $ffmpeg->open('vid/JasiriTest_Trim.mp4');
 
 
         // $r_144p  = (new Representation)->setKiloBitrate(95)->setResize(256, 144);
@@ -119,19 +119,19 @@ class CourseController extends Controller
         //     ->addRepresentations([$r_144p, $r_240p, $r_360p, $r_480p, $r_720p, $r_1080p, $r_2k, $r_4k])
         //     ->save('var/media/dash-stream.mpd');
 
+        $video->dash()
+                ->setAdaption('id=0,streams=v id=1,streams=a') // Set the adaption.
+                ->x264() // Format of the video. Alternatives: x264() and vp9()
+                ->autoGenerateRepresentations() // Auto generate representations
+                ->save('vids/Kiba2.mpd'); // It can be passed a path to the method or it can be null
+
+        return "Hello";
+
         $video->hls()
             ->fragmentedMP4()
             ->x264()
             ->autoGenerateRepresentations([720, 360]) // You can limit the numbers of representatons
             ->save('vids/hamo2.mpd');
-
-        $video->dash()
-                ->setAdaption('id=0,streams=v id=1,streams=a') // Set the adaption.
-                ->x264() // Format of the video. Alternatives: x264() and vp9()
-                ->autoGenerateRepresentations() // Auto generate representations
-                ->save('vids/hamo.mpd'); // It can be passed a path to the method or it can be null
-
-        return "Hello";
         $video->dash()
             ->generateHlsPlaylist()
             ->setAdaption('id=0,streams=v id=1,streams=a')
@@ -235,10 +235,5 @@ class CourseController extends Controller
     public function getCourse($id)
     {
         return Course::findOrFail($id);
-    }
-
-    public function playdemo()
-    {
-        return view('jasiri.courses.vid');
     }
 }
