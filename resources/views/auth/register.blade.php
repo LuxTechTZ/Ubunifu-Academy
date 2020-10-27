@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Udema a modern educational site template">
     <meta name="author" content="Ansonika">
-    <title>UDEMA | Modern Educational site template</title>
+    <title>Register | {{ config('app.name', Lang::get('titles.app')) }}</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="{{url('/')}}/img/favicon.ico" type="image/x-icon">
@@ -44,7 +44,7 @@
     <div id="login">
         <aside>
             <figure>
-                <a href="{{url('/')}}/index.html"><img src="img/logo.png" width="149" height="42" alt=""></a>
+                <a href="{{url('/')}}"><img src="{{url('/')}}/img/logo.png" width="149" height="42" alt=""></a>
             </figure>
             <form autocomplete="off" method="POST" action="{{ route('register') }}">
                 @csrf
@@ -116,13 +116,13 @@
     <!-- /login -->
     
     <!-- COMMON SCRIPTS -->
-    <script src="js/jquery-3.5.1.min.js"></script>
-    <script src="js/common_scripts.js"></script>
-    <script src="js/main.js"></script>
-    <script src="assets/validate.js"></script>
+    <script src="{{url('/')}}/js/jquery-3.5.1.min.js"></script>
+    <script src="{{url('/')}}/js/common_scripts.js"></script>
+    <script src="{{url('/')}}/js/main.js"></script>
+    <script src="{{url('/')}}/assets/validate.js"></script>
     
     <!-- SPECIFIC SCRIPTS -->
-    <script src="js/pw_strenght.js"></script>
+    <script src="{{url('/')}}/js/pw_strenght.js"></script>
   
 </body>
 

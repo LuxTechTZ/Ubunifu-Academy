@@ -20,4 +20,7 @@
 
      Route::post('home/upload/demo', 'CourseController@upload');
      Route::get('home/upload/demo/play', 'CourseController@playdemo');
+
+
+     Route::get('home/upload/demo/convert', 'CourseController@convertVideo');
       
