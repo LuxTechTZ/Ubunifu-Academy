@@ -180,7 +180,7 @@ class CourseController extends Controller
         $file      = $validation['file']; // get the validated file
         $extension = $file->getClientOriginalExtension();
         $filename = 'raw-video' . $file->getClientOriginalName();
-        $file->move('uploads/videos',$filename);
+        $file->move('storage/video/',$filename);
 
         $path = 'uploads/videos'.$filename;
 
@@ -275,7 +275,7 @@ class CourseController extends Controller
                 ->where('lesson_id','=',1)
                 ->first();
 
-        $stored_video = 'video/'.$last_vid->path;
+        $stored_video = 'storage/video/'.$last_vid->path;
         return $stored_video;
 
         $ffmpeg = STFFMpeg::create();
