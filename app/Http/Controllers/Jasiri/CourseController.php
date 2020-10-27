@@ -266,17 +266,22 @@ class CourseController extends Controller
 
     public function playdemo()
     {
-        return view('jasiri.courses.vid');
+        $last_vid = $this->vodeo_upload
+                ->where('lesson_id','=',1)
+                ->orderBy('id','desc')
+                ->first();
+        return view('jasiri.courses.vid',compact('last_vid'));
     }
 
     public function convertVideo($video_data='')
     {
         $last_vid = $this->vodeo_upload
                 ->where('lesson_id','=',1)
+                ->orderBy('id','desc')
                 ->first();
 
         $stored_video = $last_vid->path;
-        return $stored_video;
+        // return $stored_video;
 
         $ffmpeg = STFFMpeg::create();
 
@@ -303,7 +308,7 @@ class CourseController extends Controller
                 ->setAdaption('id=0,streams=v id=1,streams=a') // Set the adaption.
                 ->x264() // Format of the video. Alternatives: x264() and vp9()
                 ->autoGenerateRepresentations() // Auto generate representations
-                ->save('vids/'.$video_data->user_id.'/'.$video_data->lesson_id.'.mpd'); // It can be passed a path to the method or it can be null
+                ->save('vids/'.$last_vid->id.'/new.mpd'); // It can be passed a path to the method or it can be null
 
         return "Hello";
 
