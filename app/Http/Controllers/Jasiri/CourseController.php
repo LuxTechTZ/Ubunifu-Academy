@@ -324,4 +324,15 @@ class CourseController extends Controller
             ->autoGenerateRepresentations()
             ->save('vids/');
     }
+
+    public function studentCourses($value='')
+    {
+        if (Auth::user()->hasRole(5) ) {
+            // $student_courses = $this->course->
+            return view('jasiri.back.courses.index');
+        }else{
+            return view('jasiri.back.courses.index');
+        }
+        
+    }
 }

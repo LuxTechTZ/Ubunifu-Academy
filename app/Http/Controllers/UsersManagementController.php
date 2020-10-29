@@ -61,12 +61,12 @@ class UsersManagementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$from_order = null)
     {
-        $validator = Validator::make(
+        $validator1 = Validator::make(
             $request->all(),
             [
-                'name'                  => 'required|max:255|unique:users|alpha_dash',
+                // 'name'                  => 'required|max:255|unique:users|alpha_dash',
                 'first_name'            => 'alpha_dash',
                 'last_name'             => 'alpha_dash',
                 'email'                 => 'required|email|max:255|unique:users',
@@ -75,8 +75,8 @@ class UsersManagementController extends Controller
                 'role'                  => 'required',
             ],
             [
-                'name.unique'         => trans('auth.userNameTaken'),
-                'name.required'       => trans('auth.userNameRequired'),
+                // 'name.unique'         => trans('auth.userNameTaken'),
+                // 'name.required'       => trans('auth.userNameRequired'),
                 'first_name.required' => trans('auth.fNameRequired'),
                 'last_name.required'  => trans('auth.lNameRequired'),
                 'email.required'      => trans('auth.emailRequired'),
@@ -88,6 +88,37 @@ class UsersManagementController extends Controller
             ]
         );
 
+        $validator2 = Validator::make(
+            $request->all(),
+            [
+                // 'name'                  => 'required|max:255|unique:users|alpha_dash',
+                'first_name'            => 'alpha_dash',
+                'last_name'             => 'alpha_dash',
+                'email'                 => 'required|email|max:255|unique:users',
+                'password'              => 'required|min:6|max:20|confirmed',
+                'password_confirmation' => 'required|same:password',
+                // 'role'                  => 'required',
+            ],
+            [
+                // 'name.unique'         => trans('auth.userNameTaken'),
+                // 'name.required'       => trans('auth.userNameRequired'),
+                'first_name.required' => trans('auth.fNameRequired'),
+                'last_name.required'  => trans('auth.lNameRequired'),
+                'email.required'      => trans('auth.emailRequired'),
+                'email.email'         => trans('auth.emailInvalid'),
+                'password.required'   => trans('auth.passwordRequired'),
+                'password.min'        => trans('auth.PasswordMin'),
+                'password.max'        => trans('auth.PasswordMax'),
+                // 'role.required'       => trans('auth.roleRequired'),
+            ]
+        );
+
+        if (isset($from_order)) {
+            $validator = $validator2;
+        }else{
+            $validator = $validator1;
+        }
+
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
@@ -96,7 +127,7 @@ class UsersManagementController extends Controller
         $profile = new Profile();
 
         $user = User::create([
-            'name'             => strip_tags($request->input('name')),
+            'name'             => strip_tags($request->input('first_name')).strip_tags($request->input('last_name')),
             'first_name'       => strip_tags($request->input('first_name')),
             'last_name'        => strip_tags($request->input('last_name')),
             'email'            => $request->input('email'),
@@ -107,10 +138,19 @@ class UsersManagementController extends Controller
         ]);
 
         $user->profile()->save($profile);
-        $user->attachRole($request->input('role'));
+        if (isset($from_order)) {
+            $user->attachRole(5);
+        }else{
+            $user->attachRole($request->input('role'));
+        }
         $user->save();
 
-        return redirect('users')->with('success', trans('usersmanagement.createSuccess'));
+        if (isset($from_order)) {
+            return $user;
+        }else{
+            return redirect('users')->with('success', trans('usersmanagement.createSuccess'));
+        }
+
     }
 
     /**

@@ -43,6 +43,11 @@ class Course extends Model
         return $this->belongsToMany(\App\Models\Jasiri\Teacher::class);
     }
 
+    public function teacher()
+    {
+        return $this->belongsTo(\App\Models\Jasiri\Teacher::class);
+    }
+
     public function students()
     {
         return $this->belongsToMany(\App\Models\Jasiri\Student::class);

@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Jasiri;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Jasiri\Student;
+use Validator;
 
 class StudentController extends Controller
 {
+    function __construct(Student $student)
+    {
+        $this->student = $student;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,6 +42,19 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'user_id'               => 'required|unique:students',
+                'name'                  => 'required',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        $student = Student::create($request->all());
+        return $student;
     }
 
     /**
@@ -81,5 +100,11 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function find($student_id)
+    {
+        return $student = $this->student->where('user_id','=',$student_id)->first();
+
     }
 }

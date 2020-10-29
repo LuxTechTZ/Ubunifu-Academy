@@ -6,17 +6,26 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jasiri\Cart;
 use App\Models\Jasiri\CartItem;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UsersManagementController;
 use App\Http\Controllers\Jasiri\CourseController;
+use App\Http\Controllers\Jasiri\StudentController;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Session;
 use Auth;
 
 class CartController extends Controller
 {
-    function __construct(Cart $cart,CartItem $cart_item,CourseController $course)
+    use AuthenticatesUsers;
+
+    function __construct(Cart $cart,CartItem $cart_item,CourseController $course,RegisterController $register_user,StudentController $student,UsersManagementController $user_manage)
     {
     	$this->cart = $cart;
     	$this->course = $course;
-    	$this->cart_item = $cart_item;
+        $this->cart_item = $cart_item;
+        $this->register_user = $register_user;
+        $this->student = $student;
+        $this->user_manage = $user_manage;
 
     }
 
@@ -107,5 +116,74 @@ class CartController extends Controller
     	$cart->save();
 
     	return;
+    }
+
+    public function placeOrder(Request $request,$cart_id)
+    {
+        $cart = Cart::findOrFail($cart_id);
+
+        $user = Auth::user(); 
+        if (!isset($user)) {
+            $user = $this->user_manage->store($request,$from_order = true);
+
+            // return $user;
+            $credentials = $request->only('email', 'password');
+
+            Auth::attempt($credentials);
+                 // create Student
+            $student_details = new Request;
+            $student_details['user_id'] = $user->id;
+            $student_details['name'] = $user->name;
+            $student_details;
+            
+            $student = $this->student->store($student_details);
+
+            foreach ($cart->items as $item) {
+                if($student->courses()->find($item->course_id) == null)
+                $student->courses()->attach($item->course_id);
+            }
+            
+
+        }else{
+            $student_details = new Request;
+            $student_details['user_id'] = $user->id;
+            $student_details['name'] = $user->name;
+            
+            $student = $this->student->find($user->id);
+            if (isset($student)) {
+                foreach ($cart->items as $item) {
+                    if($student->courses()->find($item->course_id) == null)
+                    $student->courses()->attach($item->course_id);
+                }
+            }else{
+                $student = $this->student->store($student_details);
+
+                foreach ($cart->items as $item) {
+                    if($student->courses()->find($item->course_id) == null)
+                    $student->courses()->attach($item->course_id);
+                }
+            }
+
+        }
+
+
+        $cart = Cart::findOrFail($cart_id);
+        $cart->user_id = $user->id;
+        $cart->save();
+
+        Cart::destroy($cart_id);
+
+        return redirect('account/courses');
+    }
+    
+    public function createStudemt($student_details,$cart_id)
+    {
+        $cart = Cart::findOrFail($cart_id);
+        
+        $student = $this->student->store($student_details);
+
+        foreach ($cart->items as $item) {
+            $student->courses()->attach($item->course_id);
+        }
     }
 }
