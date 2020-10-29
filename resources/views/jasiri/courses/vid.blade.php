@@ -1,29 +1,20 @@
 <!doctype html>
 <html>
-    <head>
-        <video data-dashjs-player autoplay src="{{url('/')}}/vids/hamo.mpd" controls>
-</video>
-        <title>Dash.js Rocks</title>
-        <style>
-            video {
-                width: 640px;
-                height: 360px;
-            }
-        </style>
-    </head>
+  <head>
+    <style type="text/css">
+      body {
+        overflow: hidden; /* Hide scrollbars */
+      }
+    </style>
+  </head>
     <body>
-        <div>
-            <video id="videoPlayer" controls></video>
-        </div>
+        <video width="100%" height="100%" data-dashjs-player autoplay src="{{url('/')}}/vids/16/new.mpd" controls>
+        </video>
+        
+       
         <script src="http://demo.unified-streaming.com/players/dash.js-2.6.6/contrib/akamai/controlbar/ControlBar.js"></script>
         <script src="{{url('/')}}/dash.js-3.1.3/dist/dash.all.min.js"></script>
-        <script>
-            (function(){
-                var url = "{{url('/')}}/vids/hamo.mpd";
-                var player = dashjs.MediaPlayer().create();
-                player.initialize(document.querySelector("#videoPlayer"), url, true);
-            })();
-        </script>
+       
 
         <script>
             function init() {

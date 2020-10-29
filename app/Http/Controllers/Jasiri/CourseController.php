@@ -288,29 +288,29 @@ class CourseController extends Controller
 
         $video = $ffmpeg->open($stored_video);
 
-        // $r_144p  = (new Representation)->setKiloBitrate(95)->setResize(256, 144);
-        // $r_240p  = (new Representation)->setKiloBitrate(150)->setResize(426, 240);
-        // $r_360p  = (new Representation)->setKiloBitrate(276)->setResize(640, 360);
-        // $r_480p  = (new Representation)->setKiloBitrate(750)->setResize(854, 480);
-        // $r_720p  = (new Representation)->setKiloBitrate(2048)->setResize(1280, 720);
-        // $r_1080p = (new Representation)->setKiloBitrate(4096)->setResize(1920, 1080);
-        // $r_2k    = (new Representation)->setKiloBitrate(6144)->setResize(2560, 1440);
-        // $r_4k    = (new Representation)->setKiloBitrate(17408)->setResize(3840, 2160);
+        $r_144p  = (new Representation)->setKiloBitrate(95)->setResize(256, 144);
+        $r_240p  = (new Representation)->setKiloBitrate(150)->setResize(426, 240);
+        $r_360p  = (new Representation)->setKiloBitrate(276)->setResize(640, 360);
+        $r_480p  = (new Representation)->setKiloBitrate(750)->setResize(854, 480);
+        $r_720p  = (new Representation)->setKiloBitrate(2048)->setResize(1280, 720);
+        $r_1080p = (new Representation)->setKiloBitrate(4096)->setResize(1920, 1080);
+        $r_2k    = (new Representation)->setKiloBitrate(6144)->setResize(2560, 1440);
+        $r_4k    = (new Representation)->setKiloBitrate(17408)->setResize(3840, 2160);
 
-        // $video->dash()
-        //     ->setSegDuration(30) // Default value is 10 
-        //     ->setAdaption('id=0,streams=v id=1,streams=a')
-        //     ->x264()
-        //     ->addRepresentations([$r_144p, $r_240p, $r_360p, $r_480p, $r_720p, $r_1080p, $r_2k, $r_4k])
-        //     ->save('var/media/dash-stream.mpd');
+        $video->dash()
+            ->setSegDuration(30) // Default value is 10 
+            ->setAdaption('id=0,streams=v id=1,streams=a')
+            ->x264()
+            ->addRepresentations([$r_144p, $r_240p, $r_360p, $r_480p, $r_720p, $r_1080p, $r_2k, $r_4k])
+            ->save('vids/'.$last_vid->id.'/new.mpd');
 
+        return "Hello";
         $video->dash()
                 ->setAdaption('id=0,streams=v id=1,streams=a') // Set the adaption.
                 ->x264() // Format of the video. Alternatives: x264() and vp9()
                 ->autoGenerateRepresentations() // Auto generate representations
                 ->save('vids/'.$last_vid->id.'/new.mpd'); // It can be passed a path to the method or it can be null
 
-        return "Hello";
 
         $video->hls()
             ->fragmentedMP4()
