@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <h2>Intro Video</h2>
-                    <div itemscope itemtype="https://schema.org/VideoObject"><meta itemprop="uploadDate" content="Mon Oct 26 2020 06:59:03 GMT+0300 (East Africa Time)"/><meta itemprop="name" content="Maneno Mazuri Ya Kukutia Moyoo.... (Best Swahili Inspiration Video By @Mc Daktari).."/><meta itemprop="duration" content="PT2M6.433S" /><meta itemprop="thumbnailUrl" content="https://content.jwplatform.com/thumbs/jKMvkpGt-1280.jpg"/><meta itemprop="contentUrl" content="https://content.jwplatform.com/videos/jKMvkpGt-qVtp0lm2.mp4"/><div style="position:relative; overflow:hidden; padding-bottom:56.25%"> <iframe src="https://cdn.jwplayer.com/players/jKMvkpGt-6nzF13qK.html" width="100%" height="100%" frameborder="0" scrolling="auto" title="Maneno Mazuri Ya Kukutia Moyoo.... (Best Swahili Inspiration Video By @Mc Daktari).." style="position:absolute;" allowfullscreen></iframe> </div></div>
+                    <!-- <div itemscope itemtype="https://schema.org/VideoObject"><meta itemprop="uploadDate" content="Mon Oct 26 2020 06:59:03 GMT+0300 (East Africa Time)"/><meta itemprop="name" content="Maneno Mazuri Ya Kukutia Moyoo.... (Best Swahili Inspiration Video By @Mc Daktari).."/><meta itemprop="duration" content="PT2M6.433S" /><meta itemprop="thumbnailUrl" content="https://content.jwplatform.com/thumbs/jKMvkpGt-1280.jpg"/><meta itemprop="contentUrl" content="https://content.jwplatform.com/videos/jKMvkpGt-qVtp0lm2.mp4"/><div style="position:relative; overflow:hidden; padding-bottom:56.25%"> <iframe src="https://cdn.jwplayer.com/players/jKMvkpGt-6nzF13qK.html" width="100%" height="100%" frameborder="0" scrolling="auto" title="Maneno Mazuri Ya Kukutia Moyoo.... (Best Swahili Inspiration Video By @Mc Daktari).." style="position:absolute;" allowfullscreen></iframe> </div></div> -->
 
                     {!! $course->full_details !!}
                     <!-- /section -->
@@ -232,7 +232,7 @@
                 <aside class="col-lg-4" id="sidebar">
                     <div class="box_detail">
                         <figure>
-                            <a href="https://youtu.be/N0NSCicIJz4" class="video"><i class="arrow_triangle-right"></i><img src="{{url('/')}}/img{{$course->image}}" alt="" class="img-fluid"><span>View course preview</span></a>
+                            <a href="http://jasiri.test/home/upload/demo/play" class="video"><i class="arrow_triangle-right"></i><img src="{{url('/')}}/img{{$course->image}}" alt="" class="img-fluid"><span>View course preview</span></a>
                         </figure>
                         <div class="price">{{number_format($course->price)}} TSH<!-- <span class="original_price"><em>$49</em>60% discount price</span> -->
                         </div>

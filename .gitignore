@@ -41,6 +41,7 @@ yarn.lock
 /public/vids
 /public/vid
 /public/uploads
+/public/images
 /storage/*.key
 /vendor
 /storage/debugbar
