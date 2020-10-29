@@ -38,6 +38,8 @@ yarn.lock
 /public/hot
 /public/storage
 /public/videos
+/public/vids
+/public/vid
 /storage/*.key
 /vendor
 /storage/debugbar
