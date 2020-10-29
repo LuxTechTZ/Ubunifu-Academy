@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Jasiri;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Jasiri\Student;
 
 class MaterialController extends Controller
 {
+    function __construct(Student $student)
+    {
+        $this->student = $student;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,6 +41,8 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         //
+        $student = Student::create($request->all());
+        return $student;
     }
 
     /**

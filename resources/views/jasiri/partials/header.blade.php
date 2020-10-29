@@ -4,9 +4,14 @@
         <a href="{{url('/')}}"><img src="{{url('/')}}/img/logo.png" width="149" height="42" alt=""></a>
     </div>
     <ul id="top_menu">
-        <li><a href="login.html" class="login">{{ trans('titles.login') }}</a></li>
+        <li><a href="login" class="login">{{ trans('titles.login') }}</a></li>
+        <li style="font-size: 25px;"><a  href="login" class="title"><span class="pe-7s-cart"></span></a></li>
         <li><a href="#0" class="search-overlay-menu-btn">Search</a></li>
-        <li class="hidden_tablet"><a href="/home" class="btn_1 rounded">{{ trans('titles.admission') }}</a></li>
+        @if(!isset(Auth::user()->id))
+        <li class="hidden_tablet"><a href="/account/dashboard" class="btn_1 rounded">{{ trans('titles.admission') }}</a></li>
+        @else
+        <li class="hidden_tablet"><a href="/account/dashboard" class="btn_1 rounded">My Account</a></li>
+        @endif
     </ul>
     <!-- /top_menu -->
     <a href="#menu" class="btn_mobile">
@@ -18,9 +23,7 @@
     </a>
     <nav id="menu" class="main-menu">
         <ul>
-            <li><span><a href="/">{{ trans('titles.home') }}</a></span>
-                
-            </li>
+            <li><span><a href="/">{{ trans('titles.home') }}</a></span></li>
             <li><span><a href="{{url('/')}}/courses-grid">{{ trans('titles.courses') }}</a></span>
                 
             </li>
@@ -41,3 +44,4 @@
     </div><!-- End Search Menu -->
 </header>
 <!-- /header -->
+

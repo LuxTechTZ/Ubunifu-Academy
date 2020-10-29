@@ -163,4 +163,9 @@ class User extends Authenticatable
     {
         return $this->profiles()->detach($profile);
     }
+
+    public function student()
+    {
+        return $this->hasOne(\App\Models\Jasiri\Student::class);
+    }
 }

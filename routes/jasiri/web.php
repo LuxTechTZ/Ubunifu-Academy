@@ -16,6 +16,8 @@
      Route::get('/course/purchase/{id}', 'CartController@createCart');
      Route::get('/course/purchase/chekout/{id}', 'CartController@payment');
 
+     // Cart Order
+     Route::post('/course/purchase/chekout/{cart_id}/order', 'CartController@placeOrder');
 
 
      Route::post('home/upload/demo', 'CourseController@upload');
@@ -23,4 +25,3 @@
 
 
      Route::get('home/upload/demo/convert', 'CourseController@convertVideo');
-      
