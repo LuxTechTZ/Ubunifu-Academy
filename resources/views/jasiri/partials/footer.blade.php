@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-5 col-md-12 p-r-5">
                 <p><img src="{{url('/')}}/img/logo.png" width="149" height="42" alt=""></p>
-                <p>Mea nibh meis philosophia eu. Duis legimus efficiantur ea sea. Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu. Nihil facilisi indoctum an vix, ut delectus expetendis vis.</p>
+                <p>Unatak kua mwalimu? Tuandikie wasiliana nasi kwa namba za simu au email.</p>
                 <div class="follow_us">
                     <ul>
                         <li>Follow us</li>

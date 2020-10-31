@@ -30,7 +30,7 @@
             <span class="nav-link-text">New Courses <span class="badge badge-pill badge-primary">6 New</span></span>
           </a>
     </li>
-		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
+		<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
           <a class="nav-link" href="reviews.html">
             <i class="fa fa-fw fa-star"></i>
             <span class="nav-link-text">Reviews</span>
@@ -41,14 +41,14 @@
             <i class="fa fa-fw fa-heart"></i>
             <span class="nav-link-text">Bookmarks</span>
           </a>
-        </li>
+        </li> -->
     @if(isset(Auth::user()->teacher->id))
-		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+		<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
           <a class="nav-link" href="add-listing.html">
             <i class="fa fa-fw fa-plus-circle"></i>
             <span class="nav-link-text">Add Course</span>
           </a>
-    </li>
+    </li> -->
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
           <a class="nav-link" href="add-listing.html">
             <i class="fa fa-fw fa-user"></i>
@@ -57,12 +57,12 @@
     </li>
     @endif
     @if(isset(Auth::user()->student->id))
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+    <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
           <a class="nav-link" href="add-listing.html">
             <i class="fa fa-fw fa-plus-circle"></i>
             <span class="nav-link-text">Add listing</span>
           </a>
-    </li>
+    </li> -->
     <li class="nav-item {{ (Request::is('account/profile')) || (Request::is('account/profile*')) ? 'active open' : null }}" data-toggle="tooltip" data-placement="right" title="Add listing">
           <a class="nav-link" href="{{url('/')}}/account/profile">
             <i class="fa fa-fw fa-user"></i>
@@ -70,7 +70,7 @@
           </a>
     </li>
     @endif
-		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+		<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-gear"></i>
             <span class="nav-link-text">Components</span>
@@ -83,7 +83,7 @@
               <a href="tables.html">Tables</a>
             </li>
           </ul>
-      </li>
+      </li> -->
 
       </ul>
       <ul class="navbar-nav sidenav-toggler">
@@ -137,26 +137,14 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="messagesDropdown">
             <h6 class="dropdown-header">New Messages:</h6>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <strong>David Miller</strong>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <strong>Jane Smith</strong>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <strong>John Doe</strong>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item small" href="#">View all messages</a>
+                <div class="dropdown-divider"></div>
+                <!-- <a class="dropdown-item" href="#">
+                  <strong>David Miller</strong>
+                  <span class="small float-right text-muted">11:21 AM</span>
+                  <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
+                </a> -->
+                
+            <a class="dropdown-item small" href="{{url('/')}}/account/messages">View all messages</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -172,7 +160,7 @@
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">New Alerts:</h6>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
+            <!-- <a class="dropdown-item" href="#">
               <span class="text-success">
                 <strong>
                   <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
@@ -198,7 +186,7 @@
               <span class="small float-right text-muted">11:21 AM</span>
               <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
             </a>
-            <div class="dropdown-divider"></div>
+            <div class="dropdown-divider"></div> -->
             <a class="dropdown-item small" href="#">View all alerts</a>
           </div>
         </li>

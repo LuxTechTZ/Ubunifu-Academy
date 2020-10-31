@@ -18,7 +18,7 @@
 			<h4>Inbox</h4>
 			<div class="list_general">
 				<ul>
-					<li>
+					<!-- <li>
 						<span>2 hours ago</span>
 						<figure><img src="{{url('/')}}/back_assets/img/avatar1.jpg" alt=""></figure>
 						<h4>Enzo Ferrari <i class="unread">Unread</i></h4>
@@ -53,14 +53,14 @@
 						<figure><img src="{{url('/')}}/back_assets/img/avatar6.jpg" alt=""></figure>
 						<h4>Mark Shoemaker <i class="unread">Unread</i></h4>
 						<p>In vim mucius menandri convenire, an brute zril vis. Ancillae delectus necessitatibus no eam, at porro solet veniam mel, ad everti nostrud vim. Eam no menandri pertinacia deterruisset.</p>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
 		<!-- /box_general-->
 		<nav aria-label="...">
 			<ul class="pagination pagination-sm add_bottom_30">
-				<li class="page-item disabled">
+				<!-- <li class="page-item disabled">
 					<a class="page-link" href="#" tabindex="-1">Previous</a>
 				</li>
 				<li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -68,7 +68,7 @@
 				<li class="page-item"><a class="page-link" href="#">3</a></li>
 				<li class="page-item">
 					<a class="page-link" href="#">Next</a>
-				</li>
+				</li> -->
 			</ul>
 		</nav>
 		<!-- /pagination-->
