@@ -123,7 +123,16 @@
     
     <!-- SPECIFIC SCRIPTS -->
     <script src="{{url('/')}}/js/pw_strenght.js"></script>
-  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-179224387-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-179224387-1');
+</script>
+
 </body>
 
 <!-- Mirrored from www.ansonika.com/udema/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Oct 2020 22:34:22 GMT -->
