@@ -24,13 +24,18 @@
         <div class="container margin_60_35">
             <div class="row">
                 <div class="col-lg-8">
-                    <h2>Intro Video</h2>
-                    <!-- <div itemscope itemtype="https://schema.org/VideoObject"><meta itemprop="uploadDate" content="Mon Oct 26 2020 06:59:03 GMT+0300 (East Africa Time)"/><meta itemprop="name" content="Maneno Mazuri Ya Kukutia Moyoo.... (Best Swahili Inspiration Video By @Mc Daktari).."/><meta itemprop="duration" content="PT2M6.433S" /><meta itemprop="thumbnailUrl" content="https://content.jwplatform.com/thumbs/jKMvkpGt-1280.jpg"/><meta itemprop="contentUrl" content="https://content.jwplatform.com/videos/jKMvkpGt-qVtp0lm2.mp4"/><div style="position:relative; overflow:hidden; padding-bottom:56.25%"> <iframe src="https://cdn.jwplayer.com/players/jKMvkpGt-6nzF13qK.html" width="100%" height="100%" frameborder="0" scrolling="auto" title="Maneno Mazuri Ya Kukutia Moyoo.... (Best Swahili Inspiration Video By @Mc Daktari).." style="position:absolute;" allowfullscreen></iframe> </div></div> -->
 
-                    {!! $course->full_details !!}
                     <!-- /section -->
                     
                     <section id="lessons">
+                       
+
+                    
+                    <h2>Course Intro</h2>
+                    <div itemscope itemtype="https://schema.org/VideoObject"><meta itemprop="uploadDate" content="Mon Oct 26 2020 06:59:03 GMT+0300 (East Africa Time)"/><meta itemprop="name" content="Maneno Mazuri Ya Kukutia Moyoo.... (Best Swahili Inspiration Video By @Mc Daktari).."/><meta itemprop="duration" content="PT2M6.433S" /><meta itemprop="thumbnailUrl" content="https://content.jwplatform.com/thumbs/jKMvkpGt-1280.jpg"/><meta itemprop="contentUrl" content="https://content.jwplatform.com/videos/jKMvkpGt-qVtp0lm2.mp4"/><div style="position:relative; overflow:hidden; padding-bottom:56.25%"> <iframe src="https://cdn.jwplayer.com/players/jKMvkpGt-6nzF13qK.html" width="100%" height="100%" frameborder="0" scrolling="auto" title="Maneno Mazuri Ya Kukutia Moyoo.... (Best Swahili Inspiration Video By @Mc Daktari).." style="position:absolute;" allowfullscreen></iframe> </div></div>
+                    <hr>
+                    {!! $course->full_details !!}
+
                         <div class="intro_title">
                             <h2>Lessons</h2>
                             <ul>
@@ -58,9 +63,9 @@
                                             <ul>
                                                 @foreach($lesson->materials as $material)
                                                 @if($material->type == "video")
-                                                <li><a href="{{url('/')}}/video/Alikiba - SO HOT (Official Music Video) ( 1080 X 1080 ).mp4" class="video">{{$material->name}}</a><span>00:59</span></li>
+                                                <li><a href="http://jasiri.test/home/upload/demo/play" class="video">{{$material->name}}</a><span>00:59</span></li>
                                                 @elseif($material->type == "pdf")
-                                                <li><a href="#0" class="txt_doc">{{$material->name}}</a><span>9 Pages</span></li>
+                                                <li><a href="{{url('/')}}/uploads/pdf/Bill Manager Doc.pdf" class="txt_doc">{{$material->name}}</a><span>9 Pages</span></li>
                                                 @endif
                                                 @endforeach
 

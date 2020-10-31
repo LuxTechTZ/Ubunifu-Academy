@@ -60,10 +60,30 @@ class CartController extends Controller
 
     	$this->addItem($course,$cart->id);
 
-    	$this->updateCart($cart->id);
+    	$cart = $this->updateCart($cart->id);
+
+        return view('jasiri.cart.items',compact('cart'));
+
+    }
+
+    public function showCart($value='')
+    {
+        if (isset(Auth::user()->id)) {
+            $user_id = Auth::user()->id;
+        }
+
+        if (isset($user_id)) {
+            $cart = $this->cart
+                ->where('user_id','=',$user_id)
+                ->first();
+
+        }else{
+            $cart = $this->cart
+                ->where('session_id','=',Session::getId())
+                ->first();
+        }
 
     	return view('jasiri.cart.items',compact('cart'));
-
     }
 
     public function payment($cart_id)
@@ -115,7 +135,7 @@ class CartController extends Controller
 
     	$cart->save();
 
-    	return;
+    	return $cart;
     }
 
     public function placeOrder(Request $request,$cart_id)

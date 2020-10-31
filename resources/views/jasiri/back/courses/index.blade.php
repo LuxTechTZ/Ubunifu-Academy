@@ -42,7 +42,7 @@
 						<h6>Course description</h6> 
 						<p>{{$course->description}}</p>
 						<ul class="buttons">
-							<li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Learn</a></li>
+							<li><a href="{{url('/')}}/courses/{{$course->category->title}}/{{$course->title}}" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Learn</a></li>
 							<!-- <li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a></li> -->
 						</ul>
 					</li>

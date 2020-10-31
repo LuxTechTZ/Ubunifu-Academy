@@ -59,6 +59,14 @@
 							</tr>
 						</thead>
 						<tbody>
+							@if(!isset($cart->items))
+							<tr>
+								<td ><p>Your cart is Empty</p></td> 
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							@else
 							@foreach($cart->items as $item)
 							<tr>
 								<td>
@@ -78,6 +86,7 @@
 								</td>
 							</tr>
 							@endforeach
+							@endif
 						</tbody>
 					</table>
 					<div class="cart-options clearfix">
@@ -103,10 +112,18 @@
 				<aside class="col-lg-4" id="sidebar">
 					<div class="box_detail">
 						<div id="total_cart">
-							Total <span class="float-right">{{number_format($cart->total_price)}} TSH</span>
+							Total <span class="float-right">
+								@if(isset($cart->items))
+								{{number_format($cart->total_price)}} TSH
+								@else
+								0 TSH
+								@endif
+							</span>
 						</div>
 						<div class="add_bottom_30">Gharama zimejumlishwa na VAT <strong>Karibu.</strong> Eandapo haujaridhika na kozi hii, una siku <strong>3</strong>  za kughairi. <a href="#0">Wasiliana nasi</a> endapo unapata tatizo lolote.</div>
+						@if(isset($cart->items))
 						<a href="{{url('/')}}/course/purchase/chekout/{{$cart->id}}" class="btn_1 full-width">Checkout</a>
+						@endif
 						<a href="{{url('/')}}/courses-grid" class="btn_1 full-width outline"><i class="icon-right"></i> Continue Shopping</a>
 					</div>
 				</aside>

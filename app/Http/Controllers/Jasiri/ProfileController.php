@@ -31,9 +31,10 @@ class ProfileController extends Controller
         $file->move('uploads/profile/'.$user->id.'/',$filename);
         $save_path  = 'uploads/profile/'.$user->id.'/';
 
-        Image::make($file)->fit(300, 300)->save($save_path.$filename);
+        // Image::make($file)->fit(300, 300)->save($save_path.$filename);
 
-        return "200";
+        return 200;
+        // return redirect('/account/profile');
 
     }
 }

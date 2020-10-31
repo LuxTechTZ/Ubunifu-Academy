@@ -12,6 +12,7 @@
 
 
      // Cart
+     Route::get('/cart', 'CartController@showCart');
      // Cart Purchase
      Route::get('/course/purchase/{id}', 'CartController@createCart');
      Route::get('/course/purchase/chekout/{id}', 'CartController@payment');

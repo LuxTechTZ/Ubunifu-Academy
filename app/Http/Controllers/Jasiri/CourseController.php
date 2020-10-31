@@ -104,7 +104,7 @@ class CourseController extends Controller
         $log->pushHandler(new StreamHandler('var/log/ffmpeg-streaming.log')); // path to log file
             
        
-
+        $user = Auth::user();
 
 
         // Olde code 
@@ -114,6 +114,15 @@ class CourseController extends Controller
 
         if (!isset($course)) {
             return redirect()->back();
+        }
+
+        if (isset($user->id)) {
+            foreach ($user->student->courses as $paid_course) {
+                if($course->id == $paid_course->id){
+                    $course = $paid_course;
+                return view('jasiri.courses.paid',compact('course'));
+                }
+            }
         }
 
         return view('jasiri.courses.detail',compact('course'));

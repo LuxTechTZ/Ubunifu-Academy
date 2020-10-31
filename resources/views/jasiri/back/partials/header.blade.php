@@ -95,6 +95,37 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="cartDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user"></i>
+            <span class="d-lg-none">Cart 
+              <span class="badge badge-pill badge-primary">12 New</span>
+            </span>
+            <span class="indicator text-primary d-none d-lg-block">
+              @if(isset(App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first()->id ))
+              <p class="badge badge-pill badge-primary">{{count(App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first()->items)}}</p>
+              @endif
+              <i class=""></i>
+            </span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+            <h6 class="dropdown-header">Items In Cart:</h6>
+              @if(isset(App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first()->id ))
+            @foreach(App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first()->items as $item)
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{url('/')}}/course/purchase/{{$item->course->id}}">
+              <strong>{{$item->course->title}}</strong>
+              <span class="small float-right text-muted">{{number_format($item->course->price)}} TSH</span>
+              <div class="dropdown-message small">{{$item->course->description}}</div>
+            </a>
+            @endforeach
+              @endif
+            
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item small" href="#">View all messages</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-envelope"></i>
             <span class="d-lg-none">Messages

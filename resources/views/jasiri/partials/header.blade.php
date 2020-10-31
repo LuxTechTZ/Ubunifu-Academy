@@ -4,8 +4,27 @@
         <a href="{{url('/')}}"><img src="{{url('/')}}/img/logo.png" width="149" height="42" alt=""></a>
     </div>
     <ul id="top_menu">
-        <li><a href="login" class="login">{{ trans('titles.login') }}</a></li>
-        <li style="font-size: 25px;"><a  href="login" class="title"><span class="pe-7s-cart"></span></a></li>
+        @if(isset(Auth::user()->id))
+        <li><a onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="login">{{ trans('titles.login') }}</a></li>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        @endif
+
+        <!-- Cart -->
+        <li style="font-size: 25px;">
+            <a style=" vertical-align: text-bottom; " href="{{url('/')}}/cart" class="title">
+                <span style=" vertical-align: text-bottom" class="pe-7s-cart pulsate">
+                    
+                </span>
+                @if(isset(App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first()->id ))
+                <sup><span class="">{{count(App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first()->items)}}</span></sup>
+                @endif
+                
+            </a>
+        </li>
+        <!-- End cart -->
+
         <li><a href="#0" class="search-overlay-menu-btn">Search</a></li>
         @if(!isset(Auth::user()->id))
         <li class="hidden_tablet"><a href="/account/dashboard" class="btn_1 rounded">{{ trans('titles.admission') }}</a></li>
