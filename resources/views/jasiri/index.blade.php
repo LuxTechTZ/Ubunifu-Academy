@@ -232,56 +232,56 @@
                 <div class="col-lg-6">
                     <a class="box_news" href="#0">
                         <figure><img src="img/news_home_1.jpg" alt="">
-                            <figcaption><strong>28</strong>Dec</figcaption>
+                            <figcaption><strong>20</strong>Oct</figcaption>
                         </figure>
                         <ul>
                             <li>Mark Twain</li>
-                            <li>20.11.2017</li>
+                            <li>20.10.2020</li>
                         </ul>
-                        <h4>Pri oportere scribentur eu</h4>
-                        <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                        <h4>Technologia na Uchaguzi</h4>
+                        <p>Biashara 7 Za kukutoa baada ya uchaguzi</p>
                     </a>
                 </div>
                 <!-- /box_news -->
                 <div class="col-lg-6">
                     <a class="box_news" href="#0">
                         <figure><img src="img/news_home_2.jpg" alt="">
-                            <figcaption><strong>28</strong>Dec</figcaption>
+                            <figcaption><strong>28</strong>Sept</figcaption>
                         </figure>
                         <ul>
                             <li>Jhon Doe</li>
-                            <li>20.11.2017</li>
+                            <li>20.11.2020</li>
                         </ul>
-                        <h4>Duo eius postea suscipit ad</h4>
-                        <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                        <h4>Waalimu wa biashara</h4>
+                        <p>Tumeongeza waaalimu wa biashara.</p>
                     </a>
                 </div>
                 <!-- /box_news -->
                 <div class="col-lg-6">
                     <a class="box_news" href="#0">
                         <figure><img src="img/news_home_3.jpg" alt="">
-                            <figcaption><strong>28</strong>Dec</figcaption>
+                            <figcaption><strong>30</strong>Mar</figcaption>
                         </figure>
                         <ul>
                             <li>Luca Robinson</li>
-                            <li>20.11.2017</li>
+                            <li>30.05.2020</li>
                         </ul>
-                        <h4>Elitr mandamus cu has</h4>
-                        <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                        <h4>Kukuza viwanda</h4>
+                        <p>Ushirikiano wa serikali kukuza biashara za viwanda vidogo.</p>
                     </a>
                 </div>
                 <!-- /box_news -->
                 <div class="col-lg-6">
                     <a class="box_news" href="#0">
                         <figure><img src="img/news_home_4.jpg" alt="">
-                            <figcaption><strong>28</strong>Dec</figcaption>
+                            <figcaption><strong>05</strong>Oct</figcaption>
                         </figure>
                         <ul>
-                            <li>Paula Rodrigez</li>
-                            <li>20.11.2017</li>
+                            <li>Tengeneza biashara mtandaoni</li>
+                            <li>05.10.2020</li>
                         </ul>
-                        <h4>Id est adhuc ignota delenit</h4>
-                        <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                        <h4>Maajabu ya bishsara za mtandaoni</h4>
+                        <p>Ongezeko la vijana wajasiriliamali linakuza viwanda.</p>
                     </a>
                 </div>
                 <!-- /box_news -->
@@ -300,7 +300,7 @@
                     <div class="block-vertical"></div>
                     <div class="box_1">
                         <h3>Enjoy a great students community</h3>
-                        <p>Ius cu tamquam persequeris, eu veniam apeirian platonem qui, id aliquip voluptatibus pri. Ei mea primis ornatus disputationi. Menandri erroribus cu per, duo solet congue ut. </p>
+                        <p>Kaa karibu na sisi tukuweke karibu na communitu kubwa zaidi ya wanafunzi na wajasiriamali walioamua kubadilish atanzania kiuchumi.. </p>
                         <a href="#0" class="btn_1 rounded">Read more</a>
                     </div>
                 </div>

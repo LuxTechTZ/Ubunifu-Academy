@@ -27,9 +27,9 @@
 
         <li><a href="#0" class="search-overlay-menu-btn">Search</a></li>
         @if(!isset(Auth::user()->id))
-        <li class="hidden_tablet"><a href="/account/dashboard" class="btn_1 rounded">{{ trans('titles.admission') }}</a></li>
+        <li class="hidden_tablet"><a href="{{url('/')}}/account/dashboard" class="btn_1 rounded">{{ trans('titles.admission') }}</a></li>
         @else
-        <li class="hidden_tablet"><a href="/account/dashboard" class="btn_1 rounded">My Account</a></li>
+        <li class="hidden_tablet"><a href="{{url('/')}}/account/dashboard" class="btn_1 rounded">My Account</a></li>
         @endif
     </ul>
     <!-- /top_menu -->
