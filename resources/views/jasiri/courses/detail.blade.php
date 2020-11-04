@@ -202,7 +202,7 @@
                 <aside class="col-lg-4" id="sidebar">
                     <div class="box_detail">
                         <figure>
-                            <a href="http://jasiri.test/home/upload/demo/play" class="video"><i class="arrow_triangle-right"></i><img src="{{url('/')}}/img{{$course->image}}" alt="" class="img-fluid"><span>View course preview</span></a>
+                            <a href="https://cdn.jwplayer.com/players/jKMvkpGt-6nzF13qK.html" class="video"><i class="arrow_triangle-right"></i><img src="{{url('/')}}/img{{$course->image}}" alt="" class="img-fluid"><span>View course preview</span></a>
                         </figure>
                         <div class="price">{{number_format($course->price)}} TSH<!-- <span class="original_price"><em>$49</em>60% discount price</span> -->
                         </div>

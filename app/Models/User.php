@@ -168,4 +168,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(\App\Models\Jasiri\Student::class);
     }
+
+    public function teacher()
+    {
+        return $this->hasOne(\App\Models\Jasiri\Teacher::class);
+    }
 }

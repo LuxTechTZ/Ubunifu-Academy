@@ -50,7 +50,64 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('jasiri.back.courses.create');
+    }
+
+    public function uploadToLonode(Request $request)
+    {
+        // validate the uploaded file
+        $validation = $request->validate([
+            'file' => 'required|file|mimes:mp4,MPEG,WMV,FLV,avi|max:204800'
+            // for multiple file uploads
+            // 'photo.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+        ]);
+        $file      = $validation['file']; // get the validated file
+        $extension = $file->getClientOriginalExtension();
+        $filename = 'raw-video' . $file->getClientOriginalName();
+        $file->move('videos2/',$filename);
+
+        $path = 'videos2/'.$filename;
+
+        $uploaded_video             = new VideoUpload;
+        $uploaded_video->user_id    = 1; //Auth::user()->id;
+        $uploaded_video->lesson_id  = 1;
+        $uploaded_video->name       = $filename;
+        $uploaded_video->path       = $path;
+        $uploaded_video->extenssion = $extension;
+        $uploaded_video->status     = 0;
+
+        $uploaded_video->save();
+
+        $this->uploadToJW($path);
+
+        return 200;
+
+        dd($path);
+    }
+
+    public function uploadToJW($path)
+    {
+        $jwplatform_api_key = '9qGiUzRc';
+        $jwplatform_api_secret = 'utLPJ05Rbv7b1Dh6lCyIifZj';
+
+        $jwplatform_api = new JwplatformAPI($jwplatform_api_key, $jwplatform_api_secret);
+
+        $target_file = $path;
+        $params = array();
+        $params['title'] = 'Upload From Linode';
+        $params['description'] = 'Video description here';
+
+        // Create the example video
+        $create_response = json_encode($jwplatform_api->call('/videos/create', $params));
+
+        print_r($create_response);
+
+        $decoded = json_decode(trim($create_response), TRUE);
+        $upload_link = $decoded['link'];
+
+        $upload_response = $jwplatform_api->upload($target_file, $upload_link);
+
+        return $upload_response;
     }
 
     /**

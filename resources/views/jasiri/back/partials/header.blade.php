@@ -18,7 +18,7 @@
             <span class="nav-link-text">Messages</span>
           </a>
         </li>
-		<li class="nav-item  {{ (Request::is('account/courses')) || (Request::is('account/courses*')) ? 'active open' : null }}" data-toggle="tooltip" data-placement="right" title="Bookings">
+		<li class="nav-item  {{ (Request::is('account/courses')) || (Request::is('account/courses')) ? 'active open' : null }}" data-toggle="tooltip" data-placement="right" title="Bookings">
           <a class="nav-link" href="{{url('/')}}/account/courses">
             <i class="fa fa-fw fa-archive"></i>
             <span class="nav-link-text">My Courses</span>
@@ -27,7 +27,7 @@
     <li class="nav-item  {{ (Request::is('account/courses/new')) || (Request::is('account/courses/new*')) ? 'active open' : null }}" data-toggle="tooltip" data-placement="right" title="Bookings">
           <a class="nav-link" href="{{url('/')}}/account/courses">
             <i class="fa fa-fw fa-archive"></i>
-            <span class="nav-link-text">New Courses <span class="badge badge-pill badge-primary">6 New</span></span>
+            <span class="nav-link-text">Student Courses </span>
           </a>
     </li>
 		<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
@@ -42,20 +42,7 @@
             <span class="nav-link-text">Bookmarks</span>
           </a>
         </li> -->
-    @if(isset(Auth::user()->teacher->id))
-		<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
-          <a class="nav-link" href="add-listing.html">
-            <i class="fa fa-fw fa-plus-circle"></i>
-            <span class="nav-link-text">Add Course</span>
-          </a>
-    </li> -->
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
-          <a class="nav-link" href="add-listing.html">
-            <i class="fa fa-fw fa-user"></i>
-            <span class="nav-link-text">Teacher's Profile</span>
-          </a>
-    </li>
-    @endif
+
     @if(isset(Auth::user()->student->id))
     <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
           <a class="nav-link" href="add-listing.html">
@@ -70,6 +57,29 @@
           </a>
     </li>
     @endif
+
+    @if(isset(Auth::user()->teacher->id))
+    <hr>
+    <li class="nav-item  {{ (Request::is('account/courses/new')) || (Request::is('account/courses/new*')) ? 'active open' : null }}" data-toggle="tooltip" data-placement="right" title="Bookings">
+          <a class="nav-link" href="{{url('/')}}/account/courses">
+            <i class="fa fa-fw fa-archive"></i>
+            <span class="nav-link-text">Teachers Courses </span>
+          </a>
+    </li>
+		<li class="nav-item {{ (Request::is('account/courses/create')) || (Request::is('account/courses/new*')) ? 'active open' : null }}" data-toggle="tooltip" data-placement="right" title="Add listing">
+          <a class="nav-link" href="{{url('/')}}/account/courses/create">
+            <i class="fa fa-fw fa-plus-circle"></i>
+            <span class="nav-link-text">Add Course</span>
+          </a>
+    </li>
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+          <a class="nav-link" href="{{url('/')}}/account/profile">
+            <i class="fa fa-fw fa-user"></i>
+            <span class="nav-link-text">Teacher's Profile</span>
+          </a>
+    </li>
+    @endif
+    
 		<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-gear"></i>
@@ -203,8 +213,11 @@
           </form>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+          <a class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="login">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
         </li>
       </ul>
     </div>

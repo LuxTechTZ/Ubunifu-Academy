@@ -49,11 +49,11 @@
               <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="access_social">
-                    <a href="{{url('/')}}/#0" class="social_bt facebook">Login with Facebook</a>
+                    <!-- <a href="{{url('/')}}/#0" class="social_bt facebook">Login with Facebook</a>
                     <a href="{{url('/')}}/#0" class="social_bt google">Login with Google</a>
-                    <a href="{{url('/')}}/#0" class="social_bt linkedin">Login with Linkedin</a>
+                    <a href="{{url('/')}}/#0" class="social_bt linkedin">Login with Linkedin</a> -->
                 </div>
-                <div class="divider"><span>Or</span></div>
+                <!-- <div class="divider"><span>Or</span></div> -->
                 <div class="form-group">
                     <span class="input">
                     <input  id="email" type="email" class="input_field{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" autocomplete="off" value="{{ old('email') }}" required autofocus>
