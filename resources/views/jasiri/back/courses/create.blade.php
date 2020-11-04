@@ -22,7 +22,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-					<label>Your photo</label>
+					<label>Your Video</label>
 						<form action="{{url('/')}}/account/courses/upload_video" class="dropzone">@csrf</form>
 				    </div>
 				</div>
@@ -30,7 +30,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Name</label>
+								<label>Course Name</label>
 								<input type="text" class="form-control" placeholder="Your name">
 							</div>
 						</div>
@@ -115,6 +115,12 @@
 		<p><a href="#0" class="btn_1 medium">Save</a></p>
 	</div>
 	  <!-- /.container-fluid-->
+
+	  <form method="post" action="{{url('/')}}/account/courses/upload_to_jw" enctype="multipart/form-data">
+	  	@csrf
+	  	<input type="file" name="file">
+	  	<button type="submit">Upload</button>
+	  </form>
 </div>
 
 <script src="{{url('/')}}/back_assets/vendor/dropzone.min.js"></script>

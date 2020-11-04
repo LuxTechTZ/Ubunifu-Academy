@@ -16,4 +16,6 @@
      Route::get('account/courses/create', 'CourseController@create');
      Route::post('account/courses/upload_video', 'CourseController@uploadToLonode');
 
+     Route::post('account/courses/upload_to_jw', 'CourseController@uploadToJW');
+
 });

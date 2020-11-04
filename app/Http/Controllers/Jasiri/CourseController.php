@@ -78,36 +78,43 @@ class CourseController extends Controller
 
         $uploaded_video->save();
 
-        $this->uploadToJW($path);
+        return $this->uploadToJW($request,$path,$filename);
 
         return 200;
 
         dd($path);
     }
 
-    public function uploadToJW($path)
+    public function uploadToJW(Request $request,$path = null,$filename = null)
     {
         $jwplatform_api_key = '9qGiUzRc';
         $jwplatform_api_secret = 'utLPJ05Rbv7b1Dh6lCyIifZj';
 
         $jwplatform_api = new JwplatformAPI($jwplatform_api_key, $jwplatform_api_secret);
 
-        $target_file = $path;
+        if (isset($path)) {
+            $target_file = $path;
+            $params['title'] = $filename;
+        }else{
+            $target_file = $request['file'];
+            $params['title'] = 'Upload From Linode 2';
+        }
         $params = array();
-        $params['title'] = 'Upload From Linode';
         $params['description'] = 'Video description here';
 
-        // Create the example video
         $create_response = json_encode($jwplatform_api->call('/videos/create', $params));
-
-        print_r($create_response);
-
         $decoded = json_decode(trim($create_response), TRUE);
         $upload_link = $decoded['link'];
 
         $upload_response = $jwplatform_api->upload($target_file, $upload_link);
 
+        // Create the example video
+
+        // print_r($create_response);
         return $upload_response;
+
+
+
     }
 
     /**
