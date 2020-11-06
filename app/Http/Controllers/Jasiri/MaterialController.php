@@ -101,7 +101,7 @@ class MaterialController extends Controller
         $material->save();
         $uploaded_video->save();
 
-        $this->UploadToVimeo($request,$path,$material->lesson->name);
+        $this->UploadToVimeo($request,$path,$material->id);
         return json_encode('success', 200);
 
 
@@ -137,12 +137,12 @@ class MaterialController extends Controller
             echo '"' . $file_name . ' has been uploaded to ' . $video_data['body']['link'] . "\n";
 
             // Make an API call to edit the title and description of the video.
-            $lib->request($uri, array(
-                'name' => 'Vimeo API SDK test edit',
-                'description' => "This video was edited through the Vimeo API's PHP SDK.",
-            ), 'PATCH');
+            // $lib->request($uri, array(
+            //     'name' => 'Vimeo API SDK test edit',
+            //     'description' => "This video was edited through the Vimeo API's PHP SDK.",
+            // ), 'PATCH');
 
-            echo 'The title and description for ' . $uri . ' has been edited.' . "\n";
+            // echo 'The title and description for ' . $uri . ' has been edited.' . "\n";
 
             // Make an API call to see if the video is finished transcoding.
             $video_data = $lib->request($uri . '?fields=transcode.status');
