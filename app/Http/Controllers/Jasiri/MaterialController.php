@@ -128,7 +128,7 @@ class MaterialController extends Controller
         try {
             // Upload the file and include the video title and description.
             $uri = $lib->upload($file_name, array(
-                'name' => $filename,
+                'name' => 'Upload'.$filename,
                 'description' => "This video was uploaded through the Vimeo API's PHP SDK."
             ));
 
