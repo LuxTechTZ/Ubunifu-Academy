@@ -40,7 +40,7 @@ yarn.lock
 /public/videos
 /public/vids
 /public/vid
-/public/uploads
+/public/uploads/*
 /public/images
 /storage/*.key
 /vendor
