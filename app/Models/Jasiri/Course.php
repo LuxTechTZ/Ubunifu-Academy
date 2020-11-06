@@ -33,6 +33,11 @@ class Course extends Model
         return $this->belongsTo(\App\Models\Jasiri\Category::class);
     }
 
+    // public function parts()
+    // {
+    //     return $this->hasMany(\App\Models\Jasiri\Part::class);
+    // }
+
     public function lessons()
     {
         return $this->hasMany(\App\Models\Jasiri\Lesson::class);

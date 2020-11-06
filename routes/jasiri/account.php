@@ -23,4 +23,18 @@
 
      Route::post('account/courses/store', 'CourseController@storeCourse');
 
+
+     // Lesson 
+     Route::get('account/courses/lesson/create/{course_id}', 'LessonController@create');
+     Route::post('/account/courses/lesson/part/create/', 'PartController@create');
+
+     // Materials
+     Route::get('account/courses/material/create/{part_id}', 'MaterialController@create');
+     Route::post('account/courses/material/store/{part_id}', 'MaterialController@store');
+     Route::get('account/courses/material/edit/{material_id}', 'MaterialController@edit');
+     Route::post('account/courses/material/create/upload/{part_id}', 'MaterialController@upload');
+
+     // Upload mterial
+     Route::post('account/courses/material/upload/{part_id}', 'MaterialController@uploadToLonode');
+
 });

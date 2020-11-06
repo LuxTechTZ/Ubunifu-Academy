@@ -6,34 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Material extends Model
+class Part extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
      protected $fillable = [
         'lesson_id',
-        'user_id',
-        'part_id',
-        'name',
-        'protocol',
-        'address',
-        'path',
-        'key',
-        'token',
-        'type',
-        'status',
-        'size',
-        'local_file',
+        'order',
     ];
 
-    
-    public function part()
+    public function materials()
     {
-        return $this->belongsTo(\App\Models\Jasiri\Part::class);
+        return $this->hasMany(\App\Models\Jasiri\Material::class);
     }
-    
-    public function lesson()
+
+     public function lesson()
     {
         return $this->belongsTo(\App\Models\Jasiri\Lesson::class);
     }

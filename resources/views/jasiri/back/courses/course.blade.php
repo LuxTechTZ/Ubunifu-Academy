@@ -44,8 +44,11 @@
         @include('semi.alert')
         <div class="m-heading-1 border-green m-bordered">
        
-            <h3>{{$course->title}} <br> 
-               
+            <h3>{{$course->title}} </h3>
+                        <div class="actions">
+                           <a class="btn green" href="{{url('/')}}/account/courses/edit/{{$course->id}}">Edit Course Details</a>
+                        </div>
+                <br> 
                 <hr>
                 <h3>Selected Batch</h3>
                 <div class="row">
@@ -74,49 +77,130 @@
                     
                 </div>
                 </div>
-            </h3>
+            
 
         </div>
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN EXAMPLE TABLE PORTLET-->
-
-                <div class="portlet light bordered">
+                <div class="portlet light portlet-fit bordered">
                     <div class="portlet-title">
-                        <div class="caption font-dark">
-                            <i class="icon-settings font-dark"></i>
-                            <span class="caption-subject bold uppercase">Header Fixed</span>
+                        <div class="caption">
+                            <i class=" icon-layers font-green"></i>
+                            <span class="caption-subject font-green bold uppercase">Lessons</span>
+                            <div class="caption-desc font-grey-cascade"> This is the list of your lessons in order.</div>
+
                         </div>
                         <div class="actions">
-                            <div class="btn-group btn-group-devided" data-toggle="buttons">
-                                <label class="btn btn-transparent dark btn-outline btn-circle btn-sm active">
-                                    <input type="radio" name="options" class="toggle" id="option1">Actions</label>
-                                <label class="btn btn-transparent dark btn-outline btn-circle btn-sm">
-                                    <input type="radio" name="options" class="toggle" id="option2">Settings</label>
-                            </div>
+                           <a class="btn green" href="{{url('/')}}/account/courses/lesson/create/{{$course->id}}">Add Lesson</a>
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <table class="table table-striped table-bordered table-hover table-header-fixed" id="sample_1">
-                            <thead>
-                                <tr class="">
-                                    <th> Rendering engine </th>
-                                    <th> Browser </th>
-                                    <th> Platform(s) </th>
-                                    <th> Engine version </th>
-                                    <th> CSS grade </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td> Trident </td>
-                                    <td> Internet Explorer 4.0 </td>
-                                    <td> Win 95+ </td>
-                                    <td> 4 </td>
-                                    <td> X </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        @foreach($course->lessons as $lesson)
+                        <div class="mt-element-list">
+                            <div class="mt-list-head list-simple ext-1 font-white bg-blue-chambray">
+                                <div class="list-head-title-container">
+                                    <!-- <div class="list-date">Nov 8, 2015</div> -->
+                                    <h3 class="list-title">{{$lesson->name}}
+                                    <div class="actions pull-right">
+                                       <button form="part-{{$lesson->id}}" type="submit" class="btn btn-warning">Edit Lesson</button>
+                                       <button form="part-{{$lesson->id}}" type="submit" class="btn green">Add Part</button>
+                                    </div>
+                                    <form id="part-{{$lesson->id}}" hidden="" method="post" action="{{url('/')}}/account/courses/lesson/part/create">
+                                        @csrf
+                                        <input type="hidden" name="course_id" value="{{$course->id}}">
+                                        <input type="hidden" name="lesson_id" value="{{$lesson->id}}">
+                                       
+                                    </form>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="mt-list-container list-simple ext-1 group">
+                                @foreach($lesson->parts as $part)
+                                    
+                                <a class="list-toggle-container" data-toggle="collapse" href="#completed-{{$lesson->id}}{{$part->order}}" aria-expanded="false">
+                                    <div id="#samlpe{{$lesson->id}}{{$part->order}}" class="list-toggle done uppercase"> Part {{$part->order}}
+                                    </div>
+                                </a>
+                                <div class="panel-collapse collapse in" id="completed-{{$lesson->id}}{{$part->order}}">
+                                    <ul>
+                                        <li class="mt-list-item done">
+                                            <div class="list-icon-container">
+                                                <i class="icon-user"></i>
+                                            </div>
+                                            <div class="list-datetime" style="width: 200px"> 
+                                                <a href="{{url('/')}}/account/courses/material/create/{{$part->id}}" class="btn btn-success btn-sm pull-right">Add Material</a>
+                                            </div>
+                                            <div class="list-item-content">
+                                                <h3 class="uppercase">
+                                                    <a href="javascript:;">You have <b> {{count($part->materials)}} </b>Materials</a>
+                                                </h3>
+                                            </div>
+                                            <form method="post" enctype="multipart/form-data"></form>
+                                        </li>
+                                        @foreach($part->materials as $material)
+                                        <li class="mt-list-item done">
+                                            <div class="list-icon-container">
+                                                <i class="success icon-check"></i>
+                                            </div>
+                                            <div class="list-datetime" style="width: 200px"> {{date('j M, Y',strtotime($material->created_at))}} </div>
+                                            <div class="list-item-content">
+                                                <h3 class="uppercase">
+                                                    <a href="{{url('/')}}/account/courses/material/edit/{{$material->id}}">{{$material->name}}</a>
+                                                </h3>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endforeach
+
+                               <!--  <a class="list-toggle-container" data-toggle="collapse" href="#pending-simple" aria-expanded="false">
+                                    <div class="list-toggle uppercase"> Part 2
+                                        <span class="badge badge-default pull-right bg-white font-dark bold">3</span>
+                                    </div>
+                                </a>
+                                <div class="panel-collapse collapse" id="pending-simple">
+                                    <ul>
+                                        <li class="mt-list-item">
+                                            <div class="list-icon-container">
+                                                <i class="icon-close"></i>
+                                            </div>
+                                            <div class="list-datetime"> 8 Nov </div>
+                                            <div class="list-item-content">
+                                                <h3 class="uppercase">
+                                                    <a href="javascript:;">Listings Feature</a>
+                                                </h3>
+                                            </div>
+                                        </li>
+                                        <li class="mt-list-item">
+                                            <div class="list-icon-container">
+                                                <i class="icon-close"></i>
+                                            </div>
+                                            <div class="list-datetime"> 8 Nov </div>
+                                            <div class="list-item-content">
+                                                <h3 class="uppercase">
+                                                    <a href="javascript:;">Listings Feature</a>
+                                                </h3>
+                                            </div>
+                                        </li>
+                                        <li class="mt-list-item">
+                                            <div class="list-icon-container">
+                                                <i class="icon-close"></i>
+                                            </div>
+                                            <div class="list-datetime"> 8 Nov </div>
+                                            <div class="list-item-content">
+                                                <h3 class="uppercase">
+                                                    <a href="javascript:;">Listings Feature</a>
+                                                </h3>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                        </div>
+                        @endforeach
+                        <!-- End Lesson Foreach -->
                     </div>
                 </div>
                 <!-- END EXAMPLE TABLE PORTLET-->
@@ -127,6 +211,8 @@
     </div>
     <!-- END CONTENT BODY -->
 </div>
+
+
 @endsection
 
 

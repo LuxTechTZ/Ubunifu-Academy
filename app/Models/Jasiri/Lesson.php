@@ -23,6 +23,11 @@ class Lesson extends Model
         'size',
     ];
 
+    public function parts()
+    {
+        return $this->hasMany(\App\Models\Jasiri\Part::class);
+    }
+
     public function materials()
     {
         return $this->hasMany(\App\Models\Jasiri\Material::class);

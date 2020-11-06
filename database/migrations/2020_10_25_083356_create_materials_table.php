@@ -17,6 +17,7 @@ class CreateMaterialsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('lesson_id')->unsigned()->index();
             $table->unsignedBigInteger('user_id')->unsigned()->index();
+            $table->unsignedBigInteger('part_id')->unsigned()->index();
             $table->string('name');
             $table->string('protocol')->nullable();
             $table->string('address')->nullable();
@@ -32,6 +33,7 @@ class CreateMaterialsTable extends Migration
 
 
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
+            $table->foreign('part_id')->references('id')->on('parts')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

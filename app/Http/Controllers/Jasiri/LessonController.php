@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Jasiri;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Jasiri\Lesson;
+use App\Models\Jasiri\Course;
 
 class LessonController extends Controller
 {
+    function __construct(Lesson $lesson)
+    {
+        $this->lesson = $lesson;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +28,10 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($course_id)
     {
-        //
+        $lesson_course = Course::findOrFail($course_id);
+        return view('jasiri.back.lesson.create',compact('lesson_course'));
     }
 
     /**
