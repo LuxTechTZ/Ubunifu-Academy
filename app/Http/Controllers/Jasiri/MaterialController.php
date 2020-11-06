@@ -101,11 +101,11 @@ class MaterialController extends Controller
         $material->save();
         $uploaded_video->save();
 
-        $this->UploadToVimeo($request,$path,$filename);
+        $this->UploadToVimeo($request,$path,$material->lesson->name);
         return json_encode('success', 200);
 
 
-        dd($path);
+        // dd($path);
     }
 
     public function UploadToVimeo(Request $request,$path,$filename)
@@ -147,7 +147,7 @@ class MaterialController extends Controller
             // Make an API call to see if the video is finished transcoding.
             $video_data = $lib->request($uri . '?fields=transcode.status');
             echo 'The transcode status for ' . $uri . ' is: ' . $video_data['body']['transcode']['status'] . "\n";
-        return $video_data;
+        // return $video_data;
         } catch (VimeoUploadException $e) {
             // We may have had an error. We can't resolve it here necessarily, so report it to the user.
             echo 'Error uploading ' . $file_name . "\n";
