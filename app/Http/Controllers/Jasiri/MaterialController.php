@@ -83,7 +83,7 @@ class MaterialController extends Controller
         $filename = 'raw-video' . $file->getClientOriginalName();
         $file->move('uploads/rawvideos/'.$material_id,$filename);
 
-        $path = 'uploads/rawvideos/'.$material_id.'/'.$filename;
+        $path = '/uploads/rawvideos/'.$material_id.'/'.$filename;
 
         $uploaded_video             = new VideoUpload;
         $uploaded_video->user_id    =  Auth::user()->id;
