@@ -83,7 +83,7 @@ class MaterialController extends Controller
         $filename = 'raw-video' . $file->getClientOriginalName();
         $file->move('uploads/rawvideos/'.$material_id,$filename);
 
-        $path = '/uploads/rawvideos/'.$material_id.'/'.$filename;
+        $path = 'uploads/rawvideos/'.$material_id.'/'.$filename;
 
         $uploaded_video             = new VideoUpload;
         $uploaded_video->user_id    =  Auth::user()->id;
@@ -128,7 +128,7 @@ class MaterialController extends Controller
         try {
             // Upload the file and include the video title and description.
             $uri = $lib->upload($file_name, array(
-                'name' => 'Upload'.$filename,
+                'name' => 'Courses/Upload'.$filename,
                 'description' => "This video was uploaded through the Vimeo API's PHP SDK."
             ));
 
@@ -137,12 +137,12 @@ class MaterialController extends Controller
             echo '"' . $file_name . ' has been uploaded to ' . $video_data['body']['link'] . "\n";
 
             // Make an API call to edit the title and description of the video.
-            // $lib->request($uri, array(
-            //     'name' => 'Vimeo API SDK test edit',
-            //     'description' => "This video was edited through the Vimeo API's PHP SDK.",
-            // ), 'PATCH');
+            $lib->request($uri, array(
+                'name' => 'Vimeo API SDK test edit',
+                'description' => "This video was edited through the Vimeo API's PHP SDK.",
+            ), 'PATCH');
 
-            // echo 'The title and description for ' . $uri . ' has been edited.' . "\n";
+            echo 'The title and description for ' . $uri . ' has been edited.' . "\n";
 
             // Make an API call to see if the video is finished transcoding.
             $video_data = $lib->request($uri . '?fields=transcode.status');
