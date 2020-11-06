@@ -6,25 +6,30 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jasiri\Course;
 use App\Models\Jasiri\VideoUpload;
+use App\Models\Jasiri\Category;
 use Jwplayer\JwplatformAPI;
-use FFMpeg\FFMpeg;
 use Session;
 use Storage;
-use Streaming\Representation;
 use Validator;
 use Auth;
-
+// Monolog
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-
+// Vimeio
+use Vimeo\Vimeo;
+use Vimeo\Exceptions\VimeoUploadException;
+// FFMpeg
+use FFMpeg\FFMpeg;
+use Streaming\Representation;
 use Streaming\FFMpeg as STFFMpeg;
 
 class CourseController extends Controller
 {
-    function __construct(Course $course, VideoUpload $vodeo_upload)
+    function __construct(Course $course, VideoUpload $vodeo_upload,Category $category)
     {
         $this->course = $course;
         $this->vodeo_upload = $vodeo_upload;
+        $this->category = $category;
     }
     /**
      * Display a listing of the resource.
@@ -50,10 +55,47 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('jasiri.back.courses.create');
+        $categories = $this->category->get();
+        return view('jasiri.back.courses.create',compact('categories'));
     }
 
-    public function uploadToLonode(Request $request)
+    public function storeCourse(Request $request)
+    {
+        $teacher = Auth::user()->teacher;
+
+        $validation = $request->validate([
+            // 'file' => 'required|file|mimes:mp4,MPEG,WMV,FLV,avi|max:204800'
+            // for multiple file uploads
+            'raw_image' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+        ]);
+
+        // $course = new Course;
+        $request['owner_id'] = Auth::user()->id;
+        $request['teacher_id'] = $teacher->id;
+
+         // validate the uploaded file
+        $file      = $validation['raw_image']; // get the validated file
+        $extension = $file->getClientOriginalExtension();
+        $filename = $request['title'] . $file->getClientOriginalName();
+        $file->move('uploads/couurse/'.Auth::user()->id.'/'.$request['title'].'/image',$filename);
+
+        $request['image'] = '/uploads/couurse/'.Auth::user()->id.'/'.$request['title'].'/image/'.$filename;
+        $course = Course::create($request->all());
+        $teacher->courses()->attach($course->id);
+
+        return redirect('account/mycourses/')->withFlashSuccess('Course Created');;
+
+
+        return $teacher->courses;
+    }
+
+    public function course($course_id)
+    {
+        $course = Course::findOrFail($course_id);
+        return view('jasiri.back.courses.course',compact('course'));
+    }
+
+    public function uploadToLonode(Request $request,$course_id)
     {
         // validate the uploaded file
         $validation = $request->validate([
@@ -64,9 +106,9 @@ class CourseController extends Controller
         $file      = $validation['file']; // get the validated file
         $extension = $file->getClientOriginalExtension();
         $filename = 'raw-video' . $file->getClientOriginalName();
-        $file->move('videos2/',$filename);
+        $file->move('uploads/rawvideos/'.$course_id,$filename);
 
-        $path = 'videos2/'.$filename;
+        $path = 'uploads/rawvideos/'.$course_id.$filename;
 
         $uploaded_video             = new VideoUpload;
         $uploaded_video->user_id    = 1; //Auth::user()->id;
@@ -112,6 +154,59 @@ class CourseController extends Controller
 
         // print_r($create_response);
         return $upload_response;
+
+
+
+    }
+
+    public function UploadToVimeo(Request $request)
+    {
+        $client_id = "401950af9e82d952247d7a2bae3b0605da389493";
+        $client_secret = "28LEdyK6cqtGMYK9SCsgyJ8C3Bqlj/R5kj7ISrrVmB3kcCVGb4tH8NpGZeCY73zZuHoF08PpHQKnl+h6koUcMCAJCdpWvWXkSR6mfN0o3QMCVIdsf000nTgOVVQyx1hu";
+        $access_token = "aeb3a776f92a1529af75a43efa0bd344";
+
+        $lib = new Vimeo($client_id, $client_secret, $access_token);
+
+        // if (empty($config['access_token'])) {
+        //     throw new Exception(
+        //         'You can not upload a file without an access token. You can find this token on your app page, or generate ' .
+        //         'one using `auth.php`.'
+        //     );
+        // }
+
+        $file_name = $request["file"];
+
+        try {
+            // Upload the file and include the video title and description.
+            $uri = $lib->upload($file_name, array(
+                'name' => 'Vimeo API SDK test upload',
+                'description' => "This video was uploaded through the Vimeo API's PHP SDK."
+            ));
+
+            // Get the metadata response from the upload and log out the Vimeo.com url
+            $video_data = $lib->request($uri . '?fields=link');
+            echo '"' . $file_name . ' has been uploaded to ' . $video_data['body']['link'] . "\n";
+
+            // Make an API call to edit the title and description of the video.
+            $lib->request($uri, array(
+                'name' => 'Vimeo API SDK test edit',
+                'description' => "This video was edited through the Vimeo API's PHP SDK.",
+            ), 'PATCH');
+
+            echo 'The title and description for ' . $uri . ' has been edited.' . "\n";
+
+            // Make an API call to see if the video is finished transcoding.
+            $video_data = $lib->request($uri . '?fields=transcode.status');
+            echo 'The transcode status for ' . $uri . ' is: ' . $video_data['body']['transcode']['status'] . "\n";
+        return $video_data;
+        } catch (VimeoUploadException $e) {
+            // We may have had an error. We can't resolve it here necessarily, so report it to the user.
+            echo 'Error uploading ' . $file_name . "\n";
+            echo 'Server reported: ' . $e->getMessage() . "\n";
+        } catch (VimeoRequestException $e) {
+            echo 'There was an error making the request.' . "\n";
+            echo 'Server reported: ' . $e->getMessage() . "\n";
+        }
 
 
 
@@ -181,15 +276,22 @@ class CourseController extends Controller
         }
 
         if (isset($user->id)) {
-            foreach ($user->student->courses as $paid_course) {
-                if($course->id == $paid_course->id){
-                    $course = $paid_course;
-                return view('jasiri.courses.paid',compact('course'));
+            if (isset($user->student->id)) {
+                foreach ($user->student->courses as $paid_course) {
+                    if($course->id == $paid_course->id){
+                        $course = $paid_course;
+                    return view('jasiri.courses.paid',compact('course'));
+                    }
                 }
             }
         }
 
         return view('jasiri.courses.detail',compact('course'));
+    }
+
+    public function TeachersCourse($value='')
+    {
+        return view('jasiri.back.courses.mycourses');
     }
 
     /**

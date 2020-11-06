@@ -12,7 +12,7 @@
     <title>@hasSection('template_title')@yield('template_title') | @endif {{ config('app.name', Lang::get('titles.app')) }}</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="{{url('/')}}/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{url('/')}}/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="{{url('/')}}/img/apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{url('/')}}/img/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{url('/')}}/img/apple-touch-icon-114x114-precomposed.png">

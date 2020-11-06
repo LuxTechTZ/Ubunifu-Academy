@@ -20,7 +20,7 @@
                 <div class="col-lg-5">
                     <figure class="block-reveal">
                         <div class="block-horizzontal"></div>
-                        <a href="{{url('/')}}/courses/{{$course->category->title}}/{{$course->title}}"><img src="{{url('/')}}/img{{$course->image}}" class="img-fluid" alt=""></a>
+                        <a href="{{url('/')}}/courses/{{$course->category->title}}/{{$course->title}}"><img src="{{url('/')}}/{{$course->image}}" class="img-fluid" alt=""></a>
                         <div class="preview"><span>{{ trans('course.preview') }}</span></div>
                     </figure>
                 </div>

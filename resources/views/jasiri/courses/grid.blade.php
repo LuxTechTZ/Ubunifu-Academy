@@ -22,7 +22,7 @@
                     <figure class="block-reveal">
                         <div class="block-horizzontal"></div>
                         <a href="#0" class="wish_bt"></a>
-                        <a href="{{url('/')}}/courses/{{$course->category->title}}/{{$course->title}}"><img src="{{url('/')}}/img{{$course->image}}" class="img-fluid" alt=""></a>
+                        <a href="{{url('/')}}/courses/{{$course->category->title}}/{{$course->title}}"><img src="{{url('/')}}/{{$course->image}}" class="img-fluid" alt=""></a>
                         <div class="price">{{number_format($course->price)}} TSH</div>
                         <div class="preview"><span>{{ trans('course.preview') }}</span></div>
                     </figure>
@@ -35,7 +35,7 @@
                     <ul>
                         <li><i class="icon_clock_alt"></i> 1h 30min</li>
                         <li><i class="icon_like"></i> 890</li>
-                        <li><a href="course-detail.html">{{ trans('titles.enrol') }}</a></li>
+                        <li><a href="{{url('/')}}/courses/{{$course->category->title}}/{{$course->title}}">{{ trans('titles.enrol') }}</a></li>
                     </ul>
                 </div>
             </div>

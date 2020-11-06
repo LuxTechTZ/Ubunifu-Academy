@@ -1,127 +1,147 @@
-@extends('jasiri.back.layouts.app')
+@extends('jasiri.back.layouts.clean')
 
 @section('page')
   Create Course
 @endsection
 
+@section('template_linked_css')
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="{{url('/')}}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+        <link href="{{url('/')}}/assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{url('/')}}/assets/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->
+@endsection
+
 @section('content')
-<div class="content-wrapper">
-    <div class="container-fluid">
-      <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#">Account</a>
-        </li>
-        <li class="breadcrumb-item active">Add Course</li>
-      </ol>
-
-		<div class="box_general padding_bottom">
-			<div class="header_box version_2">
-				<h2><i class="fa fa-user"></i>Profile details</h2>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="form-group">
-					<label>Your Video</label>
-						<form action="{{url('/')}}/account/courses/upload_video" class="dropzone">@csrf</form>
-				    </div>
-				</div>
-				<div class="col-md-8 add_top_30">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Course Name</label>
-								<input type="text" class="form-control" placeholder="Your name">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Last name</label>
-								<input type="text" class="form-control" placeholder="Your last name">
-							</div>
-						</div>
-					</div>
-					<!-- /row-->
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Telephone</label>
-								<input type="text" class="form-control" placeholder="Your telephone number">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Email</label>
-								<input type="email" class="form-control" placeholder="Your email">
-							</div>
-						</div>
-					</div>
-					<!-- /row-->
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group">
-								<label>Personal info</label>
-								<textarea style="height:100px;" class="form-control" placeholder="Personal info"></textarea>
-							</div>
-						</div>
-					</div>
-					<!-- /row-->
-				</div>
-			</div>
-		</div>
-
-		<!-- /box_general-->
-		<div class="row">
-			<div class="col-md-6">
-				<div class="box_general padding_bottom">
-					<div class="header_box version_2">
-						<h2><i class="fa fa-lock"></i>Change password</h2>
-					</div>
-					<div class="form-group">
-						<label>Old password</label>
-						<input class="form-control" type="password">
-					</div>
-					<div class="form-group">
-						<label>New password</label>
-						<input class="form-control" type="password">
-					</div>
-					<div class="form-group">
-						<label>Confirm new password</label>
-						<input class="form-control" type="password">
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="box_general padding_bottom">
-					<div class="header_box version_2">
-						<h2><i class="fa fa-envelope"></i>Change email</h2>
-					</div>
-					<div class="form-group">
-						<label>Old email</label>
-						<input class="form-control" name="old_email" id="old_email" type="email">
-					</div>
-					<div class="form-group">
-						<label>New email</label>
-						<input class="form-control" name="new_email" id="new_email" type="email">
-					</div>
-					<div class="form-group">
-						<label>Confirm new email</label>
-						<input class="form-control" name="confirm_new_email" id="confirm_new_email" type="email">
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /row-->
-		<p><a href="#0" class="btn_1 medium">Save</a></p>
-	</div>
-	  <!-- /.container-fluid-->
-
-	  <form method="post" action="{{url('/')}}/account/courses/upload_to_jw" enctype="multipart/form-data">
-	  	@csrf
-	  	<input type="file" name="file">
-	  	<button type="submit">Upload</button>
-	  </form>
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>Create Course
+                    <small>Fill the form Below to create course</small>
+                </h1>
+            </div>
+            <!-- END PAGE TITLE -->
+            <!-- BEGIN PAGE TOOLBAR -->
+          
+        </div>
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BREADCRUMB -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Create Course</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMB -->
+        <!-- BEGIN PAGE BASE CONTENT -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXTRAS PORTLET-->
+                <div class="portlet light form-fit bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class=" icon-layers font-green"></i>
+                            <span class="caption-subject font-green bold uppercase">Course Details</span>
+                        </div>
+                        <div class="actions">
+                           
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <form method="post" class="form-horizontal form-bordered" action="{{url('/')}}/account/courses/store" enctype="multipart/form-data">
+                        	@csrf
+                            <div class="form-body">
+                            	<div class="col-md-6">
+									<div class="form-group">
+										<label>Course Title</label>
+										<input type="text" name="title" class="form-control" placeholder="Course name">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Select Category</label>
+										<select class="form-control" name="category_id">
+											<option></option>
+											@foreach($categories as $category)
+											<option value="{{$category->id}}">{{$category->title}} </option>
+											@endforeach
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Short Description</label>
+										<textarea rows="5" class="form-control" name="description"></textarea>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Price</label>
+										<input type="number" name="price" class="form-control" >
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Front Image</label>
+										<input type="file" name="raw_image" class="form-control" accept="image/*">
+									</div>
+								</div>
+								<div class="col-md-12">
+	                                <div class="form-group">
+	                                    <label>Course Description</label>
+	                                    <div>
+	                                        <textarea name="full_details" id="summernote_1"> </textarea>
+	                                    </div>
+	                                </div>
+								</div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button type="submit" class="btn green">
+                                            <i class="fa fa-check"></i> Submit</button>
+                                        <button type="button" class="btn default">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE BASE CONTENT -->
+    </div>
+    <!-- END CONTENT BODY -->
 </div>
+<!-- END CONTENT -->
+@endsection
 
-<script src="{{url('/')}}/back_assets/vendor/dropzone.min.js"></script>
+
+@section('footer_scripts') 
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+ <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="{{url('/')}}/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/global/plugins/bootstrap-markdown/lib/markdown.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/global/plugins/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src="{{url('/')}}/assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="{{url('/')}}/assets/pages/scripts/components-editors.min.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL SCRIPTS -->
+
+<!-- END PAGE LEVEL PLUGINS -->
+
 @endsection

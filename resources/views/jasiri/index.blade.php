@@ -98,7 +98,7 @@
                     <figure>
                         <a href="#0" class="wish_bt"></a>
                         <a href="{{url('/')}}/courses/{{$course->category->title}}/{{$course->title}}">
-                            <div class="preview"><span>{{ trans('course.preview') }}</span></div><img src="{{url('/')}}/img{{$course->image}}" class="img-fluid" alt=""></a>
+                            <div class="preview"><span>{{ trans('course.preview') }}</span></div><img src="{{url('/')}}/{{$course->image}}" class="img-fluid" alt=""></a>
                         <div class="price">{{number_format($course->price)}} TSH</div>
 
                     </figure>
