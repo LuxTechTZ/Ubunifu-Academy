@@ -13,6 +13,7 @@ class Cart extends Model
 
      protected $fillable = [
         'course_id',
+        'session_id',
         'protocol',
         'address',
         'path',
