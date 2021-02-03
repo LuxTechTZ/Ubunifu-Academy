@@ -1,7 +1,8 @@
 <?php  
 
-     // Blog
+     // Course
      Route::get('/courses-grid', 'CourseController@index');
+     Route::get('/courses-grid/{category}', 'CourseController@index');
      Route::get('/courses-list', 'CourseController@list');
 
      Route::get('/courses/{category}/{course}', 'CourseController@show');
@@ -26,3 +27,7 @@
 
 
      Route::get('home/upload/demo/convert', 'CourseController@convertVideo');
+
+
+     // Blog
+     Route::get('/blog', 'CartController@showCart');

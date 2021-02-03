@@ -101,7 +101,7 @@ class MaterialController extends Controller
         $material->save();
         $uploaded_video->save();
 
-        $this->UploadToVimeo($request,$path,$material->id);
+        $this->UploadToVimeo($request,$path,$material);
         return json_encode('success', 200);
 
 
@@ -128,7 +128,7 @@ class MaterialController extends Controller
         try {
             // Upload the file and include the video title and description.
             $uri = $lib->upload($file_name, array(
-                'name' => 'Courses/Upload'.$filename,
+                'name' => 'Upload'.$filename->name,
                 'description' => "This video was uploaded through the Vimeo API's PHP SDK."
             ));
 

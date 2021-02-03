@@ -138,84 +138,20 @@
             <p>Mamia ya kozi za kijasiriamali zakukupa ujuzi wa kazini.</p>
         </div>
         <div class="row">
+            @foreach($categories as $category)
             <div class="col-lg-4 col-md-6 wow" data-wow-offset="150">
-                <a href="#0" class="grid_item">
+                <a href="{{url('/')}}/courses-grid/{{$category->title}}" class="grid_item">
                     <figure class="block-reveal">
                         <div class="block-horizzontal"></div>
-                        <img src="img/course_1.jpg" class="img-fluid" alt="">
+                        <img src="{{url('/')}}{{$category->image}}" class="img-fluid" alt="">
                         <div class="info">
-                            <small><i class="ti-layers"></i>15 Programmes</small>
-                            <h3>Arts and Humanities</h3>
+                            <small><i class="ti-layers"></i>{{count($category->courses)}} Courses</small>
+                            <h3>{{$category->title}}</h3>
                         </div>
                     </figure>
                 </a>
             </div>
-            <!-- /grid_item -->
-            <div class="col-lg-4 col-md-6 wow" data-wow-offset="150">
-                <a href="#0" class="grid_item">
-                    <figure class="block-reveal">
-                        <div class="block-horizzontal"></div>
-                        <img src="img/course_2.jpg" class="img-fluid" alt="">
-                        <div class="info">
-                            <small><i class="ti-layers"></i>23 Programmes</small>
-                            <h3>Engineering</h3>
-                        </div>
-                    </figure>
-                </a>
-            </div>
-            <!-- /grid_item -->
-            <div class="col-lg-4 col-md-6 wow" data-wow-offset="150">
-                <a href="#0" class="grid_item">
-                    <figure class="block-reveal">
-                        <div class="block-horizzontal"></div>
-                        <img src="img/course_3.jpg" class="img-fluid" alt="">
-                        <div class="info">
-                            <small><i class="ti-layers"></i>23 Programmes</small>
-                            <h3>Architecture</h3>
-                        </div>
-                    </figure>
-                </a>
-            </div>
-            <!-- /grid_item -->
-            <div class="col-lg-4 col-md-6 wow" data-wow-offset="150">
-                <a href="#0" class="grid_item">
-                    <figure class="block-reveal">
-                        <div class="block-horizzontal"></div>
-                        <img src="img/course_4.jpg" class="img-fluid" alt="">
-                        <div class="info">
-                            <small><i class="ti-layers"></i>23 Programmes</small>
-                            <h3>Science and Biology</h3>
-                        </div>
-                    </figure>
-                </a>
-            </div>
-            <!-- /grid_item -->
-            <div class="col-lg-4 col-md-6 wow" data-wow-offset="150">
-                <a href="#0" class="grid_item">
-                    <figure class="block-reveal">
-                        <div class="block-horizzontal"></div>
-                        <img src="img/course_5.jpg" class="img-fluid" alt="">
-                        <div class="info">
-                            <small><i class="ti-layers"></i>23 Programmes</small>
-                            <h3>Law and Criminology</h3>
-                        </div>
-                    </figure>
-                </a>
-            </div>
-            <!-- /grid_item -->
-            <div class="col-lg-4 col-md-6 wow" data-wow-offset="150">
-                <a href="#0" class="grid_item">
-                    <figure class="block-reveal">
-                        <div class="block-horizzontal"></div>
-                        <img src="img/course_6.jpg" class="img-fluid" alt="">
-                        <div class="info">
-                            <small><i class="ti-layers"></i>23 Programmes</small>
-                            <h3>Medical</h3>
-                        </div>
-                    </figure>
-                </a>
-            </div>
-            <!-- /grid_item -->
+            @endforeach
         </div>
         <!-- /row -->
     </div>

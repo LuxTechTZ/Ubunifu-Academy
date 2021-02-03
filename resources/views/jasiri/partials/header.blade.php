@@ -46,7 +46,7 @@
             <li><span><a href="{{url('/')}}/courses-grid">{{ trans('titles.courses') }}</a></span>
                 
             </li>
-            <li><span><a href="/">{{ trans('titles.pages') }}</a></span>
+            <li><span><a href="/blog">BLOG</a></span>
                 
             </li>
             

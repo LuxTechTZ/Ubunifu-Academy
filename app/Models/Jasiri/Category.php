@@ -10,4 +10,16 @@ class Category extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = [
+        'title',
+        'user_id',
+        'details',
+        'image',
+    ];
+
+    public function courses()
+    {
+        return $this->hasMany(\App\Models\Jasiri\Course::class);
+    }
 }

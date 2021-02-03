@@ -1,95 +1,158 @@
-@extends('jasiri.back.layouts.app')
+@extends('jasiri.back.layouts.clean')
 
 @section('page')
   Dashboard
 @endsection
 
+@section('template_linked_css')
+ <!-- BEGIN PAGE LEVEL PLUGINS -->
+@endsection
+
 @section('content')
-<div class="content-wrapper">
-  <div class="container-fluid">
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="{{url('/')}}/account/dashboard">Dashboard</a>
-      </li>
-      <li class="breadcrumb-item active">My Dashboard</li>
-    </ol>
-  <!-- Icon Cards-->
-    <div class="row">
-      <div class="col-xl-3 col-sm-6 mb-3">
-        <div class="card dashboard text-white bg-primary o-hidden h-100">
-          <div class="card-body">
-            <div class="card-body-icon">
-              <i class="fa fa-fw fa-envelope-open"></i>
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>Dashboard
+                    <small>Summary of your account</small>
+                </h1>
             </div>
-            <div class="mr-5"><h5>26 New Messages!</h5></div>
-          </div>
-          <a class="card-footer text-white clearfix small z-1" href="messages.html">
-            <span class="float-left">View Details</span>
-            <span class="float-right">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </a>
+            <!-- END PAGE TITLE -->
+            
         </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 mb-3">
-        <div class="card dashboard text-white bg-warning o-hidden h-100">
-          <div class="card-body">
-            <div class="card-body-icon">
-              <i class="fa fa-fw fa-star"></i>
-            </div>
-      <div class="mr-5"><h5>11 New Reviews!</h5></div>
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BREADCRUMB -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="/">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">Countries</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMB -->
+        <!-- BEGIN PAGE BASE CONTENT -->
+        @include('semi.alert')
+       <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+              <div class="dashboard-stat2 bordered">
+                  <div class="display">
+                      <div class="number">
+                          <h3 class="font-green-sharp">
+                              <span data-counter="counterup" data-value="50,000">0</span>
+                              <small class="font-green-sharp">THS</small>
+                          </h3>
+                          <small>TOTAL PROFIT</small>
+                      </div>
+                      <div class="icon">
+                          <i class="icon-pie-chart"></i>
+                      </div>
+                  </div>
+                  <div class="progress-info">
+                      <div class="progress">
+                          <span style="width: 76%;" class="progress-bar progress-bar-success green-sharp">
+                              <span class="sr-only">76% progress</span>
+                          </span>
+                      </div>
+                      <div class="status">
+                          <div class="status-title"> progress </div>
+                          <div class="status-number"> 76% </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-          <a class="card-footer text-white clearfix small z-1" href="reviews.html">
-            <span class="float-left">View Details</span>
-            <span class="float-right">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </a>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 mb-3">
-        <div class="card dashboard text-white bg-success o-hidden h-100">
-          <div class="card-body">
-            <div class="card-body-icon">
-              <i class="fa fa-fw fa-calendar-check-o"></i>
-            </div>
-            <div class="mr-5"><h5>10 New Courses!</h5></div>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+              <div class="dashboard-stat2 bordered">
+                  <div class="display">
+                      <div class="number">
+                          <h3 class="font-red-haze">
+                              <span data-counter="counterup" data-value="1349">0</span>
+                          </h3>
+                          <small>NEW FEEDBACKS</small>
+                      </div>
+                      <div class="icon">
+                          <i class="icon-like"></i>
+                      </div>
+                  </div>
+                  <div class="progress-info">
+                      <div class="progress">
+                          <span style="width: 85%;" class="progress-bar progress-bar-success red-haze">
+                              <span class="sr-only">85% change</span>
+                          </span>
+                      </div>
+                      <div class="status">
+                          <div class="status-title"> change </div>
+                          <div class="status-number"> 85% </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-          <a class="card-footer text-white clearfix small z-1" href="bookings.html">
-            <span class="float-left">View Details</span>
-            <span class="float-right">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </a>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 mb-3">
-        <div class="card dashboard text-white bg-danger o-hidden h-100">
-          <div class="card-body">
-            <div class="card-body-icon">
-              <i class="fa fa-fw fa-heart"></i>
-            </div>
-            <div class="mr-5"><h5>10 New Bookmarks!</h5></div>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+              <div class="dashboard-stat2 bordered">
+                  <div class="display">
+                      <div class="number">
+                          <h3 class="font-blue-sharp">
+                              <span data-counter="counterup" data-value="567"></span>
+                          </h3>
+                          <small>NEW ORDERS</small>
+                      </div>
+                      <div class="icon">
+                          <i class="icon-basket"></i>
+                      </div>
+                  </div>
+                  <div class="progress-info">
+                      <div class="progress">
+                          <span style="width: 45%;" class="progress-bar progress-bar-success blue-sharp">
+                              <span class="sr-only">45% grow</span>
+                          </span>
+                      </div>
+                      <div class="status">
+                          <div class="status-title"> grow </div>
+                          <div class="status-number"> 45% </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-          <a class="card-footer text-white clearfix small z-1" href="bookmarks.html">
-            <span class="float-left">View Details</span>
-            <span class="float-right">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </a>
-        </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+              <div class="dashboard-stat2 bordered">
+                  <div class="display">
+                      <div class="number">
+                          <h3 class="font-purple-soft">
+                              <span data-counter="counterup" data-value="276"></span>
+                          </h3>
+                          <small>NEW Students</small>
+                      </div>
+                      <div class="icon">
+                          <i class="icon-user"></i>
+                      </div>
+                  </div>
+                  <div class="progress-info">
+                      <div class="progress">
+                          <span style="width: 57%;" class="progress-bar progress-bar-success purple-soft">
+                              <span class="sr-only">56% change</span>
+                          </span>
+                      </div>
+                      <div class="status">
+                          <div class="status-title"> change </div>
+                          <div class="status-number"> 57% </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
-  </div>
-  <!-- /cards -->
-  <h2></h2>
-  <div class="box_general padding_bottom">
-    <div class="header_box version_2">
-      <h2><i class="fa fa-bar-chart"></i>Statistic</h2>
+        <!-- END PAGE BASE CONTENT -->
     </div>
-   <canvas id="myAreaChart" width="100%" height="30" style="margin:45px 0 15px 0;"></canvas>
-  </div>
-  </div>
-  <!-- /.container-fluid-->
+    <!-- END CONTENT BODY -->
 </div>
+@endsection
+
+
+@section('footer_scripts') 
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="{{url('/')}}/assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+<script src="{{url('/')}}/assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
 @endsection

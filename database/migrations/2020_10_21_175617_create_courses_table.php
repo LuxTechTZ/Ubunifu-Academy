@@ -19,7 +19,7 @@ class CreateCoursesTable extends Migration
             $table->unsignedBigInteger('category_id')->unsigned()->index();
             $table->string('title');
             $table->string('description');
-            $table->text('full_details');
+            $table->longtext('full_details');
             $table->string('price');
             $table->string('discount_price');
             $table->string('image');

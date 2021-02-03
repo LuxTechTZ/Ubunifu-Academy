@@ -36,16 +36,29 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($category_title = null)
     {
-        $courses = $this->course->get();
-        return view('jasiri.courses.grid',compact('courses'));
+        if (isset($category_title)) {
+            $categ = $this->category
+                        ->where('title','=',$category_title)
+                        ->first();
+            $courses = $categ->courses;
+        }else{
+            $courses = $this->course->get();
+        }
+        $categories = $this->category->get();
+
+        return view('jasiri.courses.grid',compact('courses','categories'));
     }
+
+
 
     public function list()
     {
+        $categories = $this->category->get();
+
         $courses = $this->course->get();
-        return view('jasiri.courses.list',compact('courses'));
+        return view('jasiri.courses.list',compact('courses','categories'));
     }
 
     /**
@@ -84,7 +97,6 @@ class CourseController extends Controller
         $teacher->courses()->attach($course->id);
 
         return redirect('account/mycourses/')->withFlashSuccess('Course Created');;
-
 
         return $teacher->courses;
     }
@@ -504,7 +516,7 @@ class CourseController extends Controller
     {
         if (Auth::user()->hasRole(5) ) {
             // $student_courses = $this->course->
-            return view('jasiri.back.courses.index');
+            return view('jasiri.back.student.paid_courses');
         }else{
             return view('jasiri.back.courses.index');
         }

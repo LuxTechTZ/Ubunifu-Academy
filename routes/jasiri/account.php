@@ -9,8 +9,9 @@
      Route::get('account/profile', 'ProfileController@index');
      Route::post('account/profile/uploadphoto', 'ProfileController@uploadPhoto');
 
-     // Courses
-     Route::get('account/courses', 'CourseController@studentCourses');
+     // Courses Student
+     Route::get('account/student/courses', 'CourseController@studentCourses');
+     
      Route::get('account/mycourses', 'CourseController@TeachersCourse');
      Route::get('account/courses/edit/{course_id}', 'CourseController@course');
 

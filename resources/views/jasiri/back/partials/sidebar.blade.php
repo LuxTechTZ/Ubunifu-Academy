@@ -11,7 +11,7 @@
         <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
         <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-            <li class="nav-item {{ (Request::is('account/dashboard/*')) || (Request::is('/')) ? 'active open' : null }}">
+            <li class="nav-item {{ (Request::is('account/dashboard*')) || (Request::is('/')) ? 'active open' : null }}">
                 <a href="{{url('/')}}/account/dashboard" class="nav-link">
                     <i class="icon-home"></i>
                     <span class="title">Dashboard</span>
@@ -25,12 +25,29 @@
                     <span class="selected"></span>
                 </a>
             </li>
+            <li class="heading">
+                <h3 class="uppercase">Student</h3>
+            </li>
+            @if(isset(Auth::user()->student->id))
+
+            <li class="nav-item {{ (Request::is('account/student/courses*')) || (Request::is('/')) ? 'active open' : null }}">
+                <a href="{{url('/')}}/account/student/courses" class="nav-link">
+                    <i class="icon-envelope"></i>
+                    <span class="title">My Paid Courses</span>
+                    <span class="selected"></span>
+                </a>
+            </li>
+
+            @endif
+            <li class="heading">
+                <h3 class="uppercase">Teacher</h3>
+            </li>
             @if(isset(Auth::user()->teacher->id))
 
             <li class="nav-item {{ (Request::is('account/mycourses*')) || (Request::is('/')) ? 'active open' : null }}">
                 <a href="{{url('/')}}/account/mycourses" class="nav-link">
                     <i class="icon-envelope"></i>
-                    <span class="title">My Courses</span>
+                    <span class="title">Teachers Courses</span>
                     <span class="selected"></span>
                 </a>
             </li>

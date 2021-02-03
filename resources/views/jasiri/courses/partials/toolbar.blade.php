@@ -20,10 +20,10 @@
                 <li>
                     <select name="orderby" class="selectbox">
                         <option value="category">Category</option>
-                        <option value="category 2">Literature</option>
-                        <option value="category 3">Architecture</option>
-                        <option value="category 4">Economy</option>
-                        </select>
+                        @foreach($categories as $category)
+                        <option><a href="{{url('/')}}/courses-grid/{{$category->title}}">{{$category->title}}</a></option>
+                        @endforeach
+                    </select>
                 </li>
             </ul>
         </div>
