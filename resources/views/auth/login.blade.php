@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Udema a modern educational site template">
     <meta name="author" content="Ansonika">
-    <title>Login | {{ config('app.name', Lang::get('titles.app')) }}</title>
+    <title>Login.. | {{ config('app.name', Lang::get('titles.app')) }}</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="{{url('/')}}/img/favicon.ico" type="image/x-icon">

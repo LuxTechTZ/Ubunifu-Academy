@@ -43,15 +43,39 @@
     <nav id="menu" class="main-menu">
         <ul>
             <li><span><a href="/">{{ trans('titles.home') }}</a></span></li>
-            <li><span><a href="{{url('/')}}/courses-grid">{{ trans('titles.courses') }}</a></span>
-                
+            <li><span><a href="{{url('/')}}/courses-grid">{{ trans('titles.courses') }}</a></span>      
             </li>
-            <li><span><a href="/blog">BLOG</a></span>
-                
-            </li>
-            
+            <li><span><a href="/blog">BLOG</a></span></li>
+
+        <!-- Authentication Links -->
+                    @php $locale = session()->get('locale'); @endphp
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            @switch($locale)
+                                @case('en')
+                                <img src="{{asset('img/uk.png')}}">English
+                                @break
+                                @case('sw')
+                                <img src="{{asset('img/tz.png')}}">Swahili
+                                @break
+                                @default
+                                <img src="{{asset('img/tz.png')}}">Swahili
+                            @endswitch
+                            <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="lang/sw"><img src="{{asset('img/tz.png')}}">Swahili</a>
+                            <a class="dropdown-item" href="lang/en"><img src="{{asset('img/uk.png')}}">English</a>
+                            
+                        </div>
+                    </li>
         </ul>
     </nav>
+
+
+
+
     <!-- Search Menu -->
     <div class="search-overlay-menu">
         <span class="search-overlay-close"><span class="closebt"><i class="ti-close"></i></span></span>

@@ -12,7 +12,7 @@
                         <div class="info">
                             <p><strong>15</strong> Lessons - <strong>10</strong> Videos</p>
                         </div>
-                        <a href="course-detail.html" class="btn_1">Read more</a>
+                        <a href="course-detail.html" class="btn_1">{{trans('titles.Read more')}}</a>
                     </div>
                 </li>
                 <li>
@@ -32,7 +32,8 @@
                         <div class="info">
                             <p><strong>25</strong> Lessons - <strong>20</strong> Videos</p>
                         </div>
-                        <a href="course-detail.html" class="btn_1">Read more</a>
+                        <a href="course-detail.html" class="btn_1">
+                        {{trans('titles.Read more')}}</a>
                     </div>
                 </li>
                 <li>
@@ -42,7 +43,7 @@
                         <div class="info">
                             <p><strong>25</strong> Lessons - <strong>20</strong> Videos</p>
                         </div>
-                        <a href="course-detail.html" class="btn_1">Read more</a>
+                        <a href="course-detail.html" class="btn_1">{{trans('titles.Read more')}}</a>
                     </div>
                 </li>
             </ul>
@@ -88,8 +89,8 @@
     <div class="container-fluid margin_120_0">
         <div class="main_title_2">
             <span><em></em></span>
-            <h2>Jasiri Kozi  maarufu</h2>
-            <p>Hzi ni cozi zinazopendwa zaidi.</p>
+            <h2>{{trans('course.Jasiri Famous Courses')}}</h2>
+            <p>{{trans('titles.These are the most popular courses')}}</p>
         </div>
         <div id="reccomended" class="owl-carousel owl-theme">
         	@foreach($courses as $course)
@@ -134,8 +135,8 @@
     <div class="container margin_30_95">
         <div class="main_title_2">
             <span><em></em></span>
-            <h2>Aina ya kozi zilizopo</h2>
-            <p>Mamia ya kozi za kijasiriamali zakukupa ujuzi wa kazini.</p>
+            <h2>{{trans('course.Types of courses available')}}</h2>
+            <p>{{trans('course.Hundreds of entrepreneurial courses give you on the job skills')}}</p>
         </div>
         <div class="row">
             @foreach($categories as $category)
@@ -161,8 +162,8 @@
         <div class="container margin_120_95">
             <div class="main_title_2">
                 <span><em></em></span>
-                <h2>News and Events</h2>
-                <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+                <h2>{{trans('course.News and Events')}}</h2>
+                <p>{{trans('course.Cum doctus civibus efficiantur in imperdiet deterruisset')}}</p>
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -223,7 +224,7 @@
                 <!-- /box_news -->
             </div>
             <!-- /row -->
-            <p class="btn_home_align"><a href="blog.html" class="btn_1 rounded">View all news</a></p>
+            <p class="btn_home_align"><a href="blog.html" class="btn_1 rounded">{{trans('titles.View all news')}}</a></p>
         </div>
         <!-- /container -->
     </div>
@@ -235,9 +236,9 @@
                 <div class="block-reveal">
                     <div class="block-vertical"></div>
                     <div class="box_1">
-                        <h3>Enjoy a great students community</h3>
+                        <h3>{{trans('course.Enjoy a great students community')}}</h3>
                         <p>Kaa karibu na sisi tukuweke karibu na communitu kubwa zaidi ya wanafunzi na wajasiriamali walioamua kubadilish atanzania kiuchumi.. </p>
-                        <a href="#0" class="btn_1 rounded">Read more</a>
+                        <a href="#0" class="btn_1 rounded">{{trans('titles.Read more')}}</a>
                     </div>
                 </div>
             </div>

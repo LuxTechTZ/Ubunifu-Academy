@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 // Homepage Route
 Route::group(['middleware' => ['web', 'checkblocked']], function () {
     Route::get('/', 'App\Http\Controllers\WelcomeController@welcome')->name('welcome');
+    Route::get('lang/{locale}', 'App\Http\Controllers\LocalizationController@lugha');
     Route::get('/terms', 'App\Http\Controllers\TermsController@terms')->name('terms');
 });
 
@@ -147,3 +148,7 @@ Route::group(['middleware' => ['web', 'checkblocked'], 'namespace' => 'App\Http\
     require_once __DIR__.'/jasiri/web.php';
     require_once __DIR__.'/jasiri/account.php';
 });
+
+
+
+

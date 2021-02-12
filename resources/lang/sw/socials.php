@@ -12,5 +12,6 @@ return [
     'denied'          => 'You did not share your profile data with our social app. ',
     'noProvider'      => 'No such provider. ',
     'registerSuccess' => 'You have successfully registered! ',
+    'Follow us'=>'Tufuate',
 
 ];

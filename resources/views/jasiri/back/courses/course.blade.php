@@ -17,8 +17,8 @@
         <div class="page-head">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Edit Course Details
-                    <small>Course Details</small>
+                <h1>{{ trans('titles.Edit Course Details')}}
+                    <small>{{ trans('titles.Course Details')}}</small>
                 </h1>
             </div>
             <!-- END PAGE TITLE -->
@@ -28,15 +28,15 @@
         <!-- BEGIN PAGE BREADCRUMB -->
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="{{url('/')}}/account/dashboard">Home</a>
+                <a href="{{url('/')}}/account/dashboard">{{trans('titles.Home')}}</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="{{url('/')}}/account/mycourses">My Courses</a>
+                <a href="{{url('/')}}/account/mycourses">{{trans('titles.My Courses')}}</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Countries</span>
+                <span class="active">{{trans('titles.Countries')}}</span>
             </li>
         </ul>
         <!-- END PAGE BREADCRUMB -->
@@ -44,32 +44,32 @@
         @include('semi.alert')
         <div class="m-heading-1 border-green m-bordered">
        
-            <h3>{{$course->title}} </h3>
+            <h3>{{$course->title}}</h3>
                         <div class="actions">
-                           <a class="btn green" href="{{url('/')}}/account/courses/edit/{{$course->id}}">Edit Course Details</a>
+                           <a class="btn green" href="{{url('/')}}/account/courses/edit/{{$course->id}}">{{trans('titles.Edit Course Details')}}</a>
                         </div>
                 <br> 
                 <hr>
-                <h3>Selected Batch</h3>
+                <h3>{{trans('titles.Selected Batch')}}</h3>
                 <div class="row">
                     
                 <div class="col-md-4">
-                    <p><b>Title: </b> {{$course->category->title}}</p>
+                    <p><b>{{trans('titles.Title: ')}}</b> {{$course->category->title}}</p>
                 </div>
                 <div class="col-md-4">
                     
-                    <p><b>Details: </b> {{$course->description}}</p>
+                    <p><b>{{trans('titles.Details:')}} </b> {{$course->description}}</p>
                 </div>
                 <div class="col-md-4">
                     
-                    <p><b>Price: </b> {{$course->price}}</p>
+                    <p><b>{{trans('titles.Price:')}} </b> {{$course->price}}</p>
                 </div>
                 <div class="col-md-4">
                     
-                    <p><b>Discount Price: </b> {{$course->discount_price}}</p>
+                    <p><b>{{('titles.Discount Price:')}} </b> {{$course->discount_price}}</p>
                 </div>
                 <div class="col-md-4">
-                    <p><b>Image:</b> {{$course->image}}</p>
+                    <p><b>{{trans('titles.Image:')}}</b> {{$course->image}}</p>
                 </div>
                 <div class="col-md-12">
 
@@ -87,12 +87,12 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class=" icon-layers font-green"></i>
-                            <span class="caption-subject font-green bold uppercase">Lessons</span>
+                            <span class="caption-subject font-green bold uppercase">{{('titles.Lessons')}}</span>
                             <div class="caption-desc font-grey-cascade"> This is the list of your lessons in order.</div>
 
                         </div>
                         <div class="actions">
-                           <a class="btn green" href="{{url('/')}}/account/courses/lesson/create/{{$course->id}}">Add Lesson</a>
+                           <a class="btn green" href="{{url('/')}}/account/courses/lesson/create/{{$course->id}}">{{trans('titles.Add Lesson')}}</a>
                         </div>
                     </div>
                     <div class="portlet-body">
@@ -103,8 +103,8 @@
                                     <!-- <div class="list-date">Nov 8, 2015</div> -->
                                     <h3 class="list-title">{{$lesson->name}}
                                     <div class="actions pull-right">
-                                       <button form="part-{{$lesson->id}}" type="submit" class="btn btn-warning">Edit Lesson</button>
-                                       <button form="part-{{$lesson->id}}" type="submit" class="btn green">Add Part</button>
+                                       <button form="part-{{$lesson->id}}" type="submit" class="btn btn-warning">{{('titles.Edit Lesson')}}</button>
+                                       <button form="part-{{$lesson->id}}" type="submit" class="btn green">{{('titles.Add Part')}}</button>
                                     </div>
                                     <form id="part-{{$lesson->id}}" hidden="" method="post" action="{{url('/')}}/account/courses/lesson/part/create">
                                         @csrf
@@ -129,11 +129,11 @@
                                                 <i class="icon-user"></i>
                                             </div>
                                             <div class="list-datetime" style="width: 200px"> 
-                                                <a href="{{url('/')}}/account/courses/material/create/{{$part->id}}" class="btn btn-success btn-sm pull-right">Add Material</a>
+                                                <a href="{{url('/')}}/account/courses/material/create/{{$part->id}}" class="btn btn-success btn-sm pull-right">{{('titles.Add Material')}}</a>
                                             </div>
                                             <div class="list-item-content">
                                                 <h3 class="uppercase">
-                                                    <a href="javascript:;">You have <b> {{count($part->materials)}} </b>Materials</a>
+                                                    <a href="javascript:;">{{('titles.You have ')}}<b> {{count($part->materials)}} </b>Materials</a>
                                                 </h3>
                                             </div>
                                             <form method="post" enctype="multipart/form-data"></form>

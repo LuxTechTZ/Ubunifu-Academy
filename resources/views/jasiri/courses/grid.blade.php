@@ -5,7 +5,7 @@
     <section id="hero_in" class="courses">
         <div class="wrapper">
             <div class="container">
-                <h1 class="fadeInUp"><span></span>Online courses</h1>
+                <h1 class="fadeInUp"><span></span>{{trans('titles.Online courses')}}</h1>
             </div>
         </div>
     </section>
@@ -42,7 +42,7 @@
             @endforeach
         </div>
         <!-- /row -->
-        <p class="text-center"><a href="#0" class="btn_1 rounded add_top_30">Load more</a></p>
+        <p class="text-center"><a href="#0" class="btn_1 rounded add_top_30">{{trans('titles.Load more')}}</a></p>
     </div>
     <!-- /container -->
     <div class="bg_color_1">
@@ -51,21 +51,21 @@
                 <div class="col-md-4">
                     <a href="#0" class="boxed_list">
                         <i class="pe-7s-help2"></i>
-                        <h4>Need Help? Contact us</h4>
+                        <h4>{{trans('titles.Need Help? Contact us')}}</h4>
                         <p>Cum appareat maiestatis interpretaris et, et sit.</p>
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a href="#0" class="boxed_list">
                         <i class="pe-7s-wallet"></i>
-                        <h4>Payments and Refunds</h4>
+                        <h4>{{trans('titles.Payments and Refunds')}}</h4>
                         <p>Qui ea nemore eruditi, magna prima possit eu mei.</p>
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a href="#0" class="boxed_list">
                         <i class="pe-7s-note2"></i>
-                        <h4>Quality Standards</h4>
+                        <h4>{{trans('titles.Quality Standards')}}</h4>
                         <p>Hinc vituperata sed ut, pro laudem nonumes ex.</p>
                     </a>
                 </div>
@@ -76,9 +76,11 @@
     </div>
     <!-- /bg_color_1 -->
 </main>
+<!--
 <form action="/home/upload/demo" method="post" enctype="multipart/form-data">
     @csrf
     <input type="file" name="file">
     <button type="submit">Upload</button>
 </form>
+-->
 @endsection

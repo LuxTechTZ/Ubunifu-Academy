@@ -1,0 +1,257 @@
+[33mcommit 09a7e8961b9c2dc4895934de6ed4f264ecbecc8b[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: kipunde <abdallah.kipunde@gmail.com>
+Date:   Wed Feb 3 17:35:16 2021 +0300
+
+    Sesion ID
+
+[33mcommit c8e01cd8034756c680c743686f0c24c70b3c90c7[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Wed Feb 3 10:30:36 2021 +0300
+
+    Backend Update
+
+[33mcommit b9b3518c54b32c671861a069e1022b2be6647ab0[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Fri Nov 6 19:02:58 2020 +0300
+
+    Fixed Naming x
+
+[33mcommit da931e00ced5076507e80e0e1215b9b3f21f34fb[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Fri Nov 6 18:49:02 2020 +0300
+
+    Fixed Namings
+
+[33mcommit e6c672f76a8ff4c8ceb2e98c7ec2670fdf455de1[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Fri Nov 6 18:34:29 2020 +0300
+
+    Fixed Naming
+
+[33mcommit b7f6884e9119576dcf231e10e57b6e5b8947a74c[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Fri Nov 6 15:25:58 2020 +0300
+
+    Remove vidos material
+
+[33mcommit 713c44bfaa5032b57dc43fb33107fa03eaf279ad[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Fri Nov 6 15:22:36 2020 +0300
+
+    Remove vidos
+
+[33mcommit 4bf207f3fb8260aa940425613ab6218aa5a39f05[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Fri Nov 6 14:58:47 2020 +0300
+
+    Remove vidos
+
+[33mcommit e349a531490a6f9830c9c44a7eac61958ea89599[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Fri Nov 6 14:55:23 2020 +0300
+
+    Fix Vimeo
+
+[33mcommit 391491d04d6be279818fa63f34e2b0559dcdd0e2[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Fri Nov 6 09:16:50 2020 +0300
+
+    Added Teacher Courses
+
+[33mcommit d2dd6faedc04c212fb637804a032542559155e46[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Wed Nov 4 14:43:10 2020 +0300
+
+    Working Upload
+
+[33mcommit 6d9b10e3c5ecf3f0709fc5f617bda34b024d5514[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Wed Nov 4 13:49:31 2020 +0300
+
+    Changed Meta data
+
+[33mcommit ce9dfb4777bc923e5af962f93a25a4ccef530fbb[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Sat Oct 31 21:34:03 2020 +0300
+
+    Google Analytics
+
+[33mcommit 0c4511bebac763a217cb0b9e8be222850e6df6c3[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Sat Oct 31 21:20:04 2020 +0300
+
+    hs
+
+[33mcommit 10235edf65c94cd7dc2ed19037e7c396da828ad5[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Sat Oct 31 20:03:16 2020 +0300
+
+    h
+
+[33mcommit 05e73ad35faa1232150895b55dd788e364e9cafe[m
+Merge: 2305124 791fbb4
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Sat Oct 31 19:46:04 2020 +0300
+
+    Merge branch 'main' of https://github.com/Fausers/Jasiri into main
+
+[33mcommit 23051241e9cff41078a3667059a90e7144c8098f[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Sat Oct 31 19:03:46 2020 +0300
+
+    Logo Change
+
+[33mcommit 7443e3fb3ad8ecb5cdd7c865127a91c60e1a96e4[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Sat Oct 31 16:35:26 2020 +0300
+
+    online
+
+[33mcommit 791fbb4aedc0e03c40c57a24e27e8c7c28c87088[m
+Merge: 4f9a053 cf3d06b
+Author: Felix Mgeni <felixthobias@gmail.com>
+Date:   Thu Oct 29 23:05:03 2020 +0300
+
+    Merge branch 'main' of https://github.com/Fausers/Jasiri into main
+
+[33mcommit 4f9a053b3cee93d1f6d23a27c6aa5348f9afcbb3[m
+Merge: df97bff 69e7bd4
+Author: Felix Mgeni <felixthobias@gmail.com>
+Date:   Thu Oct 29 23:04:40 2020 +0300
+
+    Added video
+
+[33mcommit cf3d06bfb03f56618217aba1de044387779b25c8[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Thu Oct 29 23:03:13 2020 +0300
+
+    Video
+
+[33mcommit df97bff3eb20a3ea646afbcbe933dd4341f0533a[m
+Merge: 8d7fd5e 5ce641a
+Author: Felix Mgeni <felixthobias@gmail.com>
+Date:   Thu Oct 29 21:01:32 2020 +0300
+
+    bug fix
+
+[33mcommit 69e7bd4605b313871b8bd16b439d953211afaf30[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Thu Oct 29 20:58:41 2020 +0300
+
+    Profile page
+
+[33mcommit 5ce641a0c9cdfa1c7241777caff0544dd6dbdfe4[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Wed Oct 28 02:07:05 2020 +0300
+
+    rm video files
+
+[33mcommit 8d7fd5e6448b02b94f3694872b940e050941b2e7[m
+Merge: 7707fa9 2dee41a
+Author: Felix Mgeni <felixthobias@gmail.com>
+Date:   Wed Oct 28 02:03:03 2020 +0300
+
+    no save
+
+[33mcommit 7707fa9adfb147859d15bb8a6eda34ae475cdb30[m
+Author: Felix Mgeni <felixthobias@gmail.com>
+Date:   Wed Oct 28 02:01:33 2020 +0300
+
+    dont save
+
+[33mcommit 2dee41ac9cd719702fe4b14092a100a9b6080406[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Tue Oct 27 17:38:44 2020 +0300
+
+    videos
+
+[33mcommit 702b1ad8ef520e5e682d40e3f62cf4daa4431c91[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Tue Oct 27 17:12:14 2020 +0300
+
+    Filechange
+
+[33mcommit 7a58daeebeaa7a8eb4816b24bf330f96b8bcfe87[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Tue Oct 27 17:05:09 2020 +0300
+
+    Remove video
+
+[33mcommit 61ab8758758d5e45c3670b2a9fcd7db6d9ec1e38[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Tue Oct 27 17:00:37 2020 +0300
+
+    Still in  video
+
+[33mcommit 2b334fcdb2c5114631425e24d4214a1de3dbd039[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Tue Oct 27 12:57:12 2020 +0300
+
+    Con
+
+[33mcommit 53f812938c7eeaa3c285b322c7faa5d3209b1ee4[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Tue Oct 27 00:34:22 2020 +0300
+
+    d
+
+[33mcommit efc5e7609027e1aa6922ca17346b10cf41c58931[m
+Merge: 12f7a47 c7cfe49
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Mon Oct 26 23:56:45 2020 +0300
+
+    Merge
+
+[33mcommit 12f7a478e058105a9b99e69a4a7e6d68e3e0a42c[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Mon Oct 26 23:54:46 2020 +0300
+
+    Local commit
+
+[33mcommit c7cfe49e58d293d7b9af16180b5d66b3a2e2d052[m
+Author: Felix Mgeni <felixthobias@gmail.com>
+Date:   Mon Oct 26 23:46:39 2020 +0300
+
+    Online save
+
+[33mcommit 86809b7969231e047015d9f171ea92d5e8052de0[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Mon Oct 26 15:28:27 2020 +0300
+
+    File Change
+
+[33mcommit 2ec8488c3ca936bb2103c0ab255ac177bf8eff66[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Mon Oct 26 15:21:54 2020 +0300
+
+    video
+
+[33mcommit f7b4c74316ae8ef56bad4d726e607efcf821c5eb[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Mon Oct 26 12:34:19 2020 +0300
+
+    Video Test
+
+[33mcommit c40f6077f9554ca79159f0f6324af8bc4f79e2b3[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Mon Oct 26 07:18:20 2020 +0300
+
+    Video change 3
+
+[33mcommit fbcfd9a90efb69f5f426b33bae61076490f37cb7[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Mon Oct 26 07:17:17 2020 +0300
+
+    Video change 2
+
+[33mcommit 96440740a2cd842073bc3a941e732e29cd624884[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Mon Oct 26 07:13:27 2020 +0300
+
+    Video change
+
+[33mcommit 73e68111ee092d5466b2f7fb022dab9e6bf4ed2d[m
+Author: Mgeni <felixthobias@gmail.com>
+Date:   Mon Oct 26 05:53:21 2020 +0300
+
+    initila Commit
