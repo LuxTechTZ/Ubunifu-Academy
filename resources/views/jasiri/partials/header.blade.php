@@ -66,9 +66,9 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{url('/')}}
-                            lang/sw"><img src="{{asset('img/tz.png')}}">Swahili</a>
+                            /lang/sw"><img src="{{asset('img/tz.png')}}">Swahili</a>
                             <a class="dropdown-item" href="{{url('/')}}
-                            lang/en"><img src="{{asset('img/uk.png')}}">English</a>
+                            /lang/en"><img src="{{asset('img/uk.png')}}">English</a>
                             
                         </div>
                     </li>
