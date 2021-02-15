@@ -40,6 +40,7 @@
             </div>
         </div>
     </a>
+    
     <nav id="menu" class="main-menu">
         <ul>
             <li><span><a href="/">{{ trans('titles.home') }}</a></span></li>
