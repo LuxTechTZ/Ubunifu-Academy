@@ -23,4 +23,10 @@ class BlogController extends Controller
     	$posts = $this->blog->get();
         return view('chuo.entertainment.blog.index', compact('posts','time'));
     }
+
+    public function blog()
+    {
+        $posts = $this->blog->get();
+        return view('chuo.back.blog.index', compact('posts'));
+    }
 }

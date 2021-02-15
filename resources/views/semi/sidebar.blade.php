@@ -32,6 +32,13 @@
                     <span class="selected"></span>
                 </a>
             </li>
+            <li class="nav-item {{ (Request::is('home/blog*')) ? 'active open' : null }}">
+                <a href="{{url('/')}}/home/blog" class="nav-link">
+                    <i class="icon-home"></i>
+                    <span class="title">Blog</span>
+                    <span class="selected"></span>
+                </a>
+            </li>
 
             
         </ul>

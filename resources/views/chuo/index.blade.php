@@ -371,7 +371,7 @@ Home
 		</div>
 		<script src="https://assets.juicer.io/embed.js" type="text/javascript"></script>
 		<link href="https://assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
-		<ul class="juicer-feed" data-feed-id="tzphotolabs" data-per="3"></ul>
+		<ul class="juicer-feed" data-feed-id="naturalbeauty_tz" data-per="3"></ul>
 		</div>
 	</div>
 	<!--=== End Twitter-Block ===-->

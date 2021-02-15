@@ -72,5 +72,7 @@ Route::group(['middleware' => ['auth', 'activated', 'activity', 'checkblocked']]
 	Route::get('/home/orders', 'OrderController@index');
 	Route::get('/home/orders/view/{id}', 'OrderController@show');
 
+	// Blog
+    Route::get('/home/blog', 'BlogController@blog');
 
 });

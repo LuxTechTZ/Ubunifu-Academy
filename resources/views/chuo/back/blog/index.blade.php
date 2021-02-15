@@ -13,8 +13,8 @@
         <div class="page-head">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Sent SMS
-                    <small>Text Messages Sent from You</small>
+                <h1>Blog
+                    <small>Active Posts in blog</small>
                 </h1>
             </div>
             <!-- END PAGE TITLE -->
@@ -32,16 +32,12 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Sent SMS</span>
+                <span class="active">Blog</span>
             </li>
         </ul>
         <!-- END PAGE BREADCRUMB -->
         
-        <div class="m-heading-1 border-green m-bordered">
-            <h3>Your Ballance And Transaction History</h3>
-            <h2><small>Current Balance:</small><b></b> <small>TSH</small> </h2>
-        </div>
-        <!-- BEGIN PAGE BASE CONTENT -->
+      
        
         <div class="row">
             <div class="col-md-12">
@@ -50,7 +46,7 @@
                     <div class="portlet-title">
                         <div class="caption font-dark">
                             <i class="icon-envelope-open font-dark"></i>
-                            <span class="caption-subject bold uppercase">Expense History</span>
+                            <span class="caption-subject bold uppercase">Active Blogs</span>
                         </div>
                         <div class="actions">
                            
@@ -60,48 +56,28 @@
                         <table class="table table-striped table-bordered table-hover table-header-fixed" id="sample_1">
                             <thead>
                                 <tr class="">
-                                    <th> Time </th>
-                                    <th> Amount </th>
-                                    <th> Remaind Balance </th>
-                                    <th> Status </th>
+                                    <th> Image <br> Date </th>
+                                    <th> Details </th>
+                                    <th> Comments </th>
+                                    <th> Actions </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                 @foreach($posts as $post)
+                                <tr>
+                                    <td> <img style="max-width: 100px" src="{{url('/')}}/{{$post->images->first()->image}}" alt=""></td>
+                                    <td>{{$post->details}}</td>
+                                    <td>{{count($post->comments)}} Comments</td>
+                                    <td style="max-width: 70px">
+                                        <a href="{{url('/')}}/home/view/{{$post->id}}" class="btn btn-xs btn-success"><i class="icon-eye"></i> View</a> 
+                                        <a href="{{url('/')}}/home/edit/{{$post->id}}" class="btn btn-xs btn-warning"><i class="icon-pencil"></i> Edit</a> 
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <hr>
-                <div class="portlet light bordered">
-                    <div class="portlet-title">
-                        <div class="caption font-dark">
-                            <i class="icon-wallet font-dark"></i>
-                            <span class="caption-subject bold uppercase">Top up History</span>
-                        </div>
-                        <div class="actions">
-                            
-                        </div>
-                    </div>
-                    <div class="portlet-body">
-                        <table class="table table-striped table-bordered table-hover table-header-fixed" id="sample_2">
-                            <thead>
-                                <tr class="">
-                                    <th> Time </th>
-                                    <th> Ammount </th>
-                                    <th> Remained Balance </th>
-                                    <th> Status </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-                               
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- END EXAMPLE TABLE PORTLET-->
-               
             </div>
         </div>
         <!-- END PAGE BASE CONTENT -->

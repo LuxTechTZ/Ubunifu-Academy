@@ -4,10 +4,10 @@
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="{{url('/')}}">
-                <img style="max-width: 150px" src="{{url('/')}}/images/Wide logo.png" alt="logo" class="logo-default" />
-                <h3 class="caption-subject bold uppercase"></h3>
+                <img style="max-width: 200px; max-height: 30px" src="{{url('/')}}/images/logo/Duka Mtandao.jpg" alt="Duka Mtandao logo" class="logo-default" />
+                <!-- <h3 class="caption-subject bold uppercase"></h3> -->
             </a>
-            <div class="menu-toggler sidebar-toggler">
+            <div class="menu-toggler sidebar-toggler hide">
                 <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
             </div>
         </div>
