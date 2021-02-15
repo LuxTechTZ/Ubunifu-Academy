@@ -48,7 +48,7 @@
 </head>
 
 <body class="header-fixed">
-	
+
 	<!-- Load Facebook SDK for JavaScript -->
       <div id="fb-root"></div>
       <script>
@@ -71,7 +71,7 @@
       <div class="fb-customerchat"
         attribution="setup_tool"
         page_id="1190539327671043"
-  theme_color="#0A7CFF">
+  		theme_color="#13cf13">
       </div>
 
 
