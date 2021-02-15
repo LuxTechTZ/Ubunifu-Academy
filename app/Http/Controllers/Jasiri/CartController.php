@@ -193,7 +193,7 @@ class CartController extends Controller
 
         Cart::destroy($cart_id);
 
-        return redirect('account/courses');
+        return redirect('account/home');
     }
     
     public function createStudemt($student_details,$cart_id)
