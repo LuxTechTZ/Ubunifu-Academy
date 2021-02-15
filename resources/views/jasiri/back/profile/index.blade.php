@@ -1,21 +1,26 @@
 @extends('jasiri.back.layouts.app')
-
 @section('page')
-  Profile
+  Dashboard
 @endsection
-
+@section('template_linked_css')
 @section('content')
-<div class="content-wrapper">
-    <div class="container-fluid">
-      <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+             <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="#">Dashboard</a>
         </li>
         <li class="breadcrumb-item active">Add listing</li>
       </ol>
-
-		<div class="box_general padding_bottom">
+            </div>
+        </div>
+       <div class="box_general padding_bottom">
 			<div class="header_box version_2">
 				<h2><i class="fa fa-user"></i>Profile details</h2>
 			</div>
@@ -111,11 +116,13 @@
 				</div>
 			</div>
 		</div>
-		<!-- /row-->
+
 		<p><a href="#0" class="btn_1 medium">Save</a></p>
-	</div>
-	  <!-- /.container-fluid-->
+    </div>
 </div>
+	  <!-- /container-fluid-->
+
+@endsection
 
 <script src="{{url('/')}}/back_assets/vendor/dropzone.min.js"></script>
 @endsection

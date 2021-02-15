@@ -4,11 +4,11 @@
                 <li>
                     <div class="switch-field">
                         <input type="radio" id="all" name="listing_filter" value="all" checked>
-                        <label for="all">All</label>
+                        <label for="all">{{trans('titles.All')}}</label>
                         <input type="radio" id="popular" name="listing_filter" value="popular">
-                        <label for="popular">Popular</label>
+                        <label for="popular">{{trans('titles.Popular')}}</label>
                         <input type="radio" id="latest" name="listing_filter" value="latest">
-                        <label for="latest">Latest</label>
+                        <label for="latest">{{trans('titles.Latest')}}</label>
                     </div>
                 </li>
                 <li>
@@ -19,7 +19,7 @@
                 </li>
                 <li>
                     <select name="orderby" class="selectbox">
-                        <option value="category">Category</option>
+                        <option value="category">{{trans('titles.Category')}}</option>
                         @foreach($categories as $category)
                         <option><a href="{{url('/')}}/courses-grid/{{$category->title}}">{{$category->title}}</a></option>
                         @endforeach
