@@ -18,12 +18,12 @@
             <div class="col-lg-3 col-md-6 ml-lg-auto">
                 <h5>{{trans('titles.Useful links')}}</h5>
                 <ul class="links">
-                    <li><a href="#0">{{trans('titles.admission')}}</a></li>
-                    <li><a href="#0">{{trans('titles.About')}}</a></li>
-                    <li><a href="#0">{{trans('titles.login')}}</a></li>
-                    <li><a href="#0">{{trans('titles.register')}}</a></li>
-                    <li><a href="#0">{{trans('titles.News &amp; Events')}}</a></li>
-                    <li><a href="#0">{{trans('titles.Contacts')}}</a></li>
+                 <li><a href="{{url('/')}}/login">{{trans('titles.admission')}}</a></li>
+                    <li><a href="{{url('/')}}/about">{{trans('titles.About')}}</a></li>
+                    <li><a href="{{url('/')}}/login">{{trans('titles.login')}}</a></li>
+                    <li><a href="{{url('/')}}/register">{{trans('titles.register')}}</a></li>
+                    <li><a href="{{url('/')}}/blog">{{trans('titles.News &amp; Events')}}</a></li>
+                    <li><a href="{{url('/')}}/contact">{{trans('titles.Contacts')}}</a></li>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6">

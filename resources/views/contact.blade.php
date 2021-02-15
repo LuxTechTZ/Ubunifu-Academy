@@ -1,3 +1,10 @@
+@extends('jasiri.layouts.app')
+
+@section('content')
+<main>
+    <section class="slider">
+        <div id="slider" class="flexslider">
+          
 <style>
 
 .column {
@@ -57,3 +64,20 @@
   }
 }
 </style>
+<div class="about-section">
+  <h1 style="color:white;">{{trans('titles.About Us')}}</h1>
+  <p>Some text about who we are and what we do.</p>
+  <p>Resize the browser window to see that this page is responsive by the way.</p>
+</div>
+
+<h2 style="text-align:center">{{trans('titles.Our Team')}}</h2>
+<
+</div>
+    
+    </section>
+    <!-- /slider -->
+
+    
+</main>
+<!-- /main -->
+@endsection

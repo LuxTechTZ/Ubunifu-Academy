@@ -1,4 +1,4 @@
-@extends('jasiri.back.layouts.clean')
+@extends('jasiri.back.layouts.app')
 
 @section('page')
   Create Course

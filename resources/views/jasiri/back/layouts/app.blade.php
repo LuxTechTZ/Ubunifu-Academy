@@ -1,85 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!-- BEGIN HEAD -->
 
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+        <meta charset="utf-8" />
+        <title>@hasSection('template_title')@yield('template_title') | @endif @yield('page') | {{ config('app.name', Lang::get('titles.app')) }}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="Preview page of Metronic Admin Theme #4 for blank page layout" name="description" />
+        <meta content="Ubunifu Solutions" name="author" />
+        {{-- CSRF Token --}}
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        {{-- Fonts --}}
+        @yield('template_linked_fonts')
+        @yield('own_template_linked_css')
+        {{-- Styles --}}
+        @yield('template_linked_css')
 
-<!-- Mirrored from www.ansonika.com/udema/admin_section/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Oct 2020 22:34:28 GMT -->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="Felix Mgeni">
-  <title>@yield('page') | {{ config('app.name', Lang::get('titles.app')) }}</title>
-	
-  <!-- Favicons-->
-  <link rel="shortcut icon" href="{{url('/')}}/back_assets/img/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" type="image/x-icon" href="{{url('/')}}/back_assets/img/apple-touch-icon-57x57-precomposed.png">
-  <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{url('/')}}/back_assets/img/apple-touch-icon-72x72-precomposed.png">
-  <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{url('/')}}/back_assets/img/apple-touch-icon-114x114-precomposed.png">
-  <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{url('/')}}/back_assets/img/apple-touch-icon-144x144-precomposed.png">
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="{{url('/')}}/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{url('/')}}/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{url('/')}}/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{url('/')}}/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN THEME GLOBAL STYLES -->
+        <link href="{{url('/')}}/assets/global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="{{url('/')}}/assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
+        <link href="{{url('/')}}/assets/layouts/layout4/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{url('/')}}/assets/layouts/layout4/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="{{url('/')}}/assets/layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME LAYOUT STYLES -->
+        <link rel="shortcut icon" href="{{url('/')}}/favicon.ico" /> </head>
+    <!-- END HEAD -->
 
-  <!-- GOOGLE WEB FONT -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
-	
-  <!-- Bootstrap core CSS-->
-  <link href="{{url('/')}}/back_assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Main styles -->
-  <link href="{{url('/')}}/back_assets/css/admin.css" rel="stylesheet">
-  <!-- Icon fonts-->
-  <link href="{{url('/')}}/back_assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <!-- Plugin styles -->
-  <link href="{{url('/')}}/back_assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  <link href="{{url('/')}}/back_assets/vendor/dropzone.css" rel="stylesheet">
-  <!-- Your custom styles -->
-  <link href="{{url('/')}}/back_assets/css/custom.css" rel="stylesheet">
-</head>
-
-<body class="fixed-nav sticky-footer" id="page-top">
-    @include('jasiri.back.partials.header')
-
-    @yield('content')
-    <!-- /.container-wrapper-->
-    @include('jasiri.back.partials.footer')
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fa fa-angle-up"></i>
-    </a>
-    <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
+    <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo page-md">
+        <!-- BEGIN HEADER -->
+        @include('semi.header')
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+           
+            @include('jasiri.back.partials.header')
+           
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            @yield('content')
+            <!-- END CONTENT -->
+           
         </div>
-      </div>
-    </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{url('/')}}/back_assets/vendor/jquery/jquery.min.js"></script>
-    <script src="{{url('/')}}/back_assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="{{url('/')}}/back_assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Page level plugin JavaScript-->
-    <script src="{{url('/')}}/back_assets/vendor/chart.js/Chart.js"></script>
-    <script src="{{url('/')}}/back_assets/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="{{url('/')}}/back_assets/vendor/datatables/dataTables.bootstrap4.js"></script>
-	<script src="{{url('/')}}/back_assets/vendor/jquery.selectbox-0.2.js"></script>
-	<script src="{{url('/')}}/back_assets/vendor/retina-replace.min.js"></script>
-	<script src="{{url('/')}}/back_assets/vendor/jquery.magnific-popup.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="{{url('/')}}/back_assets/js/admin.js"></script>
-	<!-- Custom scripts for this page-->
-    <script src="{{url('/')}}/back_assets/js/admin-charts.js"></script>
-	
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        @include('jasiri.includes.footer')
+        <!-- END FOOTER -->
+      
+        <!--[if lt IE 9]>
+<script src="{{url('/')}}/assets/global/plugins/respond.min.js"></script>
+<script src="{{url('/')}}/assets/global/plugins/excanvas.min.js"></script> 
+<script src="{{url('/')}}/assets/global/plugins/ie8.fix.min.js"></script> 
+<![endif]-->
+        <!-- BEGIN CORE PLUGINS -->
+        <script src="{{url('/')}}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src="{{url('/')}}/assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="{{url('/')}}/assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        <script src="{{url('/')}}/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+        @yield('own_footer_scripts')
+        @yield('footer_scripts')
+        <script>
+            $(document).ready(function()
+            {
+                $('#clickmewow').click(function()
+                {
+                    $('#radio1003').attr('checked', 'checked');
+                });
+            })
+        </script>
+    <!-- Google Code for Universal Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-37564768-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End -->
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="http://www.googletagmanager.com/ns.html?id=GTM-W276BJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W276BJ');</script>
+<!-- End -->
 </body>
 
-<!-- Mirrored from www.ansonika.com/udema/admin_section/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Oct 2020 22:34:57 GMT -->
+
 </html>
+<!-- Localized -->
