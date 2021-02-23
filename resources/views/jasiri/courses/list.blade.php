@@ -29,7 +29,7 @@
                         <a href="#0" class="wish_bt"></a>
                         <div class="price">{{number_format($course->price)}} TSH</div>
                         <small>{{$course->category->title}}</small>
-                        <h3>>{{$course->title}}</h3>
+                        <h3>{{$course->title}}</h3>
                         <p>{{$course->description}} .</p>
                         <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
                     </div>
