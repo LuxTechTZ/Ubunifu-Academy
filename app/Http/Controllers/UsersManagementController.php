@@ -31,6 +31,7 @@ class UsersManagementController extends Controller
      */
     public function index()
     {
+
         $paginationEnabled = config('usersmanagement.enablePagination');
         if ($paginationEnabled) {
             $users = User::paginate(config('usersmanagement.paginateListSize'));
@@ -39,7 +40,9 @@ class UsersManagementController extends Controller
         }
         $roles = Role::all();
 
-        return View('usersmanagement.show-users', compact('users', 'roles'));
+        return View('auth.users.index',compact('users', 'roles'));
+
+        // return View('usersmanagement.show-users', compact('users', 'roles'));
     }
 
     /**
@@ -160,9 +163,13 @@ class UsersManagementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($user)
     {
-        return view('usersmanagement.show-user', compact('user'));
+        $user = User::findOrFail($user);
+
+        return View('auth.users.profile',compact('user'));
+
+        // return view('usersmanagement.show-user', compact('user'));
     }
 
     /**

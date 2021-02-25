@@ -11,6 +11,6 @@ class DashboardController extends Controller
 
     public function index($value='')
     {
-    	return view('jasiri.back.dashboard');
+    	return view('academy.dash');
     }
 }

@@ -34,7 +34,8 @@
         <link href="{{url('/')}}/assets/layouts/layout4/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="{{url('/')}}/assets/layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="{{url('/')}}/favicon.ico" /> </head>
+        <link rel="shortcut icon" href="{{url('/')}}/favicon.ico" /> 
+    </head>
     <!-- END HEAD -->
 
     <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo page-md">

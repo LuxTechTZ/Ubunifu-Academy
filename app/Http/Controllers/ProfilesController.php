@@ -19,6 +19,7 @@ use Image;
 use jeremykenedy\Uuid\Uuid;
 use Validator;
 use View;
+use Auth;
 
 class ProfilesController extends Controller
 {
@@ -60,8 +61,23 @@ class ProfilesController extends Controller
         try {
             $user = $this->getUserByUsername($username);
         } catch (ModelNotFoundException $exception) {
+            return view('pages.status')
+                ->with('error', trans('profile.notYourProfile'))
+                ->with('error_title', trans('profile.notYourProfileTitle'));
+        }
+
+        // return Auth::user()->hasRole('admin');
+        // return redirect()->back()->withFlashSuccess('Lesson Part Created');
+
+        if ($user->id != Auth::user()->id && Auth::user()->hasRole('admin') == false) {
             abort(404);
         }
+
+        // try {
+        //     $user = $this->getUserByUsername($username);
+        // } catch (ModelNotFoundException $exception) {
+        //     abort(404);
+        // }
 
         $currentTheme = Theme::find($user->profile->theme_id);
 
@@ -69,6 +85,7 @@ class ProfilesController extends Controller
             'user'         => $user,
             'currentTheme' => $currentTheme,
         ];
+        return View('auth.users.profile',compact('user'));
 
         return view('profiles.show')->with($data);
     }
@@ -102,6 +119,9 @@ class ProfilesController extends Controller
             'currentTheme' => $currentTheme,
 
         ];
+
+
+
 
         return view('profiles.edit')->with($data);
     }
