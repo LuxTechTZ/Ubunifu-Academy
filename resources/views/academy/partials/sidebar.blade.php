@@ -51,27 +51,7 @@
         </li>
         <!-- End Header Static -->
 
-        <!-- Hide Sidebar -->
-        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-          <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" >
-            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-              <i class="hs-admin-layout-sidebar-none"></i>
-            </span>
-            <span class="media-body align-self-center">Roles</span>
-          </a>
-        </li>
-        <!-- End Hide Sidebar -->
 
-        <!-- Light Layout -->
-        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-          <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" >
-            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-              <i class="hs-admin-layout-media-left-alt"></i>
-            </span>
-            <span class="media-body align-self-center">Permissions</span>
-          </a>
-        </li>
-        <!-- End Light Layout -->
        
       </ul>
       <!-- End User Settings: Submenu-1 -->
@@ -79,7 +59,7 @@
     <!-- End User Settings -->
 
     
-
+  @if(Auth::user()->hasRole('9'))
     <!-- Student Settings -->
     <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item {{ Request::is('users/create') ? 'u-side-nav-opened has-active' : null }}">
       <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="#!" data-hssm-target="#student">
@@ -132,7 +112,8 @@
       <!-- End Student Settings: Submenu-1 -->
     </li>
     <!-- End Student Settings -->
-    
+  @endif
+
     <!-- Courses -->
     <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item">
       <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12 {{ Request::is('account/dashboard') ? 'active' : null }}" >
@@ -171,10 +152,10 @@
         </li>
         @endif
         <!-- End Header Static -->
-
+        @if(Auth::user()->hasRole('4'))
         <!-- Hide Sidebar -->
         <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-          <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" href="../layout-settings/sidebar-hide.html">
+          <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12 {{ Request::is('courses/my_courses') ? 'active' : null }}" href="{{url('/')}}/courses/my_courses">
             <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
               <i class="hs-admin-layout-sidebar-none"></i>
             </span>
@@ -182,14 +163,15 @@
           </a>
         </li>
         <!-- End Hide Sidebar -->
-
+        @endif
         
        
       </ul>
       <!-- End Course Settings: Submenu-1 -->
     </li>
     <!-- End Course Settings -->
-
+  
+  @if(Auth::user()->hasRole('9'))
     <!-- Income Settings -->
     <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item {{ Request::is('users/create') ? 'u-side-nav-opened has-active' : null }}">
       <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="#!" data-hssm-target="#Teachers">
@@ -242,6 +224,7 @@
       <!-- End User Settings: Submenu-1 -->
     </li>
     <!-- End User Settings -->
+  @endif
 
   </ul>
 </div>
