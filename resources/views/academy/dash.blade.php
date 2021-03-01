@@ -47,7 +47,7 @@
         </h4>
 
           <div class="d-flex align-items-center">
-            <span class="g-font-weight-300 g-font-size-24 g-color-black">+125</span>
+            <span class="g-font-weight-300 g-font-size-24 g-color-black">0 TZS</span>
             <span class="d-flex align-self-center g-font-size-0 g-ml-5 g-ml-10--md">
             <i class="g-fill-gray-dark-v9">
               <svg width="12px" height="20px" viewbox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -102,7 +102,7 @@
       <div class="card h-100 g-brd-gray-light-v7 rounded">
         <div class="card-block g-pa-20">
           <h4 class="media g-font-size-16 g-mb-10">
-          <span class="d-flex align-self-center g-font-weight-400 g-color-gray-dark-v6">Downloads</span>
+          <span class="d-flex align-self-center g-font-weight-400 g-color-gray-dark-v6">Courses</span>
 
           <span class="media-body align-self-center text-right">
             <a class="u-link-v5 g-font-size-16 g-font-size-18--md g-color-gray-light-v6 g-color-secondary--hover" href="#!">
@@ -112,7 +112,7 @@
         </h4>
 
         <div class="d-flex align-items-center">
-            <span class="g-font-weight-300 g-font-size-24 g-color-black">28</span>
+            <span class="g-font-weight-300 g-font-size-24 g-color-black">{{count(App\Models\Jasiri\Course::get())}}</span>
             <span class="d-flex align-self-center g-font-size-0 g-ml-5 g-ml-10--md">
             <i class="g-fill-red">
               <svg width="12px" height="20px" viewbox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -167,7 +167,7 @@
       <div class="card h-100 g-brd-gray-light-v7 rounded">
         <div class="card-block g-pa-20">
           <h4 class="media g-font-size-16 g-mb-10">
-          <span class="d-flex align-self-center g-font-weight-400 g-color-gray-dark-v6">Task Complete</span>
+          <span class="d-flex align-self-center g-font-weight-400 g-color-gray-dark-v6">Teachers</span>
 
           <span class="media-body align-self-center text-right">
             <a class="u-link-v5 g-font-size-16 g-font-size-18--md g-color-gray-light-v6 g-color-secondary--hover" href="#!">
@@ -177,7 +177,15 @@
         </h4>
 
           <div class="d-flex align-items-center">
-            <span class="g-font-weight-300 g-font-size-24 g-color-black">72</span>
+            <span class="g-font-weight-300 g-font-size-24 g-color-black">
+              {{
+              count(App\Models\User::whereHas(
+                  'roles', function($q){
+                      $q->where('name', 'Teacher');
+                  }
+              )->get())
+            }}
+            </span>
             <span class="d-flex align-self-center g-font-size-0 g-ml-5 g-ml-10--md">
             <i class="g-fill-red">
               <svg width="12px" height="20px" viewbox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -232,7 +240,7 @@
       <div class="card h-100 g-brd-gray-light-v7 rounded">
         <div class="card-block g-pa-20">
           <h4 class="media g-font-size-16 g-mb-10">
-          <span class="d-flex align-self-center g-font-weight-400 g-color-gray-dark-v6">New Clients</span>
+          <span class="d-flex align-self-center g-font-weight-400 g-color-gray-dark-v6">Students</span>
 
           <span class="media-body align-self-center text-right">
             <a class="u-link-v5 g-font-size-16 g-font-size-18--md g-color-gray-light-v6 g-color-secondary--hover" href="#!">
@@ -242,7 +250,16 @@
         </h4>
 
           <div class="d-flex align-items-center">
-            <span class="g-font-weight-300 g-font-size-24 g-color-black">+125</span>
+            <span class="g-font-weight-300 g-font-size-24 g-color-black">
+            <!-- Count Students -->
+            {{
+              count(App\Models\User::whereHas(
+                  'roles', function($q){
+                      $q->where('name', 'Student');
+                  }
+              )->get())
+            }}
+          </span>
             <span class="d-flex align-self-center g-font-size-0 g-ml-5 g-ml-10--md">
             <i class="g-fill-gray-dark-v9">
               <svg width="12px" height="20px" viewbox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -297,9 +314,22 @@
       <!-- User Card -->
       <div class="card g-brd-gray-light-v7 text-center g-pt-40 g-pt-60--md g-mb-30">
         <header class="g-mb-30">
-          <img class="img-fluid rounded-circle g-width-125 g-height-125 g-mb-14" src="{{url('/')}}/academy/assets2/img-temp/200x200/img7.jpg" alt="Image description">
-          <h3 class="g-font-weight-300 g-font-size-22 g-color-black g-mb-2">Charlie Bailey</h3>
-          <em class="g-font-style-normal g-font-weight-300 g-color-gray-dark-v6">CEO, Unify</em>
+          <img class="img-fluid rounded-circle g-width-125 g-height-125 g-mb-14" src="@if (Auth::user()->profile && Auth::user()->profile->avatar_status == 1) {{ Auth::user()->profile->avatar }} @else {{ Gravatar::get(Auth::user()->email) }} @endif" alt="Image description">
+          <h3 class="g-font-weight-300 g-font-size-22 g-color-black g-mb-2">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</h3>
+          <em class="g-font-style-normal g-font-weight-300 g-color-gray-dark-v6">
+            @foreach (Auth::user()->roles as $user_role)
+                @if ($user_role->name == 'User')
+                    @php $badgeClass = 'primary' @endphp
+                @elseif ($user_role->name == 'Admin')
+                    @php $badgeClass = 'warning' @endphp
+                @elseif ($user_role->name == 'Unverified')
+                    @php $badgeClass = 'danger' @endphp
+                @else
+                    @php $badgeClass = 'default' @endphp
+                @endif
+                <span class="badge badge-{{$badgeClass}}">{{ $user_role->name }}</span>
+            @endforeach
+          </em>
         </header>
 
         <section class="row no-gutters g-brd-top g-brd-gray-light-v4">
