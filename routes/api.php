@@ -20,3 +20,4 @@ use Illuminate\Support\Facades\Route;
 
      Route::any('/courses/test', 'App\Http\Controllers\Jasiri\CourseController@name');
 
+     Route::get('/dpo/end/{id}', 'App\Http\Controllers\Jasiri\CartController@paymentByDpo');

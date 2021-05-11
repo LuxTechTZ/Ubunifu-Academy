@@ -11,6 +11,7 @@ use App\Http\Controllers\UsersManagementController;
 use App\Http\Controllers\Jasiri\CourseController;
 use App\Http\Controllers\Jasiri\StudentController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Http;
 use Session;
 use Auth;
 
@@ -92,6 +93,23 @@ class CartController extends Controller
     	return view('jasiri.cart.payment',compact('cart'));
     }
 
+    public function paymentByDpo($id)
+    {
+        $cart = Cart::findOrFail($id);
+        $data = view('jasiri.cart.dpo.endpoint',compact('cart'))->render();
+        $response = Http::withBody(
+            $data,'text/plain'
+        )->post('https://secure.3gdirectpay.com/API/v6/');
+
+        $code = simplexml_load_string($response);
+
+        $cd = $code->TransToken;
+
+        return redirect('https://secure.3gdirectpay.com/payv2.php?ID='.$cd);
+
+        return $response;
+    }
+
     public function addItem($course,$cart_id)
     {
     	$cart_item = $this->cart_item
@@ -142,7 +160,7 @@ class CartController extends Controller
     {
         $cart = Cart::findOrFail($cart_id);
 
-        $user = Auth::user(); 
+        $user = Auth::user();
         if (!isset($user)) {
             $user = $this->user_manage->store($request,$from_order = true);
 
@@ -155,20 +173,20 @@ class CartController extends Controller
             $student_details['user_id'] = $user->id;
             $student_details['name'] = $user->name;
             $student_details;
-            
+
             $student = $this->student->store($student_details);
 
             foreach ($cart->items as $item) {
                 if($student->courses()->find($item->course_id) == null)
                 $student->courses()->attach($item->course_id);
             }
-            
+
 
         }else{
             $student_details = new Request;
             $student_details['user_id'] = $user->id;
             $student_details['name'] = $user->name;
-            
+
             $student = $this->student->find($user->id);
             if (isset($student)) {
                 foreach ($cart->items as $item) {
@@ -195,11 +213,11 @@ class CartController extends Controller
 
         return redirect('account/home');
     }
-    
+
     public function createStudemt($student_details,$cart_id)
     {
         $cart = Cart::findOrFail($cart_id);
-        
+
         $student = $this->student->store($student_details);
 
         foreach ($cart->items as $item) {

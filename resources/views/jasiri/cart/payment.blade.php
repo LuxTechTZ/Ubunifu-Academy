@@ -83,7 +83,7 @@
 									</label>
 								</span>
 							</div>
-						
+
 							<div class="col-sm-6">
 								<span class="input">
 									<input value="{{Auth::user()->profile->phone}}" name="phone" class="input_field" type="text">
@@ -256,8 +256,9 @@
 							Lorem ipsum dolor sit amet, vim id accusata sensibus, id ridens quaeque qui. Ne qui vocent ornatus molestie, reque fierent dissentiunt mel ea.
 						</p>
 						<p>
-						<a target="_blank" href="https://www.skrill.com/en/business/integration/">
-							<img alt="Pay by Skrill purple button 245x75 PNG" src="https://www.skrill.com/fileadmin/content/images/brand_centre/Pay_by_Skrill/skrill-payby-btn-purple_245x75.png" width="245" height="75" />
+						<a href="{{url('/')}}/dpo/end/{{$cart->id}}">
+							<img alt="Pay by Skrill purple button 245x75 PNG"
+                                 src="https://www.skrill.com/fileadmin/content/images/brand_centre/Pay_by_Skrill/skrill-payby-btn-purple_245x75.png" width="245" height="75" />
 
 	                    </a>
 							<img src="{{url('/')}}/img/paypal_bt.png" alt="Image">
@@ -526,7 +527,7 @@
 						            </select>
 								</span>
 							</div>
-						
+
 							<div class="col-md-6 col-sm-6">
 								<span class="input">
 									<input class="input_field" name="region" type="text">
@@ -573,7 +574,7 @@
 					</div>
 				</div>
 				<!-- /col -->
-				
+
 				<aside class="col-lg-4" id="sidebar">
 					<div class="box_detail">
 						<div id="total_cart">
@@ -599,25 +600,25 @@
 <div class="modal fade" id="logisn" tabindex="-1" role="basic" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-           
-            <div class="modal-body"> 
+
+            <div class="modal-body">
                 <div style="text-align: center">
                     <h2>Change Active Batch To <br> </h2>
                 </div>
             </div>
             <input type="text" name="">
 
-            <div class="modal-footer"> 
+            <div class="modal-footer">
                 <div class="btn-group ">
                     <a  href="{{url('/')}}/closebatch/" class="btn red btn-md dropdown-toggle">
                         <span class=""> Close Batch </span>
-                    </a>                                       
-                </div> 
+                    </a>
+                </div>
 
                 <div class="btn-group pull-right">
                     <a  href="{{url('/')}}/changebatch/" type="button" class="btn blue btn-md dropdown-toggle">
                         <span class=""> Set Active Batch</span>
-                    </a>                                       
+                    </a>
                 </div>
             </div>
         </div>
