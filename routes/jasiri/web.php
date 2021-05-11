@@ -1,7 +1,9 @@
 <?php
 
      // Course
-     Route::get('/courses-grid', 'CourseController@index');
+use App\Http\Controllers\jasiri\PaymentController;
+
+Route::get('/courses-grid', 'CourseController@index');
      Route::get('/courses-grid/{category}', 'CourseController@index');
      Route::get('/courses-list', 'CourseController@list');
 
@@ -16,6 +18,8 @@
      Route::get('/cart', 'CartController@showCart');
 
      Route::get('/dpo/end/{id}', 'CartController@paymentByDpo');
+     Route::get('/dpo/response', [PaymentController::class, 'save']);
+
 
      // Cart Purchase
      Route::get('/course/purchase/{id}', 'CartController@createCart');

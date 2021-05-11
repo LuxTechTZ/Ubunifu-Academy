@@ -6,8 +6,8 @@
         <PaymentAmount>{{$cart->total_price}}</PaymentAmount>
         <PaymentCurrency>TZS</PaymentCurrency>
         <CompanyRef>ct-{{$cart->id}}</CompanyRef>
-        <RedirectURL>ubunifuacademy.co.tz</RedirectURL>
-        <BackURL>ubunifuacademy.co.tz/response</BackURL>
+        <RedirectURL>{{url('/')}}/dpo/response/</RedirectURL>
+        <BackURL>{{url('/')}}/dpo/response/</BackURL>
         <CompanyRefUnique>1</CompanyRefUnique>
         <PTL>5</PTL>
     </Transaction>

@@ -12,6 +12,7 @@ use App\Http\Controllers\Jasiri\CourseController;
 use App\Http\Controllers\Jasiri\StudentController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\jasiri\OrderController;
 use Session;
 use Auth;
 
@@ -103,11 +104,21 @@ class CartController extends Controller
 
         $code = simplexml_load_string($response);
 
+        $order['cart_id'] = $cart->id;
+        $order['company_ref'] = 'ct-'.$cart->id;
+        $order['price'] = $cart->total_price;
+        $order['result_code'] = $code->Result;
+        $order['result_explanation'] = $code->ResultExplanation;
+        $order['trans_token'] = $code->TransToken;
+        $order['trans_ref'] = $code->TransRef;
+
         $cd = $code->TransToken;
+
+        $user_order = new OrderController;
+        $user_order->save($order);
 
         return redirect('https://secure.3gdirectpay.com/payv2.php?ID='.$cd);
 
-        return $response;
     }
 
     public function addItem($course,$cart_id)
