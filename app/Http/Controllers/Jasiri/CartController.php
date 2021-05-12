@@ -107,17 +107,17 @@ class CartController extends Controller
 
         $xmlDoc = simplexml_load_string($response);
 
-        $xml = simplexml_load_string($response);
-        if ($xml === false) {
+        $code = simplexml_load_string($response);
+        if ($code === false) {
           echo "Failed loading XML: ";
           foreach(libxml_get_errors() as $error) {
             echo "<br>", $error->message;
           }
         } else {
-          print_r($xml);
+//            print_r( $xml);
+//            return $code->Result;
         }
 
-        return $xml;
 
         $x = $xmlDoc->documentElement;
 

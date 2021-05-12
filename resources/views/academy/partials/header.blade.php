@@ -288,18 +288,35 @@
                 <a class="media g-color-primary--hover g-py-5 g-px-20" href="#!">
                   <span class="d-flex align-self-center g-mr-12">
         <i class="hs-admin-headphone-alt"></i>
-      </span>
-                  <span class="media-body align-self-center">Get Support</span>
+                  </span>
+                    <span class="media-body align-self-center">Get Support</span>
                 </a>
               </li>
               <li class="mb-0">
-                <a class="media g-color-primary--hover g-py-5 g-px-20" href="#!">
-                  <span class="d-flex align-self-center g-mr-12">
-        <i class="hs-admin-shift-right"></i>
-      </span>
-                  <span class="media-body align-self-center">Sign Out</span>
-                </a>
+                  <a class="media g-color-primary--hover g-py-5 g-px-20" href="#!">
+                      <span class="d-flex align-self-center g-mr-12">
+                          <i class="hs-admin-shift-right"></i>
+                      </span>
+                      <span class="media-body align-self-center">Sign Out</span>
+                  </a>
               </li>
+                <li class="mb-0">
+                    @if(isset(Auth::user()->id))
+                        <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                           class="media g-color-primary--hover g-py-5 g-px-20" href="#!">
+                            <span class="d-flex align-self-center g-mr-12">
+                                <i class="hs-admin-shift-right"></i>
+                            </span>
+                            <span class="media-body align-self-center">Sign Out</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                              style="display: none;">
+                            @csrf
+                        </form>
+                    @endif
+                    <a class="media g-color-primary--hover g-py-5 g-px-20" href="/">
+                    </a>
+                </li>
             </ul>
             <!-- End Top User Menu -->
           </div>
