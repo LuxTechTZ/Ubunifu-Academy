@@ -1,4 +1,4 @@
-<?php  
+<?php
     // Course
     Route::get('/admin/users', 'App\Http\Controllers\UsersManagementController@index');
 
@@ -18,6 +18,3 @@
     Route::get('/admin/users/upgrade_plan/{id}', 'App\Http\Controllers\ProfimeManagementController@upgrade_plan');
     Route::get('/admin/users/invite_friends/{id}', 'App\Http\Controllers\ProfimeManagementController@invite_friends');
     Route::get('/admin/users/connected_accounts/{id}', 'App\Http\Controllers\ProfimeManagementController@connected_accounts');
-
-
-

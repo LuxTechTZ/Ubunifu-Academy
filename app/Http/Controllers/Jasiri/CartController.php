@@ -13,6 +13,8 @@ use App\Http\Controllers\Jasiri\StudentController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\jasiri\OrderController;
+
+use SimpleXMLElement;
 use Session;
 use Auth;
 
@@ -98,9 +100,26 @@ class CartController extends Controller
     {
         $cart = Cart::findOrFail($id);
         $data = view('jasiri.cart.dpo.endpoint',compact('cart'))->render();
+
         $response = Http::withBody(
             $data,'text/plain'
         )->post('https://secure.3gdirectpay.com/API/v6/');
+
+        $xmlDoc = simplexml_load_string($response);
+
+        $xml = simplexml_load_string($response);
+        if ($xml === false) {
+          echo "Failed loading XML: ";
+          foreach(libxml_get_errors() as $error) {
+            echo "<br>", $error->message;
+          }
+        } else {
+          print_r($xml);
+        }
+
+        return $xml;
+
+        $x = $xmlDoc->documentElement;
 
         $code = simplexml_load_string($response);
 
@@ -144,7 +163,6 @@ class CartController extends Controller
     		$this->updateCart($cart_id);
     		return;
     	}
-
 
     }
 

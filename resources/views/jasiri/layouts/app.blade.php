@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- Mirrored from www.ansonika.com/udema/index-6.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Oct 2020 22:31:54 GMT -->
 <head>
     <meta charset="utf-8">
@@ -29,31 +27,31 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="{{url('/')}}/css/custom.css" rel="stylesheet">
-    
+
     <!-- MODERNIZR SLIDER -->
     <script src="{{url('/')}}/js/modernizr_slider.js"></script>
 
 </head>
 
 <body>
-        
+
     <div id="page">
-        
+
     @include('jasiri.partials.header')
-    
+
     @yield('content')
 
     @include('jasiri.partials.footer')
     <!--/footer-->
     </div>
     <!-- page -->
-    
+
     <!-- COMMON SCRIPTS -->
     <script src="{{url('/')}}/js/jquery-3.5.1.min.js"></script>
     <script src="{{url('/')}}/js/common_scripts.js"></script>
     <script src="{{url('/')}}/js/main.js"></script>
     <script src="{{url('/')}}/assets/validate.js"></script>
-    
+
     <!-- FlexSlider -->
     <script defer src="{{url('/')}}/js/jquery.flexslider.js"></script>
     <script>
@@ -83,7 +81,7 @@
             });
         });
     </script>
-    
+
 </body>
 
 <!-- Mirrored from www.ansonika.com/udema/index-6.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Oct 2020 22:32:22 GMT -->

@@ -1,4 +1,4 @@
-<?php 
+<?php
 	Route::group(['middleware' => ['auth', 'activated', 'activity', 'checkblocked']], function () {
 
 
@@ -11,7 +11,7 @@
 
      // Courses Student
      Route::get('account/student/courses', 'CourseController@studentCourses');
-     
+
      Route::get('account/mycourses', 'CourseController@TeachersCourse');
      Route::get('account/courses/edit/{course_id}', 'CourseController@course');
 
@@ -25,7 +25,7 @@
      Route::post('account/courses/store', 'CourseController@storeCourse');
 
 
-     // Lesson 
+     // Lesson
      Route::get('account/courses/lesson/create/{course_id}', 'LessonController@create');
      Route::post('/account/courses/lesson/part/create/', 'PartController@create');
 
@@ -37,5 +37,4 @@
 
      // Upload mterial
      Route::post('account/courses/material/upload/{part_id}', 'MaterialController@uploadToLonode');
-
 });
