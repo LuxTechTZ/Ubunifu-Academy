@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jasiri\Cart;
 use App\Models\Jasiri\CartItem;
+use App\Models\Jasiri\Order;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UsersManagementController;
 use App\Http\Controllers\Jasiri\CourseController;
@@ -118,9 +119,6 @@ class CartController extends Controller
 //            return $code->Result;
         }
 
-
-        $x = $xmlDoc->documentElement;
-
         $code = simplexml_load_string($response);
 
         $order['cart_id'] = $cart->id;
@@ -133,8 +131,9 @@ class CartController extends Controller
 
         $cd = $code->TransToken;
 
-        $user_order = new OrderController;
-        $user_order->save($order);
+//        $user_order = new OrderController;
+//        $user_order->save($order);
+        $od = Order::create($order);
 
         return redirect('https://secure.3gdirectpay.com/payv2.php?ID='.$cd);
 
