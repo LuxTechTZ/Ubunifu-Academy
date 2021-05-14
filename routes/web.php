@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UsersManagementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +29,9 @@ Auth::routes();
 
 // Public Routes
 Route::group(['middleware' => ['web', 'activity', 'checkblocked']], function () {
+
+    //    Register Normal User
+    Route::post('/admin/users', [\App\Http\Controllers\Academy\UserController::class, 'store'])->name('register_user');
 
     // Activation Routes
     Route::get('/activate', ['as' => 'activate', 'uses' => 'App\Http\Controllers\Auth\ActivateController@initial']);

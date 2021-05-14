@@ -1,6 +1,10 @@
 <?php
     // Course
-    Route::get('/admin/users', 'App\Http\Controllers\UsersManagementController@index');
+use App\Http\Controllers\UsersManagementController;
+
+Route::get('/admin/users', 'App\Http\Controllers\UsersManagementController@index');
+
+
 
     // Route::get('/myprofile/{username}', 'App\Http\Controllers\UserAccManagementController@bio')->name('myprofile');;
 

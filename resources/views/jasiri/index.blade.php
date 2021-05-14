@@ -2,89 +2,41 @@
 
 @section('content')
 <main>
-    <section class="slider">
-        <div id="slider" class="flexslider">
-            <ul class="slides">
-                <li>
-                    <img src="img/flex_slides/slide_1.jpg" alt="">
-                    <div class="meta">
-                        <h3>Photography Advanced Course</h3>
-                        <div class="info">
-                            <p><strong>15</strong> Lessons - <strong>10</strong> Videos</p>
-                        </div>
-                        <a href="course-detail.html" class="btn_1">{{trans('titles.Read more')}}</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="img/flex_slides/slide_2.jpg" alt="">
-                    <div class="meta">
-                        <h3>Web Development Course</h3>
-                        <div class="info">
-                            <p><strong>25</strong> Lessons - <strong>20</strong> Videos</p>
-                        </div>
-                        <a href="course-detail.html" class="btn_1">Read more</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="img/flex_slides/slide_3.jpg" alt="">
-                    <div class="meta">
-                        <h3>Photoshop Advanced Course</h3>
-                        <div class="info">
-                            <p><strong>25</strong> Lessons - <strong>20</strong> Videos</p>
-                        </div>
-                        <a href="course-detail.html" class="btn_1">
-                        {{trans('titles.Read more')}}</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="img/flex_slides/slide_4.jpg" alt="">
-                    <div class="meta">
-                        <h3>Painter Advanced Course</h3>
-                        <div class="info">
-                            <p><strong>25</strong> Lessons - <strong>20</strong> Videos</p>
-                        </div>
-                        <a href="course-detail.html" class="btn_1">{{trans('titles.Read more')}}</a>
-                    </div>
-                </li>
-            </ul>
-            <div id="icon_drag_mobile"></div>
-        </div>
-        <div id="carousel_slider_wp">
-            <div id="carousel_slider" class="flexslider">
-                <ul class="slides">
-                    <li>
-                        <img src="img/flex_slides/slide_1_thumb.jpg" alt="">
-                        <div class="caption">
-                            <h3>Photography <span>Advanced</span></h3>
-                            <small>60,000 TSH <em>150,000 TSH</em></small>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="img/flex_slides/slide_2_thumb.jpg" alt="">
-                        <div class="caption">
-                            <h3>Web Development <span>Advanced</span></h3>
-                            <small>60,000 TSH <em>150,000 TSH</em></small>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="img/flex_slides/slide_3_thumb.jpg" alt="">
-                        <div class="caption">
-                            <h3>Photoshop <span>Advanced</span></h3>
-                            <small>60,000 TSH <em>150,000 TSH</em></small>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="img/flex_slides/slide_4_thumb.jpg" alt="">
-                        <div class="caption">
-                            <h3>Painter <span>Advanced</span></h3>
-                            <small>60,000 TSH <em>150,000 TSH</em></small>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <!-- /slider -->
+    		<section class="hero_single version_2">
+			<div class="wrapper">
+				<div class="container">
+					<h3>{{trans('index.whatToLearn')}}</h3>
+					<p>{{trans('index.increaseChance')}}</p>
+					<form>
+						<div id="custom-search-input">
+							<div class="input-group">
+								<input type="text" class=" search-query"
+                                       placeholder="Ex. Architecture, Specialization...">
+								<input type="submit" class="btn_search" value="{{trans('index.search')}}">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+		<!-- /hero_single -->
+
+		<div class="features clearfix">
+			<div class="container">
+				<ul>
+					<li><i class="pe-7s-study"></i>
+						<h4>+200 courses</h4><span>Explore a variety of fresh topics</span>
+					</li>
+					<li><i class="pe-7s-cup"></i>
+						<h4>Expert teachers</h4><span>Find the right instructor for you</span>
+					</li>
+					<li><i class="pe-7s-target"></i>
+						<h4>Focus on target</h4><span>Increase your personal expertise</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /features -->
 
     <div class="container-fluid margin_120_0">
         <div class="main_title_2">
@@ -93,7 +45,7 @@
             <p>{{trans('titles.These are the most popular courses')}}</p>
         </div>
         <div id="reccomended" class="owl-carousel owl-theme">
-        	@foreach($courses as $course)
+        	@foreach($popula_courses as $course)
             <div class="item">
                 <div class="box_grid">
                     <figure>
@@ -128,7 +80,7 @@
 
 
 
-        
+
     </div>
     <!-- /container -->
 
@@ -144,7 +96,7 @@
                 <a href="{{url('/')}}/courses-grid/{{$category->title}}" class="grid_item">
                     <figure class="block-reveal">
                         <div class="block-horizzontal"></div>
-                        <img src="{{url('/')}}{{$category->image}}" class="img-fluid" alt="">
+                        <img src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($category->image)}}" class="img-fluid" alt="">
                         <div class="info">
                             <small><i class="ti-layers"></i>{{count($category->courses)}} Courses</small>
                             <h3>{{$category->title}}</h3>

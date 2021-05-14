@@ -33,20 +33,20 @@
 </head>
 
 <body id="register_bg">
-    
+
     <nav id="menu" class="fake_menu"></nav>
-    
+
     <div id="preloader">
         <div data-loader="circle-side"></div>
     </div>
     <!-- End Preload -->
-    
+
     <div id="login">
         <aside>
             <figure>
                 <a href="{{url('/')}}"><img src="{{url('/')}}/img/logo.png" width="149" height="42" alt=""></a>
             </figure>
-            <form autocomplete="off" method="POST" action="{{ route('register') }}">
+            <form autocomplete="off" method="POST" action="{{ route('register_user') }}">
                 @csrf
                 <div class="form-group">
 
@@ -104,7 +104,7 @@
                         <span class="input__label-content">Confirm {{ __('Password') }}</span>
                     </label>
                     </span>
-                    
+
                     <div id="pass-info" class="clearfix"></div>
                 </div>
                 <button type="submit" href="{{url('/')}}/#0" class="btn_1 rounded full-width add_top_30">Register to {{ config('app.name', Lang::get('titles.app')) }}</button>
@@ -114,13 +114,13 @@
         </aside>
     </div>
     <!-- /login -->
-    
+
     <!-- COMMON SCRIPTS -->
     <script src="{{url('/')}}/js/jquery-3.5.1.min.js"></script>
     <script src="{{url('/')}}/js/common_scripts.js"></script>
     <script src="{{url('/')}}/js/main.js"></script>
     <script src="{{url('/')}}/assets/validate.js"></script>
-    
+
     <!-- SPECIFIC SCRIPTS -->
     <script src="{{url('/')}}/js/pw_strenght.js"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->

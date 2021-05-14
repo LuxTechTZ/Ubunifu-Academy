@@ -13,14 +13,9 @@ class Lesson extends Model
 
      protected $fillable = [
         'course_id',
-        'protocol',
-        'address',
-        'path',
-        'key',
-        'token',
-        'type',
-        'status',
-        'size',
+        'user_id',
+        'name',
+        'order',
     ];
 
     public function parts()

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Jasiri;
+namespace App\Http\Controllers\Academy;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -22,7 +22,8 @@ use Vimeo\Exceptions\VimeoUploadException;
 use FFMpeg\FFMpeg;
 use Streaming\Representation;
 use Streaming\FFMpeg as STFFMpeg;
-class CourseController extends Controller
+
+class OldCourseController extends Controller
 {
     function __construct(Course $course, VideoUpload $vodeo_upload,Category $category)
     {
@@ -30,11 +31,8 @@ class CourseController extends Controller
         $this->vodeo_upload = $vodeo_upload;
         $this->category = $category;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function index($category_title = null)
     {
         if (isset($category_title)) {
@@ -48,6 +46,20 @@ class CourseController extends Controller
         $categories = $this->category->get();
 
         return view('jasiri.courses.grid',compact('courses','categories'));
+    }
+
+
+    // Show student Courses
+    public function studentCourses()
+    {
+    	// return Auth::user()->student->courses;
+
+
+    	if (Auth::user()->hasRole(5) ) {
+            return view('academy.courses.student.index');
+        }else{
+            return view('jasiri.back.courses.index');
+        }
     }
 
 
@@ -302,6 +314,7 @@ class CourseController extends Controller
 
     public function TeachersCourse($value='')
     {
+
         return view('jasiri.back.courses.mycourses');
     }
 
@@ -511,7 +524,7 @@ class CourseController extends Controller
             ->save('vids/');
     }
 
-    public function studentCourses($value='')
+    public function studentCoursesss($value='')
     {
         if (Auth::user()->hasRole(5) ) {
             // $student_courses = $this->course->

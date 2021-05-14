@@ -1,53 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Academy;
 
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use App\Models\User;
-use App\Traits\ActivationTrait;
-use App\Traits\CaptchaTrait;
 use App\Traits\CaptureIpTrait;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use jeremykenedy\LaravelRoles\Models\Role;
-use TusPhp\Request;
+use Validator;
 
-class RegisterController extends Controller
+class UserController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-     */
-
-    use ActivationTrait;
-    use CaptchaTrait;
-    use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/activate';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function index()
     {
-        $this->middleware('guest', [
-            'except' => 'logout',
-        ]);
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -59,11 +37,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $data['captcha'] = $this->captchaCheck();
 
-        if (! config('settings.reCaptchStatus')) {
-            $data['captcha'] = true;
-        }
 
         return Validator::make(
             $data,
@@ -93,48 +67,77 @@ class RegisterController extends Controller
         );
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param array $data
-     *
-     * @return User
-     */
-    protected function create(array $data)
+
+    public function store(Request $request)
     {
-        $ipAddress = new CaptureIpTrait();
+        $validator = $this->validator($request->all());
 
-        if (config('settings.activation')) {
-            $role = Role::where('slug', '=', 'unverified')->first();
-            $activated = false;
-        } else {
-            $role = Role::where('slug', '=', 'user')->first();
-            $activated = true;
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
         }
-
-        $user = User::create([
-            'name'              => strip_tags($data['name']),
-            'first_name'        => strip_tags($data['first_name']),
-            'last_name'         => strip_tags($data['last_name']),
-            'email'             => $data['email'],
-            'password'          => Hash::make($data['password']),
+         $ipAddress = new CaptureIpTrait();
+         $user = User::create([
+            'name'              => strip_tags($request['name']),
+            'first_name'        => strip_tags($request['first_name']),
+            'last_name'         => strip_tags($request['last_name']),
+            'email'             => $request['email'],
+            'password'          => Hash::make($request['password']),
             'token'             => str_random(64),
             'signup_ip_address' => $ipAddress->getClientIp(),
-            'activated'         => $activated,
+            'activated'         => true,
         ]);
 
+         $role = Role::where('slug', '=', 'user')->first();
         $user->attachRole($role);
-        $this->initiateEmailActivation($user);
 
         $profile = new Profile();
         $user->profile()->save($profile);
         $user->save();
-
-        return $user;
+        return $request;
     }
 
-    public function store(Request $request)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        return $request;
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

@@ -26,12 +26,14 @@
 
 
     <!-- User Settings -->
-    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item {{ Request::is('admin/users*') ? 'u-side-nav-opened has-active' : null }}">
-      <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="#!" data-hssm-target="#subMenu2">
+    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu
+    u-side-nav--top-level-menu-item {{ Request::is('admin/users*') || Request::is('admin/categories*') || Request::is('admin/courses*') ? 'u-side-nav-opened has-active' : null }}">
+      <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12"
+         href="#!" data-hssm-target="#subMenu2">
         <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
           <i class="hs-admin-settings"></i>
         </span>
-        <span class="media-body align-self-center">User Management</span>
+        <span class="media-body align-self-center">System Management</span>
         <span class="d-flex align-self-center u-side-nav--control-icon">
           <i class="hs-admin-angle-right"></i>
         </span>
@@ -46,19 +48,41 @@
             <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
               <i class="hs-admin-layout-media-center-alt"></i>
             </span>
-            <span class="media-body align-self-center">Users</span> 
+            <span class="media-body align-self-center">Users</span>
           </a>
         </li>
+
+          <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+              <a class="media u-side-nav--second-level-menu-link
+                g-px-15 g-py-12 {{ Request::is('admin/categories*') ? 'active' : null }}"
+                 href="{{url('/')}}/admin/categories">
+                <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                  <i class="hs-admin-layout-media-center-alt"></i>
+                </span>
+                <span class="media-body align-self-center">Categories</span>
+              </a>
+          </li>
+
+          <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+              <a class="media u-side-nav--second-level-menu-link
+                g-px-15 g-py-12 {{ Request::is('admin/courses*') ? 'active' : null }}"
+                 href="{{url('/')}}/admin/courses">
+                <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                  <i class="hs-admin-layout-media-center-alt"></i>
+                </span>
+                <span class="media-body align-self-center">Courses</span>
+              </a>
+          </li>
         <!-- End Header Static -->
 
 
-       
+
       </ul>
       <!-- End User Settings: Submenu-1 -->
     </li>
     <!-- End User Settings -->
 
-    
+
   @if(Auth::user()->hasRole('9'))
     <!-- Student Settings -->
     <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item {{ Request::is('users/create') ? 'u-side-nav-opened has-active' : null }}">
@@ -107,7 +131,7 @@
           </a>
         </li>
         <!-- End Light Layout -->
-       
+
       </ul>
       <!-- End Student Settings: Submenu-1 -->
     </li>
@@ -164,13 +188,13 @@
         </li>
         <!-- End Hide Sidebar -->
         @endif
-        
-       
+
+
       </ul>
       <!-- End Course Settings: Submenu-1 -->
     </li>
     <!-- End Course Settings -->
-  
+
   @if(Auth::user()->hasRole('9'))
     <!-- Income Settings -->
     <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item {{ Request::is('users/create') ? 'u-side-nav-opened has-active' : null }}">
@@ -219,7 +243,7 @@
           </a>
         </li>
         <!-- End Light Layout -->
-       
+
       </ul>
       <!-- End User Settings: Submenu-1 -->
     </li>

@@ -15,7 +15,17 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        if (isset($category_title)) {
+            $categ = $this->category
+                        ->where('title','=',$category_title)
+                        ->first();
+            $courses = $categ->courses;
+        }else{
+            $courses = $this->course->get();
+        }
+        $categories = $this->category->get();
+
+        return view('academy.back.categories.index',compact('courses','categories'));
     }
 
     /**

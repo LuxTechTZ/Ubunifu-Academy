@@ -52,10 +52,13 @@
 				removeConfirmation: true
 			},
 			uploadFile: {
-				url: '../../../html/assets/include/php/file-upload/upload.php',
+				url: '/api/upload/video',
 				data: {},
 				type: 'POST',
 				enctype: 'multipart/form-data',
+                headers: {
+                  'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                },
 				beforeSend: function() {},
 				success: function(data, element) {
 					var parent = element.find(".u-progress-bar-v1").parent();

@@ -12,9 +12,9 @@
   <link rel="stylesheet" href="{{url('/')}}/academy/assets2/vendor/icon-line-pro/style.css">
   <link rel="stylesheet" href="{{url('/')}}/academy/assets2/vendor/icon-hs/style.css">
 
-  <meta name="_token" content="{{ csrf_token() }}">
-
   <link rel="stylesheet" href="{{url('/')}}/academy/assets/vendor/hs-admin-icons/hs-admin-icons.css">
+
+  <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 
 
 
@@ -66,7 +66,13 @@
     </div>
   </main>
 
-
+   <script>
+       ClassicEditor
+           .create( document.querySelector( '#editor' ) )
+           .catch( error => {
+               console.error( error );
+           } );
+   </script>
 
   @yield('footer_scripts')
 

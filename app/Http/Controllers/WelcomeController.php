@@ -13,17 +13,13 @@ class WelcomeController extends Controller
         $this->course = $course;
 		$this->category = $category;
 	}
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function welcome()
     {
 
         // return Session::get('locale');
-        $courses = $this->course->get();
+        $popula_courses = $this->course->limit(5)->get();
     	$categories = $this->category->limit(6)->get();
-        return view('jasiri.index',compact('courses','categories'));
+        return view('jasiri.index',compact('popula_courses','categories'));
     }
 }
