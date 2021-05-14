@@ -55,43 +55,20 @@
 
 @section('content')
 <div class="g-pa-20">
-            <h1 class="g-font-weight-300 g-font-size-28 g-color-black g-mb-28">File Inputs</h1>
+            <h1 class="g-font-weight-300 g-font-size-28 g-color-black g-mb-28"><b>{{$lesson->name}}</b>  Materials</h1>
 
             <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-15 g-pa-20--md">
-              <!-- Plain File Input -->
-              <div class="form-group mb-0">
-                <h4 class="h6 g-font-weight-600 g-color-black g-mb-20">Plain File Input</h4>
-                <label class="u-file-attach-v2 g-color-gray-dark-v5 mb-0">
-                  <input id="fileAttachment" name="file-attachment" type="file">
-                  <i class="icon-cloud-upload g-font-size-16 g-pos-rel g-top-2 g-mr-5"></i>
-                  <span class="js-value">Attach file</span>
-                </label>
-              </div>
-              <!-- End Plain File Input -->
+
+
 
               <hr class="g-brd-gray-light-v7 g-mx-minus-20">
-
-              <!-- File Input -->
-              <div class="form-group">
-                <h4 class="h6 g-font-weight-600 g-color-black g-mb-20">File input</h4>
-
-                <div class="input-group u-file-attach-v1 g-brd-gray-light-v2">
-                  <input class="form-control form-control-md rounded-0" placeholder="Text in field" readonly="" type="text">
-
-                  <div class="input-group-btn">
-                    <button class="btn btn-md h-100 u-btn-primary rounded-0" type="submit">Browse</button>
-                    <input type="file">
-                  </div>
-                </div>
-              </div>
-              <!-- End File Input -->
-
-              <hr class="g-brd-gray-light-v7 g-mx-minus-20">
+                <input hidden id="lesson" value="{{$lesson->id}}">
 
               <!-- Advanced File Input -->
               <div class="form-group mb-0">
-                <h4 class="h6 g-font-weight-600 g-color-black g-mb-20">Advanced File input</h4>
-                <input class="js-file-attachment" name="fileAttachment2[]" type="file">
+                <h4 class="h6 g-font-weight-600 g-color-black g-mb-20">Upload Materials in Order</h4>
+                <input class="js-file-attachment" name="fileAttachment2[]"
+                       type="file" accept="video/mp4, video/3gp, video/avi, video/mov, video/flv, video/wmv">
               </div>
               <!-- End Advanced File Input -->
             </div>

@@ -26,11 +26,11 @@
                 <div class="col-lg-8">
 
                     <!-- /section -->
-                    
-                    <section id="lessons">
-                       
 
-                    
+                    <section id="lessons">
+
+
+
                     <h2>Course Intro</h2>
                     <div itemscope itemtype="https://schema.org/VideoObject"><meta itemprop="uploadDate" content="Mon Oct 26 2020 06:59:03 GMT+0300 (East Africa Time)"/><meta itemprop="name" content="Maneno Mazuri Ya Kukutia Moyoo.... (Best Swahili Inspiration Video By @Mc Daktari).."/><meta itemprop="duration" content="PT2M6.433S" /><meta itemprop="thumbnailUrl" content="https://content.jwplatform.com/thumbs/jKMvkpGt-1280.jpg"/><meta itemprop="contentUrl" content="https://content.jwplatform.com/videos/jKMvkpGt-qVtp0lm2.mp4"/><div style="position:relative; overflow:hidden; padding-bottom:56.25%"> <iframe src="https://cdn.jwplayer.com/players/jKMvkpGt-6nzF13qK.html" width="100%" height="100%" frameborder="0" scrolling="auto" title="Maneno Mazuri Ya Kukutia Moyoo.... (Best Swahili Inspiration Video By @Mc Daktari).." style="position:absolute;" allowfullscreen></iframe> </div></div>
                     <hr>
@@ -52,7 +52,7 @@
                                         <a class="collapsed" data-toggle="collapse" href="#collapse{{$lesson->id}}" aria-expanded="false" aria-controls="collapse{{$lesson->id}}"><i class="indicator ti-plus"></i> {{$lesson->name}}</a>
                                         @else
                                         <a data-toggle="collapse" href="#collapse{{$lesson->id}}" aria-expanded="true" aria-controls="collapse{{$lesson->id}}"><i class="indicator ti-minus"></i> {{$lesson->name}}</a>
-                                        @endif 
+                                        @endif
 
                                     </h5>
                                 </div>
@@ -63,7 +63,8 @@
                                             <ul>
                                                 @foreach($lesson->materials as $material)
                                                 @if($material->type == "video")
-                                                <li><a href="http://jasiri.test/home/upload/demo/play" class="video">{{$material->name}}</a><span>00:59</span></li>
+                                                <li>
+                                                    <a href="https://cdn.jwplayer.com/players/{{$material->key}}-S2YTpsbY.html" class="video">{{$material->name}}</a><span>00:59</span></li>
                                                 @elseif($material->type == "pdf")
                                                 <li><a href="{{url('/')}}/uploads/pdf/Bill Manager Doc.pdf" class="txt_doc">{{$material->name}}</a><span>9 Pages</span></li>
                                                 @endif
@@ -74,13 +75,13 @@
                                     </div>
                                 </div>
                             </div>
-                         
+
                             @endforeach
                         </div>
                         <!-- /accordion -->
                     </section>
                     <!-- /section -->
-                    
+
                     <section id="reviews">
                         <h2>Reviews</h2>
                         <div class="reviews-container">
@@ -166,7 +167,7 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                                
+
                             <!-- /row -->
                         </section>
                         <!-- /section -->
@@ -198,7 +199,7 @@
                     <!-- /section -->
                 </div>
                 <!-- /col -->
-                
+
                 <aside class="col-lg-4" id="sidebar">
                     <div class="box_detail">
                         <figure>
@@ -236,7 +237,7 @@
     var playbackId = "uu8B8q4HScaRZT01LXTSVCu9NkXOQ1eXjIHiMmvy9zKo";
     var url = "https://stream.mux.com/"+playbackId+".m3u8";
     var video = document.getElementById("myVideo");
-    
+
     // Let native HLS support handle it if possible
     if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = url;

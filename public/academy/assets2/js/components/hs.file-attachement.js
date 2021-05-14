@@ -18,7 +18,7 @@
 		_baseConfig: {
 			changeInput: '<div class="u-file-attach-v3 g-mb-15">\
                				<h3 class="g-font-size-16 g-color-gray-dark-v2 mb-0">Drop files here or <span class="g-color-primary">Browse your device</span></h3>\
-               				<p class="g-font-size-14 g-color-gray-light-v2 mb-0">Maximum file size 10mb</p>\
+               				<p class="g-font-size-14 g-color-gray-light-v2 mb-0">Maximum file size 100mb</p>\
               			</div>',
 			showThumbs: true,
 			templates: {
@@ -53,7 +53,10 @@
 			},
 			uploadFile: {
 				url: '/api/upload/video',
-				data: {},
+				data: {
+				    lesson_id: document.getElementById("lesson").value ,
+				    length: '5M'
+                },
 				type: 'POST',
 				enctype: 'multipart/form-data',
                 headers: {

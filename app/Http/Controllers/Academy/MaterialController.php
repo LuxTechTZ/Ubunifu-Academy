@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Academy;
 
 use App\Http\Controllers\Controller;
 use App\Models\Jasiri\Lesson;
+use App\Models\Jasiri\Material;
 use Illuminate\Http\Request;
+use Auth;
 use Illuminate\Support\Facades\Storage;
 use Jwplayer\JwplatformAPI;
 
@@ -27,12 +29,27 @@ class MaterialController extends Controller
     {
         $images = $request['fileAttachment2'];
         if (is_array($images)){
-//            return 200;
             foreach ($images as $image){
                 $jw = $this->uploadToJW($image);
-                $request['image'] = Storage::putFile('public/materials', $image, 'public');
-                return  $jw;
+                $data['size'] = $jw['file']['size'];
+                $data['token'] = $jw['file']['md5'];
+                $data['type'] = $jw['media']['type'];
+                $data['key'] = $jw['media']['key'];
+                $data['status'] = $jw['status'];
+                $data['lesson_id'] = $request['lesson_id'];
+                $data['user_id'] = 1;
+                $data['name'] = $image->getClientOriginalName();
+                return $material = Material::create($data);
+//                return  $jw;
             }
+        }else{
+                $data['size'] = $request['file']['size'];
+                $data['token'] = $request['file']['md5'];
+                $data['type'] = $request['media']['type'];
+                $data['key'] = $request['media']['key'];
+                $data['status'] = $request['status'];
+
+                return $data;
         }
     }
 

@@ -29,7 +29,7 @@
                             <ul class="additional_info">
                                 <li><i class="pe-7s-timer"></i>Course Progress<strong>20 %</strong></li>
                                 <li><i class="pe-7s-date"></i>Course Start<strong>{{date('d M Y',strtotime($course->pivot->created_at))}}</strong></li>
-                               
+
                             </ul>
                         </div>
                         <!-- /box_highlight -->
@@ -37,7 +37,7 @@
                         <!-- /row -->
                     </section>
                     <!-- /section -->
-                    
+
                     <section id="lessons">
                         <div class="intro_title">
                             <h2>Lessons</h2>
@@ -51,14 +51,14 @@
                                         <a class="collapsed" data-toggle="collapse" href="#collapse{{$lesson->id}}" aria-expanded="false" aria-controls="collapse{{$lesson->id}}"><i class="indicator ti-plus"></i> {{$lesson->name}}</a>
                                         @else
                                         <a data-toggle="collapse" href="#collapse{{$lesson->id}}" aria-expanded="true" aria-controls="collapse{{$lesson->id}}"><i class="indicator ti-plus"></i> {{$lesson->name}}</a>
-                                        @endif 
+                                        @endif
 
-                                        
+
                                     </h5>
                                 </div>
 
                                 <div id="collapse{{$lesson->id}}" class="collapse @if($lesson->order == 1) show @endif" role="tabpanel" aria-labelledby="heading{{$lesson->id}}" >
-                               
+
                                     <div class="card-body">
                                         <p>Lorem ipsum dolor sit amet, pro ea <strong>mediocrem sapientem</strong>. Et his copiosae vivendum, corpora contentiones vel ei. Ne etiam graecis vis. Nec omnis alienum no, in quas corpora inimicus his, nec pertinacia disputando voluptatibus ei. In eam suas perpetua accusamus. Ad sit virtute rationibus efficiantur, sed hinc explicari ea.</p>
 
@@ -67,25 +67,28 @@
                                             <ul>
                                                 @foreach($lesson->materials as $material)
                                                 @if($material->type == "video")
-                                                <li><a style="color: black" href="http://jasiri.test/home/upload/demo/play" class="video"> <i class="ti-check"></i> {{$material->name}}</a><span><i class="ti-layout-width-default"></i> 00:59</span></li>
+                                                <li>
+                                                    <a href="https://cdn.jwplayer.com/players/{{$material->key}}-S2YTpsbY.html" class="video">
+                                                        <i class="ti-check"></i> {{$material->name}}
+                                                    </a><span><i class="ti-layout-width-default"></i> 00:59</span></li>
                                                 @elseif($material->type == "pdf")
                                                 <li><a style="color: black" href="{{url('/')}}/{{$material->local_file}}" class="video">{{$material->name}}</a><span><i class="ti-book"></i>  9 Pages</span></li>
                                                 @elseif($material->type == "test")
                                                 <li onclick="openTest{{$material->id}}()">{{$material->name}}<span><a href="#detail-{{$material->id}}"><i class="fs1" aria-hidden="true" data-icon="l"> </i> Test</a></span></li>
                                                 @endif
                                                 @endforeach
-                                                
+
                                             </ul>
                                         </div>
 
                                         <h6>Part 2</h6>
-                                        
+
                                     </div>
                                 </div>
                             </div>
                             <!-- /card -->
                             @endforeach
-                         
+
                         </div>
                         <!-- /accordion -->
                     </section>
@@ -108,12 +111,12 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            
+
                         <!-- /row -->
                     </section>
                 </div>
                 <!-- /col -->
-                
+
                 <aside class="col-lg-5" id="sidebar">
                     @foreach($course->lessons as $lesson)
                     @foreach($lesson->materials as $material)
@@ -183,7 +186,7 @@
                                         <input class="input_field" type="radio" id="name_contact" name="name_contact">
                                     </span>
                                 </div>
-                                
+
                             </div>
                             <!-- /row -->
                             <div class="row">
@@ -260,8 +263,8 @@
         // var selectedValue = x.options[x.selectedIndex].value;
         x.style.display = "none";
         y.style.display = "block";
-       
-        
+
+
     }
 </script>
 @endsection
