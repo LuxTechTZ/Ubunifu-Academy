@@ -20,11 +20,7 @@ class MaterialController extends Controller
         return view('academy.back.courses.materials.create',compact('lesson'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function uploadVideo(Request $request)
     {
         $images = $request['fileAttachment2'];
@@ -38,18 +34,10 @@ class MaterialController extends Controller
                 $data['status'] = $jw['status'];
                 $data['lesson_id'] = $request['lesson_id'];
                 $data['user_id'] = 1;
-                $data['name'] = $image->getClientOriginalName();
-                return $material = Material::create($data);
-//                return  $jw;
+                $file = $image->getClientOriginalName();
+                $data['name'] = pathinfo($file, PATHINFO_FILENAME);
+                return Material::create($data);
             }
-        }else{
-                $data['size'] = $request['file']['size'];
-                $data['token'] = $request['file']['md5'];
-                $data['type'] = $request['media']['type'];
-                $data['key'] = $request['media']['key'];
-                $data['status'] = $request['status'];
-
-                return $data;
         }
     }
 

@@ -20,7 +20,8 @@
                 <div class="col-lg-5">
                     <figure class="block-reveal">
                         <div class="block-horizzontal"></div>
-                        <a href="{{url('/')}}/courses/{{$course->category->title}}/{{$course->title}}"><img src="{{url('/')}}/{{$course->image}}" class="img-fluid" alt=""></a>
+                        <a href="{{url('/')}}/courses/{{$course->category->title}}/{{$course->title}}">
+                            <img src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($course->image)}}" class="img-fluid" alt=""></a>
                         <div class="preview"><span>{{ trans('course.preview') }}</span></div>
                     </figure>
                 </div>
@@ -30,7 +31,7 @@
                         <div class="price">{{number_format($course->price)}} TSH</div>
                         <small>{{$course->category->title}}</small>
                         <h3>{{$course->title}}</h3>
-                        <p>{{$course->description}} .</p>
+                        <p>{!! $course->description !!} .</p>
                         <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
                     </div>
                     <ul>
