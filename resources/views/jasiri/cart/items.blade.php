@@ -61,7 +61,7 @@
 						<tbody>
 							@if(!isset($cart->items))
 							<tr>
-								<td ><p>Your cart is Empty</p></td> 
+								<td ><p>Your cart is Empty</p></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -71,7 +71,7 @@
 							<tr>
 								<td>
 									<div class="thumb_cart">
-										<img src="{{url('/')}}/img{{$item->course->image}}" alt="Image">
+										<img src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($item->course->image)}}" alt="Image">
 									</div>
 									<span class="item_cart">{{$item->course->title}}</span>
 								</td>
@@ -108,7 +108,7 @@
 				</div>
 				</div>
 				<!-- /col -->
-				
+
 				<aside class="col-lg-4" id="sidebar">
 					<div class="box_detail">
 						<div id="total_cart">
