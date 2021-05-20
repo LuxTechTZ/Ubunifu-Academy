@@ -38,3 +38,6 @@ Route::get('/courses-grid', 'CourseController@index');
 
      // Blog
      Route::get('/blog', 'CartController@showCart');
+
+     // Books
+     Route::get('/books', 'BookController@index');

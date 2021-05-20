@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Jasiri a modern educational site template">
-    <meta name="author" content="Ubunifu Solutions">
+    <meta name="description" content="Online video educational Website">
+    <meta name="author" content="LuxTechTZ">
     <title>@hasSection('template_title')@yield('template_title') | @endif {{ config('app.name', Lang::get('titles.app')) }}</title>
 
     <!-- Favicons-->

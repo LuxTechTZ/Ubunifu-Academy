@@ -41,9 +41,11 @@ return [
 
     '------englis---------'=>'------kiswahili--------------',
 
-  
+
     'home'              => 'home',
-    'courses'           => 'courses',
+    'courses'           => 'Video Courses',
+    'books'             => 'books',
+    'blog'              => 'Blog',
     'pages'             => 'pages',
     'login'             => 'login',
     'logout'            => 'logout',
@@ -81,7 +83,7 @@ return [
     'CHOOSE LANGUAGE'   =>   'CHOOSE LANGUAGE',
     'Read more'=>'Read more',
     'These are the most popular courses'=>'These are the most popular courses',
-     
+
       'View all news'=>'View all news',
        'Load more'=>'Load more',
         'Online courses'=>'Online courses',

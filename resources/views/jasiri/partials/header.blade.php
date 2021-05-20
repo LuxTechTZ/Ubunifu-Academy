@@ -15,12 +15,12 @@
         <li style="font-size: 25px;">
             <a style=" vertical-align: text-bottom; " href="{{url('/')}}/cart" class="title">
                 <span style=" vertical-align: text-bottom" class="pe-7s-cart pulsate">
-                    
+
                 </span>
                 @if(isset(App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first()->id ))
                 <sup><span class="">{{count(App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first()->items)}}</span></sup>
                 @endif
-                
+
             </a>
         </li>
         <!-- End cart -->
@@ -40,13 +40,14 @@
             </div>
         </div>
     </a>
-    
+
     <nav id="menu" class="main-menu">
         <ul>
             <li><span><a href="/">{{ trans('titles.home') }}</a></span></li>
-            <li><span><a href="{{url('/')}}/courses-grid">{{ trans('titles.courses') }}</a></span>      
+            <li><span><a href="{{url('/')}}/courses-grid">{{ trans('titles.courses') }}</a></span>
             </li>
-            <li><span><a href="/blog">BLOG</a></span></li>
+            <li><span><a class="active" href="{{url('/')}}/books">{{ trans('titles.books') }}</a></span></li>
+            <li><span><a href="/blog">{{ trans('titles.blog') }}</a></span></li>
 
         <!-- Authentication Links -->
                     @php $locale = session()->get('locale'); @endphp
@@ -68,7 +69,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{url('/')}}/lang/sw"><img src="{{asset('img/tz.png')}}">Swahili</a>
                             <a class="dropdown-item" href="{{url('/')}}/lang/en"><img src="{{asset('img/uk.png')}}">English</a>
-                            
+
                         </div>
                     </li>
         </ul>

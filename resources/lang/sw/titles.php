@@ -5,7 +5,9 @@ return [
     'app'               => 'Jasiri',
     'app2'              => 'Auth :version',
     'home'              => 'Nyumbani',
-    'courses'           => 'Masomo',
+    'courses'           => 'Masomo Kwa Video',
+    'books'             => 'Vitabu',
+    'blog'              => 'Makala',
     'pages'             => 'Kozi',
     'login'             => 'Ingia',
     'logout'            => 'Toka',
@@ -44,7 +46,7 @@ return [
     'CHOOSE LANGUAGE'   =>   'CHAGUA LUGHA',
     'Read more'=>'Soma Zaidi',
     'These are the most popular courses'=>'Hzi ni cozi zinazopendwa zaidi',
-     
+
       'View all news'=>'Tazama habari zote',
        'Load more'=>'Pakia Zaidi',
         'Online courses'=>'Kozi za Mtandaoni',
