@@ -60,6 +60,52 @@ class CourseController extends Controller
         return view('jasiri.courses.list',compact('courses','categories'));
     }
 
+    public function courseDetails()
+    {
+
+        return view('jasiri.courses.course_detalis');
+    }
+
+    public function show($category,$course_name)
+    {
+
+        $config = [
+            'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe',
+            'timeout'          => 3600, // The timeout for the underlying process
+            'ffmpeg.threads'   => 12,   // The number of threads that FFmpeg should use
+        ];
+
+        $log = new Logger('FFmpeg_Streaming');
+        $log->pushHandler(new StreamHandler('var/log/ffmpeg-streaming.log')); // path to log file
+
+
+        $user = Auth::user();
+
+
+        // Olde code
+        $course = $this->course
+                    ->where('title','=',$course_name)
+                    ->first();
+
+        if (!isset($course)) {
+            return redirect()->back();
+        }
+
+        if (isset($user->id)) {
+            if (isset($user->student->id)) {
+                foreach ($user->student->courses as $paid_course) {
+                    if($course->id == $paid_course->id){
+                        $course = $paid_course;
+                    return view('jasiri.courses.paid',compact('course'));
+                    }
+                }
+            }
+        }
+
+        return view('jasiri.courses.course_detalis',compact('course'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -254,51 +300,7 @@ class CourseController extends Controller
         print_r($ans);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($category,$course_name)
-    {
 
-        $config = [
-            'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
-            'ffprobe.binaries' => '/usr/bin/ffprobe',
-            'timeout'          => 3600, // The timeout for the underlying process
-            'ffmpeg.threads'   => 12,   // The number of threads that FFmpeg should use
-        ];
-
-        $log = new Logger('FFmpeg_Streaming');
-        $log->pushHandler(new StreamHandler('var/log/ffmpeg-streaming.log')); // path to log file
-
-
-        $user = Auth::user();
-
-
-        // Olde code
-        $course = $this->course
-                    ->where('title','=',$course_name)
-                    ->first();
-
-        if (!isset($course)) {
-            return redirect()->back();
-        }
-
-        if (isset($user->id)) {
-            if (isset($user->student->id)) {
-                foreach ($user->student->courses as $paid_course) {
-                    if($course->id == $paid_course->id){
-                        $course = $paid_course;
-                    return view('jasiri.courses.paid',compact('course'));
-                    }
-                }
-            }
-        }
-
-        return view('jasiri.courses.detail',compact('course'));
-    }
 
     public function TeachersCourse($value='')
     {

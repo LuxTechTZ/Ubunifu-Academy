@@ -87,6 +87,7 @@ return [
       'View all news'=>'View all news',
        'Load more'=>'Load more',
         'Online courses'=>'Online courses',
+        'our books'=>'Our Books',
          'Need Help? Contact us'=>'Need Help? Contact us',
          'Payments and Refunds'=>'Payments and Refunds',
          'Quality Standards'=>'Quality Standards',

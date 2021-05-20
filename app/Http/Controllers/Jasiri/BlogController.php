@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Jasiri;
 
 use App\Http\Controllers\Controller;
+use App\Models\Jasiri\Blog;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -14,7 +15,14 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $blogs = Blog::get();
+        return view('jasiri.blog.index',compact('blogs'));
+    }
+
+    public function post($id)
+    {
+        $blog = Blog::findOrFail($id);
+        return view('jasiri.blog.post',compact('blog'));
     }
 
     /**

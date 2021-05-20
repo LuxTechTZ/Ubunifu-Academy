@@ -1,6 +1,7 @@
 <?php
 
      // Course
+use App\Http\Controllers\Jasiri\BlogController;
 use App\Http\Controllers\jasiri\PaymentController;
 
 Route::get('/courses-grid', 'CourseController@index');
@@ -8,6 +9,7 @@ Route::get('/courses-grid', 'CourseController@index');
      Route::get('/courses-list', 'CourseController@list');
 
      Route::get('/courses/{category}/{course}', 'CourseController@show');
+     Route::get('/courses/details', 'CourseController@courseDetails');
      Route::any('/courses/test', 'CourseController@store');
 
      // Teacher
@@ -37,7 +39,8 @@ Route::get('/courses-grid', 'CourseController@index');
 
 
      // Blog
-     Route::get('/blog', 'CartController@showCart');
+     Route::get('/blog', [BlogController::class,'index']);
+     Route::get('/blog/{id}/{name}', [BlogController::class,'post']);
 
      // Books
      Route::get('/books', 'BookController@index');

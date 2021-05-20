@@ -13,7 +13,7 @@
 
         <!-- Cart -->
         <li style="font-size: 25px;">
-            <a style=" vertical-align: text-bottom; " href="{{url('/')}}/cart" class="title">
+            <a style=" vertical-align: text-bottom" href="{{url('/')}}/cart" class="title">
                 <span style=" vertical-align: text-bottom" class="pe-7s-cart pulsate">
 
                 </span>
@@ -44,16 +44,15 @@
     <nav id="menu" class="main-menu">
         <ul>
             <li><span><a href="/">{{ trans('titles.home') }}</a></span></li>
-            <li><span><a href="{{url('/')}}/courses-grid">{{ trans('titles.courses') }}</a></span>
-            </li>
-            <li><span><a class="active" href="{{url('/')}}/books">{{ trans('titles.books') }}</a></span></li>
+            <li><span><a href="{{url('/')}}/courses-grid">{{ trans('titles.courses') }}</a></span></li>
+            <li><span><a href="{{url('/')}}/books">{{ trans('titles.books') }}</a></span></li>
             <li><span><a href="/blog">{{ trans('titles.blog') }}</a></span></li>
 
         <!-- Authentication Links -->
                     @php $locale = session()->get('locale'); @endphp
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                             @switch($locale)
                                 @case('en')
                                 <img src="{{asset('img/uk.png')}}">English
@@ -69,7 +68,6 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{url('/')}}/lang/sw"><img src="{{asset('img/tz.png')}}">Swahili</a>
                             <a class="dropdown-item" href="{{url('/')}}/lang/en"><img src="{{asset('img/uk.png')}}">English</a>
-
                         </div>
                     </li>
         </ul>

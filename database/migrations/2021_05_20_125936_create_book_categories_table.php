@@ -15,10 +15,13 @@ class CreateBookCategoriesTable extends Migration
     {
         Schema::create('book_categories', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->string('name');
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('title');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

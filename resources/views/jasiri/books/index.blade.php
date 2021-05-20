@@ -5,7 +5,7 @@
     <section id="hero_in" class="courses">
         <div class="wrapper">
             <div class="container">
-                <h1 class="fadeInUp"><span></span>{{trans('titles.Online courses')}}</h1>
+                <h1 class="fadeInUp"><span></span>{{trans('titles.our books')}}</h1>
             </div>
         </div>
     </section>
@@ -22,8 +22,8 @@
                     <figure class="block-reveal">
                         <div class="block-horizzontal"></div>
                         <a href="#0" class="wish_bt"></a>
-                        <a href="{{url('/')}}/courses/{{$book->category->title}}/{{$book->title}}">
-                            <img src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($book->image)}}" class="img-fluid" alt=""></a>
+                        <a href="{{url('/')}}/books/{{$book->title}}">
+                            <img src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($book->cover_image)}}" class="img-fluid" alt=""></a>
                         <div class="price">{{number_format($book->price)}} TSH</div>
                         <div class="preview"><span>{{ trans('course.preview') }}</span></div>
                     </figure>
@@ -35,8 +35,8 @@
                             <i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
                     </div>
                     <ul>
-                        <li><i class="icon_clock_alt"></i> 1h 30min</li>
-                        <li><i class="icon_like"></i> 890</li>
+                        <li><i class="icon_book"></i> {{$book->pages}} Pages</li>
+                        <li><i class="icon-edit"></i> {{$book->author}}</li>
                         <li><a href="{{url('/')}}/courses/{{$book->category->title}}/{{$book->title}}">{{ trans('titles.enrol') }}</a></li>
                     </ul>
                 </div>
@@ -44,7 +44,6 @@
             @endforeach
         </div>
         <!-- /row -->
-        <p class="text-center"><a href="#0" class="btn_1 rounded add_top_30">{{trans('titles.Load more')}}</a></p>
     </div>
     <!-- /container -->
     <div class="bg_color_1">
