@@ -47,6 +47,7 @@ yarn.lock
 /storage/debugbar
 /storage/framework
 /storage/logs
+/storage/app/*
 /storage/users
 packages/
 .phpunit.result.cache
