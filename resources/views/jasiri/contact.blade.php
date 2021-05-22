@@ -108,7 +108,7 @@
 
 @section('footer_script')
     <!-- SPECIFIC SCRIPTS -->
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBvyh3GjnIHWnr3nzQ6uYt6Hb3_0ehJMn0"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC82pAXRx54tLt3UmDDbysHPN-lSOvB4ao"></script>
 	<script type="text/javascript" src="{{url('/')}}/js/mapmarker.jquery.js"></script>
 	<script type="text/javascript" src="{{url('/')}}/js/mapmarker_func.jquery.js"></script>
 @endsection
