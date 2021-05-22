@@ -28,12 +28,12 @@ Route::get('/courses-grid', 'CourseController@index');
      Route::get('/course/purchase/{id}', 'CartController@addCourse');
      Route::get('/book/purchase/{id}', 'CartController@addBook');
 
-     Route::get('/course/purchase/chekout/{id}', 'CartController@payment');
+     Route::get('/course/purchase/chekout/{id}', 'CartController@payment')->name('chek_out');
      Route::get('/course/purchase/chekout/user/login', 'CartController@userLogin')->name('cart_login');
      Route::post('/course/purchase/login/{cart_id}', 'CartController@loginUser');
 
      // Cart Order
-     Route::post('/course/purchase/chekout/{cart_id}/order', 'CartController@placeOrder');
+     Route::post('/course/purchase/chekout/{cart_id}/order', 'CartController@createUser');
 
 
      Route::post('home/upload/demo', 'CourseController@upload');

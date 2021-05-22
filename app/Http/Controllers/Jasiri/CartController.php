@@ -339,9 +339,30 @@ class CartController extends Controller
         $cart->user_id = $user->id;
         $cart->save();
 
-        Cart::destroy($cart_id);
+//        Cart::destroy($cart_id);
 
-        return redirect('account/home');
+        return redirect('/cart');
+    }
+
+    public function createUser(Request $request,$cart_id)
+    {
+
+        $user = Auth::user();
+        if (!isset($user)) {
+            $user = $this->user_manage->store($request,$from_order = true);
+
+            // return $user;
+            $credentials = $request->only('email', 'password');
+
+            Auth::attempt($credentials);
+                 // create Student
+        }
+
+        $cart = Cart::findOrFail($cart_id);
+        $cart->user_id = $user->id;
+        $cart->save();
+
+        return redirect()->route('chek_out',[$cart_id]);
     }
 
     public function createStudemt($student_details,$cart_id)

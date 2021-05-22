@@ -70,7 +70,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-//        return $request;
+        return $request;
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
@@ -85,7 +85,7 @@ class UserController extends Controller
             'password'          => Hash::make($request['password']),
             'token'             => str_random(64),
             'signup_ip_address' => $ipAddress->getClientIp(),
-            'activated'         => false,
+            'activated'         => true,
         ]);
 
          $role = Role::where('slug', '=', 'user')->first();
@@ -95,7 +95,7 @@ class UserController extends Controller
         $user->profile()->save($profile);
         $user->save();
 
-        return redirect('/');
+        return redirect('/cart');
     }
 
     /**
