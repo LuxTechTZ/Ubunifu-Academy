@@ -146,8 +146,14 @@ Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 't
 
 
 // Courses
-Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep', 'checkblocked'],'namespace' => 'App\Http\Controllers\Academy'], function () {
+Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 'twostep', 'checkblocked'],'namespace' => 'App\Http\Controllers\Academy'], function () {
         require_once __DIR__.'/academy/course.php';
+        require_once __DIR__.'/academy/books.php';
+});
+
+// Courses
+Route::group(['middleware' => ['auth', 'activated', 'level:3', 'activity', 'twostep', 'checkblocked'],'namespace' => 'App\Http\Controllers\Academy'], function () {
+        require_once __DIR__.'/academy/user.php';
 });
 
 Route::group(['middleware' => ['auth', 'activated', 'activity', 'currentUser', 'twostep', 'checkblocked']], function () {
@@ -173,13 +179,8 @@ Route::group(['middleware' => ['web', 'checkblocked'], 'namespace' => 'App\Http\
 
 
 
-Route::get('about', function() {
-    return view('about');
-});
 
-Route::get('contact', function() {
-    return view('contact');
-});
+
 
 
 

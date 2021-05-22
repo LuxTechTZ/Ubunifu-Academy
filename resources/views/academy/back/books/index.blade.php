@@ -40,7 +40,7 @@
     <i class="hs-admin-angle-right g-font-size-12 g-color-gray-light-v6 g-valign-middle g-ml-10"></i>
   </li>
   <li class="list-inline-item">
-    <span class="g-valign-middle">Courses</span>
+    <span class="g-valign-middle">Boooks</span>
   </li>
 </ul>
 </div>
@@ -51,13 +51,13 @@
 <div class="g-pa-20">
     <div class="media">
       <div class="d-flex align-self-center">
-        <h1 class="g-font-weight-300 g-font-size-28 g-color-black mb-0">Courses</h1>
+        <h1 class="g-font-weight-300 g-font-size-28 g-color-black mb-0">Books</h1>
       </div>
 
       <div class="media-body align-self-center text-right">
         <a class="js-fancybox btn btn-xl u-btn-secondary g-width-160--md g-font-size-default g-ml-10"
-           href="{{url('/')}}/admin/courses/create" >
-            New Category
+           href="{{url('/')}}/admin/books/create" >
+            New Book
         </a>
       </div>
     </div>
@@ -65,7 +65,7 @@
 
 <div class="media-md align-items-center g-mb-30">
   <div class="d-flex g-mb-15 g-mb-0--md">
-    <h3 class="g-font-weight-400 g-font-size-16 g-color-black mb-0">All users of the system</h3>
+    <h3 class="g-font-weight-400 g-font-size-16 g-color-black mb-0">All books in the system</h3>
   </div>
 
   <div class="media d-md-flex align-items-center ml-auto">
@@ -75,7 +75,6 @@
       <div class="u-select--v1 g-pr-20">
         <select id="datatableEntries2" class="js-select u-select--v1-select w-100" style="display: none;">
           <option data-content='<span class="d-flex align-items-center g-line-height-1_2 g-color-black">10 Entries</span>' value="10">10 Entries</option>
-
           <option data-content='<span class="d-flex align-items-center g-line-height-1_2 g-color-black">15 Entries</span>' value="15">15 Entries</option>
           <option data-content='<span class="d-flex align-items-center g-line-height-1_2 g-color-black">20 Entries</span>' value="20">20 Entries</option>
           <option data-content='<span class="d-flex align-items-center g-line-height-1_2 g-color-black">25 Entries</span>' value="25">25 Entries</option>
@@ -160,23 +159,23 @@
       </thead>
 
       <tbody>
-      	@foreach($courses as $course)
+      	@foreach($books as $book)
         <tr>
 
             <td class="g-first-child">
                 <div class="media align-items-center">
                     <div class="d-flex">
-                    <img src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($course->image)}}"
-                         alt="{{$course->title}}"
+                    <img src="{{url('/')}}/{{Storage::url($book->cover_image)}}"
+                         alt="{{$book->title}}"
                          class="g-width-40 g-height-40 rounded-circle g-mr-14">
               </div>
-                  <div class="media-body text-left g-ml-15">{{$course->title}}</div>
+                  <div class="media-body text-left g-ml-15">{{$book->title}}</div>
                 </div>
             </td>
 
-           <td>
+           <td class="d-inline-block">
                 <div class="media align-items-center">
-                  <div class="media-body text-left g-ml-15">{!! $course->description !!}</div>
+                  <div class="media-body text-left g-ml-15">{!! $book->description !!}</div>
                 </div>
             </td>
 
@@ -184,29 +183,29 @@
                 <div class="d-inline-block">
                   <span class="d-flex align-items-center justify-content-center u-tags-v1 g-brd-around g-bg-white g-font-size-default g-color-gray-dark-v6 g-brd-white g-rounded-50 g-py-4 g-px-15">
                   <span class="u-badge-v2--md g-pos-stc g-transform-origin--top-left g-bg-lightblue-v3 g-mr-8"></span>
-                    {{count($course->lessons)}}
+                    20
                   </span>
                 </div>
             </td>
 
           <td class="text-right">
             <div class="g-pos-rel g-top-3 d-inline-block">
-              <a id="dropDown2_1Invoker" class="u-link-v5 g-line-height-0 g-font-size-24 g-color-gray-light-v6 g-color-secondary--hover" href="#!" aria-controls="dropDown2_{{$course->id}}" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#dropDown2_{{$course->id}}">
+              <a id="dropDown2_1Invoker" class="u-link-v5 g-line-height-0 g-font-size-24 g-color-gray-light-v6 g-color-secondary--hover" href="#!" aria-controls="dropDown2_{{$book->id}}" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#dropDown2_{{$book->id}}">
                 <i class="hs-admin-more-alt"></i>
               </a>
 
-              <div id="dropDown2_{{$course->id}}" class="u-shadow-v31 g-pos-abs g-right-0 g-z-index-2 g-bg-white" aria-labelledby="dropDown2_1Invoker">
+              <div id="dropDown2_{{$book->id}}" class="u-shadow-v31 g-pos-abs g-right-0 g-z-index-2 g-bg-white" aria-labelledby="dropDown2_1Invoker">
                 <ul class="list-unstyled g-nowrap mb-0">
                   <li>
                     <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14"
-                       href="{{route('edit_course',[$course->id])}}">
+                       href="{{route('edit_book',[$book->id])}}">
                       <i class="hs-admin-pencil g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
                       Edit
                     </a>
                   </li>
                   <li>
                     <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14"
-                       href="{{route('course_lessons',[$course->id])}}">
+                       href="{{route('course_lessons',[$book->id])}}">
                       <i class="hs-admin-archive g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
                       Lessons
                     </a>

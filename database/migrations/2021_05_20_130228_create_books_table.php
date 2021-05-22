@@ -22,14 +22,14 @@ class CreateBooksTable extends Migration
             $table->string('about');
             $table->longText('description');
             $table->string('author');
-            $table->string('pages');
+            $table->integer('pages');
             $table->string('weight');
             $table->integer('price');
             $table->string('isbn');
             $table->string('language');
             $table->string('publisher');
             $table->date('date_published');
-            $table->string('status');
+            $table->integer('status')->default(1);
             $table->string('cover_image');
             $table->string('back_image');
             $table->timestamps();

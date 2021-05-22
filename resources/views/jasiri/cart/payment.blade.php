@@ -11,7 +11,7 @@
 						<div class="progress">
 							<div class="progress-bar"></div>
 						</div>
-						<a href="cart-1.html" class="bs-wizard-dot"></a>
+						<a href="/cart" class="bs-wizard-dot"></a>
 					</div>
 
 					<div class="bs-wizard-step active">
@@ -19,7 +19,7 @@
 						<div class="progress">
 							<div class="progress-bar"></div>
 						</div>
-						<a href="#0" class="bs-wizard-dot"></a>
+						<a class="bs-wizard-dot"></a>
 					</div>
 
 					<div class="bs-wizard-step disabled">
@@ -36,16 +36,19 @@
 	</section>
 	<!--/hero_in-->
 
+
 	<div class="bg_color_1">
 		<div class="container margin_60_35">
-			<form id="chekout-data" name="chekout-data" method="post" action="{{url('/')}}/course/purchase/chekout/{{$cart->id}}/order">
+			<form id="chekout-data" name="chekout-data" method="post"
+                  action="{{url('/')}}/course/purchase/chekout/{{$cart->id}}/order">
 				@csrf
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="box_cart">
 					@if(!isset(Auth::user()->id))
+                        <a class="" href="#basic" data-toggle="modal">Hello</a>
 					<div class="message">
-						<p>Exisitng Customer? <a href="{{url('/')}}/login" class="">Click here to login</a></p>
+						<p>Exisitng Customer? <a href="{{route('cart_login')}}" class="">Click here to login</a></p>
 					</div>
 					@endif
 					<div class="form_title">
@@ -186,87 +189,49 @@
 					<!--End step -->
 
 					<div class="form_title">
-						<h3><strong>2</strong>Payment Information</h3>
+						<h3><strong>2</strong>Payment Completion</h3>
 						<p>
-							Mussum ipsum cacilds, vidis litro abertis.
+							Click the button bellow to complete Payment.
 						</p>
 					</div>
 					<div class="step">
-						<span class="input">
-							<input class="input_field" type="text">
-							<label class="input_label">
-							  <span class="input__label-content">Name on card</span>
-							</label>
-						</span>
-						<div class="row">
-							<div class="col-md-6">
-								<span class="input">
-									<input class="input_field" type="text">
-									<label class="input_label">
-									  <span class="input__label-content">Card number</span>
-									</label>
-								</span>
-							</div>
-							<div class="col-md-6 col-sm-6">
-								<img src="{{url('/')}}/img/payments.png" alt="Cards" class="cards">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 add_top_30">
-								<label>Expiration date</label>
-								<div class="row">
-									<div class="col-md-6">
-										<span class="input">
-											<input class="input_field" type="text">
-											<label class="input_label">
-											  <span class="input__label-content">MM</span>
-											</label>
-										</span>
-									</div>
-									<div class="col-md-6">
-										<span class="input">
-											<input class="input_field" type="text">
-											<label class="input_label">
-											  <span class="input__label-content">Year</span>
-											</label>
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 add_top_30">
-								<div class="form-group">
-									<label>Security code</label>
-									<div class="row">
-										<div class="col-md-4">
-											<span class="input">
-												<input class="input_field" type="text">
-												<label class="input_label">
-												  <span class="input__label-content">CCV</span>
-												</label>
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--End row -->
-
-						<h5>Or checkout with Paypal</h5>
 						<p>
-							Lorem ipsum dolor sit amet, vim id accusata sensibus, id ridens quaeque qui. Ne qui vocent ornatus molestie, reque fierent dissentiunt mel ea.
+							Complete Your Payment
 						</p>
 						<p>
 						<a href="{{url('/')}}/dpo/end/{{$cart->id}}">
-							<img alt="Pay by Skrill purple button 245x75 PNG"
-                                 src="https://www.skrill.com/fileadmin/content/images/brand_centre/Pay_by_Skrill/skrill-payby-btn-purple_245x75.png" width="245" height="75" />
-
+							<img alt="Ubunifu Academy Payment"
+                                 src="{{url('/')}}/img/payments.png"/>
 	                    </a>
-							<img src="{{url('/')}}/img/paypal_bt.png" alt="Image">
+
 						</p>
 					</div>
 					<hr>
+
+                        <div class="modal fade bs-modal-lg" id="basic" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Modal Title</h4>
+                </div>
+                <div class="modal-body"> Modal body goes here
+
+                    <input type="text" >
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn green">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 					<!--End step -->
 
+                        <!--
 					<div class="form_title">
 						<h3><strong>3</strong>Billing Address</h3>
 						<p>
@@ -563,9 +528,9 @@
 								</span>
 							</div>
 						</div>
-						<!--End row -->
 					</div>
 					<hr>
+					-->
 					<!--End step -->
 					<div id="policy">
 						<h5>Cancellation policy</h5>
@@ -581,7 +546,9 @@
 							Total <span class="float-right">{{number_format($cart->total_price)}} TSH</span>
 						</div>
 						<div class="add_bottom_30">Gharama zimejumlishwa na VAT <strong>Karibu.</strong> Eandapo haujaridhika na kozi hii, una siku <strong>3</strong>  za kughairi. <a href="#0">Wasiliana nasi</a> endapo unapata tatizo lolote.</div>
-						<button type="submit" form="chekout-data" href="{{url('/')}}/course/purchase/chekout/{{$cart->id}}/order" class="btn_1 full-width">Checkout</button>
+						<button type="submit" form="chekout-data"
+                                href="{{url('/')}}/dpo/end/{{$cart->id}}"
+                                class="btn_1 full-width">Proceed to Payment</button>
 						<a href="{{url('/')}}/courses-grid" class="btn_1 full-width outline"><i class="icon-right"></i> Continue Shopping</a>
 					</div>
 				</aside>
@@ -594,35 +561,8 @@
 		<!-- /container -->
 	</div>
 	<!-- /bg_color_1 -->
+
 </main>
 
-
-<div class="modal fade" id="logisn" tabindex="-1" role="basic" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-body">
-                <div style="text-align: center">
-                    <h2>Change Active Batch To <br> </h2>
-                </div>
-            </div>
-            <input type="text" name="">
-
-            <div class="modal-footer">
-                <div class="btn-group ">
-                    <a  href="{{url('/')}}/closebatch/" class="btn red btn-md dropdown-toggle">
-                        <span class=""> Close Batch </span>
-                    </a>
-                </div>
-
-                <div class="btn-group pull-right">
-                    <a  href="{{url('/')}}/changebatch/" type="button" class="btn blue btn-md dropdown-toggle">
-                        <span class=""> Set Active Batch</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 @endsection

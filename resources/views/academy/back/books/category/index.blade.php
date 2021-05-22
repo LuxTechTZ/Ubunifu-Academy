@@ -1,7 +1,7 @@
 @extends('layouts.academy')
 
 @section('page')
-  Courses
+  Categories
 @endsection
 
 @section('template_linked_css')
@@ -40,7 +40,7 @@
     <i class="hs-admin-angle-right g-font-size-12 g-color-gray-light-v6 g-valign-middle g-ml-10"></i>
   </li>
   <li class="list-inline-item">
-    <span class="g-valign-middle">Courses</span>
+    <span class="g-valign-middle">Books Categories</span>
   </li>
 </ul>
 </div>
@@ -51,12 +51,12 @@
 <div class="g-pa-20">
     <div class="media">
       <div class="d-flex align-self-center">
-        <h1 class="g-font-weight-300 g-font-size-28 g-color-black mb-0">Courses</h1>
+        <h1 class="g-font-weight-300 g-font-size-28 g-color-black mb-0">Books Categories</h1>
       </div>
 
       <div class="media-body align-self-center text-right">
         <a class="js-fancybox btn btn-xl u-btn-secondary g-width-160--md g-font-size-default g-ml-10"
-           href="{{url('/')}}/admin/courses/create" >
+           href="{{url('/')}}/admin/books_categories/create" >
             New Category
         </a>
       </div>
@@ -106,7 +106,7 @@
 
             <th class="g-first-child">
                 <div class="media">
-                  <div class="d-flex align-self-center">Title</div>
+                  <div class="d-flex align-self-center">Name</div>
 
                   <div class="d-flex align-self-center ml-auto">
                     <span class="d-inline-block g-width-10 g-line-height-1 g-font-size-10">
@@ -140,7 +140,7 @@
 
           <th>
             <div class="media">
-              <div class="d-flex align-self-center">Lessons</div>
+              <div class="d-flex align-self-center">Books</div>
 
               <div class="d-flex align-self-center ml-auto">
                 <span class="d-inline-block g-width-10 g-line-height-1 g-font-size-10">
@@ -160,23 +160,23 @@
       </thead>
 
       <tbody>
-      	@foreach($courses as $course)
+      	@foreach($book_categories as $category)
         <tr>
 
             <td class="g-first-child">
                 <div class="media align-items-center">
                     <div class="d-flex">
-                    <img src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($course->image)}}"
-                         alt="{{$course->title}}"
+                    <img src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($category->image)}}"
+                         alt="{{$category->title}}"
                          class="g-width-40 g-height-40 rounded-circle g-mr-14">
               </div>
-                  <div class="media-body text-left g-ml-15">{{$course->title}}</div>
+                  <div class="media-body text-left g-ml-15">{{$category->title}}</div>
                 </div>
             </td>
 
-           <td>
+           <td class="d-inline-block">
                 <div class="media align-items-center">
-                  <div class="media-body text-left g-ml-15">{!! $course->description !!}</div>
+                  <div class="media-body text-left g-ml-15">{{$category->details}}</div>
                 </div>
             </td>
 
@@ -184,31 +184,31 @@
                 <div class="d-inline-block">
                   <span class="d-flex align-items-center justify-content-center u-tags-v1 g-brd-around g-bg-white g-font-size-default g-color-gray-dark-v6 g-brd-white g-rounded-50 g-py-4 g-px-15">
                   <span class="u-badge-v2--md g-pos-stc g-transform-origin--top-left g-bg-lightblue-v3 g-mr-8"></span>
-                    {{count($course->lessons)}}
+                  {{count($category->books)}}
                   </span>
                 </div>
             </td>
 
           <td class="text-right">
             <div class="g-pos-rel g-top-3 d-inline-block">
-              <a id="dropDown2_1Invoker" class="u-link-v5 g-line-height-0 g-font-size-24 g-color-gray-light-v6 g-color-secondary--hover" href="#!" aria-controls="dropDown2_{{$course->id}}" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#dropDown2_{{$course->id}}">
+              <a id="dropDown2_1Invoker" class="u-link-v5 g-line-height-0 g-font-size-24 g-color-gray-light-v6 g-color-secondary--hover" href="#!" aria-controls="dropDown2_{{$category->id}}" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#dropDown2_{{$category->id}}">
                 <i class="hs-admin-more-alt"></i>
               </a>
 
-              <div id="dropDown2_{{$course->id}}" class="u-shadow-v31 g-pos-abs g-right-0 g-z-index-2 g-bg-white" aria-labelledby="dropDown2_1Invoker">
+              <div id="dropDown2_{{$category->id}}" class="u-shadow-v31 g-pos-abs g-right-0 g-z-index-2 g-bg-white" aria-labelledby="dropDown2_1Invoker">
                 <ul class="list-unstyled g-nowrap mb-0">
                   <li>
                     <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14"
-                       href="{{route('edit_course',[$course->id])}}">
+                       href="{{route('edit_category',[$category->id])}}">
                       <i class="hs-admin-pencil g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
                       Edit
                     </a>
                   </li>
                   <li>
                     <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14"
-                       href="{{route('course_lessons',[$course->id])}}">
+                       href="{{route('admin_books')}}">
                       <i class="hs-admin-archive g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
-                      Lessons
+                      Books
                     </a>
                   </li>
                   <li>

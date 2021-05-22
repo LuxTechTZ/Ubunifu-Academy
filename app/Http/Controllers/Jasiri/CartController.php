@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Jasiri;
 
 use App\Http\Controllers\Controller;
+use App\Models\Jasiri\Book;
 use Illuminate\Http\Request;
 use App\Models\Jasiri\Cart;
 use App\Models\Jasiri\CartItem;
@@ -23,7 +24,10 @@ class CartController extends Controller
 {
     use AuthenticatesUsers;
 
-    function __construct(Cart $cart,CartItem $cart_item,CourseController $course,RegisterController $register_user,StudentController $student,UsersManagementController $user_manage)
+    protected $redirectAfterLogout = '/cart';
+
+    function __construct(Cart $cart,CartItem $cart_item,
+                         CourseController $course,RegisterController $register_user,StudentController $student,UsersManagementController $user_manage)
     {
     	$this->cart = $cart;
     	$this->course = $course;
@@ -34,7 +38,92 @@ class CartController extends Controller
 
     }
 
-    public function createCart($product_id)
+    public function userLogin()
+    {
+        $cart = $this->cart
+    			->where('session_id','=',Session::getId())
+    			->first();
+        return view('jasiri.cart.login',compact('cart'));
+    }
+
+    public function loginUser(Request $request,$cart_id)
+    {
+        $cart = Cart::findOrFail($cart_id);
+        $this->attemptLogin($request);
+
+        $user = Auth::user();
+
+        $cart->user_id = $user->id;
+
+        $cart->save();
+        return redirect('/cart');
+
+    }
+
+//    public function userLogin(Request $request)
+//    {
+//        return AuthenticatesUsers::login($request);
+//         $request;
+//        $cart = $this->cart
+//    			->where('session_id','=',Session::getId())
+//    			->first();
+//        return view('jasiri.cart.login',compact('cart'));
+//    }
+
+    public function addBook($id)
+    {
+    	$book = Book::findOrFail($id);
+
+    	if (isset(Auth::user()->id)) {
+    		$user_id = Auth::user()->id;
+    	}
+
+    	if (isset($user_id)) {
+    		$cart = $this->cart
+    			->where('user_id','=',$user_id)
+    			->first();
+    	}else{
+	    	$cart = $this->cart
+    			->where('session_id','=',Session::getId())
+    			->first();
+    	}
+
+    	if (!isset($cart)) {
+    		$cart = new Cart;
+    		if (isset($user_id)) {
+		    	$cart->user_id = $user_id;
+    		}
+		    $cart->session_id = Session::getId();
+	    	$cart->save();
+    	}
+    	// return $cart;
+
+    	$cart_item = $this->cart_item
+    			->where('book_id','=',$book->id)
+    			->where('cart_id','=',$cart->id)
+    			->first();
+
+    	if (isset($cart_item)) {
+    		$this->updateCart($cart->id);
+    		return view('jasiri.cart.items',compact('cart'));
+    	}
+
+    	$cart_item = new CartItem;
+    	$cart_item->cart_id 	= 	$cart->id;
+    	$cart_item->book_id 	= 	$book->id;
+    	$cart_item->price 		= 	$book->price;
+    	$cart_item->total_price = 	$book->price;
+    	$cart_item->status 		= 	"active";
+
+    	if ($cart_item->save()) {
+        	$cart = $this->updateCart($cart->id);
+    	}
+
+
+        return view('jasiri.cart.items',compact('cart'));
+    }
+
+    public function addCourse($product_id)
     {
     	$course = $this->course->getCourse($product_id);
 
@@ -163,6 +252,19 @@ class CartController extends Controller
     		return;
     	}
 
+    }
+
+    public function removeItem($item_id)
+    {
+        $cart_item = CartItem::findOrFail($item_id);
+
+        $cart_id = $cart_item->cart->id;
+
+    	CartItem::destroy($item_id);
+
+    	$this->updateCart($cart_id);
+
+    	return redirect()->back();
     }
 
     public function updateCart($cart_id)

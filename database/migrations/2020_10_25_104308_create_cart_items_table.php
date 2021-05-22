@@ -16,7 +16,8 @@ class CreateCartItemsTable extends Migration
         Schema::create('cart_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cart_id')->unsigned()->index();
-            $table->unsignedBigInteger('course_id')->unsigned()->index();
+            $table->unsignedBigInteger('course_id')->unsigned()->index()->nullable();
+            $table->unsignedBigInteger('book_id')->unsigned()->index()->nullable();
             $table->integer('price');
             $table->integer('quantity')->default(1);
             $table->integer('total_price');
@@ -27,6 +28,7 @@ class CreateCartItemsTable extends Migration
 
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }
 

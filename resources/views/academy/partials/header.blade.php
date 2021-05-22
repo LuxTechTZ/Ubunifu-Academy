@@ -233,7 +233,7 @@
             data-dropdown-animation-in="fadeIn" data-dropdown-animation-out="fadeOut">
               <span class="g-pos-rel">
       <span class="u-badge-v2--xs u-badge--top-right g-hidden-sm-up g-bg-secondary g-mr-5"></span>
-                <img src="@if (Auth::user()->profile && Auth::user()->profile->avatar_status == 1) {{ Auth::user()->profile->avatar }} @else {{ Gravatar::get(Auth::user()->email) }} @endif" class="g-width-30 g-width-40--md g-height-30 g-height-40--md rounded-circle g-mr-10--sm">
+                <img src="@if (Auth::user()->profile && Auth::user()->profile->avatar_status == 1){{ Auth::user()->profile->avatar }} @else {{ Gravatar::get(Auth::user()->email) }} @endif" class="g-width-30 g-width-40--md g-height-30 g-height-40--md rounded-circle g-mr-10--sm">
               </span>
               <span class="g-pos-rel g-top-2">
       <span class="g-hidden-sm-down">{{Auth::User()->first_name}} {{Auth::User()->last_name}}</span>

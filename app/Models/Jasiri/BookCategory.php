@@ -11,4 +11,14 @@ class BookCategory extends Model
     use HasFactory;
     use SoftDeletes;
 
+     protected $fillable = [
+        'title',
+        'user_id',
+    ];
+
+    public function books()
+    {
+        return $this->hasMany(\App\Models\Jasiri\Book::class);
+    }
+
 }

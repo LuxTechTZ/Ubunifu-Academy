@@ -2,7 +2,7 @@
 
 return [
 
-    'whatToLearn'       => 'UNATAKA KUJKIFUNZA NINI?',
+    'whatToLearn'       => 'UNATAKA KUJIFUNZA NINI?',
     'increaseChance'
     => 'Ongeza Utaalamu wa kibiashara, Technolojia na Maendeleo binafsi',
     'search'=>'Tafuta',

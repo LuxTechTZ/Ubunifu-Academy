@@ -28,4 +28,14 @@ class CartItem extends Model
     {
         return $this->belongsTo(\App\Models\Jasiri\Course::class);
     }
+
+    public function book()
+    {
+        return $this->belongsTo(\App\Models\Jasiri\Book::class);
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo(\App\Models\Jasiri\Cart::class);
+    }
 }

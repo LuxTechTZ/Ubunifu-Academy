@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Online video Educational Website">
     <meta name="author" content="LuxTechTZ">
-    <title>{{$course->title}} | {{ config('app.name', Lang::get('titles.app')) }}</title>
+    <title>{{$book->title}} | {{ config('app.name', Lang::get('titles.app')) }}</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="{{url('/')}}/favicon.ico" type="image/x-icon">
@@ -40,7 +40,7 @@
 		<section id="hero_in" class="courses">
 			<div class="wrapper">
 				<div class="container">
-					<h1 class="fadeInUp"><span></span>{{$course->title}} </h1>
+					<h1 class="fadeInUp"><span></span>{{$book->title}} </h1>
 				</div>
 			</div>
 		</section>
@@ -61,55 +61,35 @@
 					<div class="col-lg-8">
 
 						<section id="description">
-							<h2>{{$course->title}} </h2>
+							<h2>{{$book->title}} </h2>
                             <hr>
-                            {!! $course->full_details !!}
+                            {!! $book->full_details !!}
 							<!-- /row -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img style="width: 100%" src="{{url('/')}}/{{Storage::url($book->cover_image)}}" alt="{{$book->title}}">
+                                </div>
+                                <div class="col-md-6" style="font-size: 20px">
+                                    <ul>
+                                        <li><b>Title:</b> {{$book->title}}</li>
+                                        <li><b>Pub:</b> {{$book->publisher}}</li>
+                                        <li><b>Pages:</b> {{$book->pages}}</li>
+                                        @if(isset($book->weight))
+                                        <li><b>Weight:</b> {{$book->weight}}</li>
+                                        @endif
+                                        <li><b>ISBN:</b> {{$book->isbn}}</li>
+                                        <li><b>Lng:</b> {{$book->language}}</li>
+                                    </ul>
+                                </div>
+                            </div>
 						</section>
 						<!-- /section -->
 
+
 						<section id="lessons">
-							<div class="intro_title">
-                            <h2>Lessons</h2>
-                            <ul>
-                                <li>{{count($course->lessons)}} lessons</li>
-                                <li>01:02:10</li>
-                            </ul>
-                        </div>
+							{!! $book->description !!}
                         <div id="accordion_lessons" role="tablist" class="add_bottom_45">
-                            @foreach($course->lessons as $lesson)
-                            <div class="card">
-                                <div class="card-header" role="tab" id="heading{{$lesson->id}}">
-                                    <h5 class="mb-0">
-                                        @if($lesson->order != 1)
-                                        <a class="collapsed" data-toggle="collapse" href="#collapse{{$lesson->id}}" aria-expanded="false" aria-controls="collapse{{$lesson->id}}"><i class="indicator ti-plus"></i> {{$lesson->name}}</a>
-                                        @else
-                                        <a data-toggle="collapse" href="#collapse{{$lesson->id}}" aria-expanded="true" aria-controls="collapse{{$lesson->id}}"><i class="indicator ti-minus"></i> {{$lesson->name}}</a>
-                                        @endif
 
-                                    </h5>
-                                </div>
-
-                                <div id="collapse{{$lesson->id}}" class="collapse @if($lesson->order == 1) show @endif" role="tabpanel" aria-labelledby="heading{{$lesson->id}}" data-parent="#accordion_lessons">
-                                    <div class="card-body">
-                                        <div class="list_lessons">
-                                            <ul>
-                                                @foreach($lesson->materials as $material)
-                                                @if($material->type == "video")
-                                                <li>
-                                                    <a href="https://cdn.jwplayer.com/players/{{$material->key}}-S2YTpsbY.html" class="video">{{$material->name}}</a><span>00:59</span></li>
-                                                @elseif($material->type == "pdf")
-                                                <li><a href="{{url('/')}}/uploads/pdf/Bill Manager Doc.pdf" class="txt_doc">{{$material->name}}</a><span>9 Pages</span></li>
-                                                @endif
-                                                @endforeach
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            @endforeach
                         </div>
 							<!-- /accordion -->
 						</section>
@@ -180,29 +160,6 @@
 							</div>
 
 							<hr>
-                            <!-- /section -->
-                            <section id="teachers">
-                                <div class="intro_title">
-                                    <h2>Teachers</h2>
-                                </div>
-                                <p>Meet the proffesionals behind these courses.</p>
-                                <div class="row add_top_20 add_bottom_30">
-                                    <div class="col-lg-6">
-                                        <ul class="list_teachers">
-                                            @foreach($course->teachers as $teacher)
-                                            <li>
-                                                <a href="{{url('/')}}/teacher/{{$teacher->id}}">
-                                                    <figure><img src="{{url('/')}}/img/teacher_1_thumb.jpg" alt=""></figure>
-                                                    <h5>{{$teacher->user->first_name}} {{$teacher->user->last_name}}</h5>
-                                                    <p>Category</p><i class="pe-7s-angle-right-circle"></i></a>
-                                            </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-
-                                <!-- /row -->
-                            </section>
-                        <!-- /section -->
                             <!--
 							<div class="reviews-container">
 
@@ -235,17 +192,11 @@
 
 					<aside class="col-lg-4" id="sidebar">
 						<div class="box_detail">
-							<figure>
-								<a href="https://cdn.jwplayer.com/players/ZKDJtCoh-S2YTpsbY.html"
-                                   class="video"><i class="arrow_triangle-right"></i>
-                                    <img src="{{Storage::url($course->image)}}" alt="{{$course->title}} " class="img-fluid">
-                                    <span>View course preview</span>
-                                </a>
-							</figure>
+                            <img src="{{Storage::url($book->cover_image)}}" alt="{{$book->title}} " class="img-fluid">
 							<div class="price">
-								{{number_format($course->price)}} TSH<br> <span class="original_price"><em>{{number_format($course->price * 1.6)}} TSH </em>60% discount price</span>
+								{{number_format($book->price)}} TSH<br> <span class="original_price"><em>{{number_format($book->price * 1.6)}} TSH </em>60% discount price</span>
 							</div>
-							<a href="{{url('/')}}/course/purchase/{{$course->id}}" class="btn_1 full-width">Purchase</a>
+							<a href="{{url('/')}}/book/purchase/{{$book->id}}" class="btn_1 full-width">Purchase</a>
 							<a href="{{url('/')}}/#0" class="btn_1 full-width outline"><i class="icon_heart"></i> Add to wishlist</a>
 							<div id="list_feat">
 								<h3>What's includes</h3>

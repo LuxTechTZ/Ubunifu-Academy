@@ -22,7 +22,7 @@
                     <figure class="block-reveal">
                         <div class="block-horizzontal"></div>
                         <a href="#0" class="wish_bt"></a>
-                        <a href="{{url('/')}}/books/{{$book->title}}">
+                        <a href="{{url('/')}}/books/{{$book->category->title}}/{{$book->id}}/{{$book->title}}">
                             <img src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($book->cover_image)}}" class="img-fluid" alt=""></a>
                         <div class="price">{{number_format($book->price)}} TSH</div>
                         <div class="preview"><span>{{ trans('course.preview') }}</span></div>
@@ -30,15 +30,27 @@
                     <div class="wrapper">
                         <small>{{$book->category->title}}</small>
                         <h3>{{$book->title}}</h3>
-                        <p>{!! $book->description !!} .</p>
-                        <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i>
-                            <i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
+                        <p>{{ $book->quote }}</p>
+                        <div class="rating">
+                            <i class="icon_star voted"></i>
+                            <i class="icon_star voted"></i>
+                            <i class="icon_star voted"></i>
+                            <i class="icon_star"></i>
+                            <i class="icon_star"></i>
+                            <small>(145)</small>
+                        </div>
                     </div>
                     <ul>
                         <li><i class="icon_book"></i> {{$book->pages}} Pages</li>
                         <li><i class="icon-edit"></i> {{$book->author}}</li>
-                        <li><a href="{{url('/')}}/courses/{{$book->category->title}}/{{$book->title}}">{{ trans('titles.enrol') }}</a></li>
                     </ul>
+                    <ul>
+                        <li>
+                            <a href="{{url('/')}}/books/{{$book->category->title}}/{{$book->id}}/{{$book->title}}">{{ trans('titles.enrol') }}
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
                 </div>
             </div>
             @endforeach

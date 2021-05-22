@@ -49,6 +49,11 @@
             <form autocomplete="off" method="POST" action="{{ route('register_user') }}">
                 @csrf
                 <div class="form-group">
+                    @if (count($errors) > 0)
+                            <span class="text-danger">
+                                <strong>{{ $errors}}</strong>
+                            </span>
+                        @endif
 
                     <span class="input">
                     <input id="first_name" class="input_field {{ $errors->has('first_name') ? ' is-invalid' : '' }}" type="text"  name="first_name" value="{{ old('first_name') }}" required autofocus>
@@ -56,19 +61,23 @@
                         <span class="input__label-content">Your {{ __('First Name') }}</span>
                     </label>
                         @if ($errors->has('first_name'))
-                            <span class="invalid-feedback">
+                            <span class="text-danger">
                                 <strong>{{ $errors->first('first_name') }}</strong>
                             </span>
                         @endif
                     </span>
 
                     <span class="input">
-                    <input id="last_name" class="input_field {{ $errors->has('last_name') ? ' is-invalid' : '' }}" type="text" name="last_name" value="{{ old('last_name') }}" required autofocus>
+                    <input id="last_name"
+                           class="input_field {{ $errors->has('last_name') ? ' is-invalid' : '' }}"
+                           type="text" name="last_name" value="{{ old('last_name') }}"
+                           required autofocus>
                         <label class="input_label">
                         <span class="input__label-content">Your {{ __('Last Name') }}</span>
+
                     </label>
                         @if ($errors->has('last_name'))
-                            <span class="invalid-feedback">
+                            <span class="text-danger">
                                 <strong>{{ $errors->first('last_name') }}</strong>
                             </span>
                         @endif
@@ -80,7 +89,7 @@
                         <span class="input__label-content">Your {{ __('E-Mail Address') }}</span>
                     </label>
                     @if ($errors->has('email'))
-                        <span class="invalid-feedback">
+                        <span class="text-danger">
                             <strong>{{ $errors->first('email') }}</strong>
                         </span>
                     @endif
@@ -92,11 +101,19 @@
                         <span class="input__label-content">Your {{ __('Password') }}</span>
                     </label>
                     @if ($errors->has('password'))
-                        <span class="invalid-feedback">
+                        <span class="text-danger">
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
                     @endif
                     </span>
+
+                         @if(config('settings.reCaptchStatus'))
+                            <div class="form-group">
+                                <div class="col-sm-6 col-sm-offset-4">
+                                    <div class="g-recaptcha" data-sitekey="{{ config('settings.reCaptchSite') }}"></div>
+                                </div>
+                            </div>
+                        @endif
 
                     <span class="input">
                     <input class="input_field" type="password" id="password2" name="password_confirmation">
@@ -132,6 +149,12 @@
 
   gtag('config', 'UA-179224387-1');
 </script>
+
+
+    @if(config('settings.reCaptchStatus'))
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+    @endif
+
 
 </body>
 

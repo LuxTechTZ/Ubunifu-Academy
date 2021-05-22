@@ -5,7 +5,7 @@
 	<section id="hero_in" class="general">
 		<div class="wrapper">
 			<div class="container">
-				<h1 class="fadeInUp"><span></span>{{$teacher->user->name}}</h1>
+				<h1 class="fadeInUp"><span></span>{{$teacher->user->first_name}} {{$teacher->user->last_name}}</h1>
 			</div>
 		</div>
 	</section>
@@ -89,46 +89,13 @@
 										</tr>
 									</thead>
 									<tbody>
+                                    @foreach($teacher->courses as $course)
 										<tr>
-											<td>Business</td>
-											<td><a href="#">Business Plan</a></td>
+											<td>{{$course->category->title}}</td>
+											<td><a href="#">{{$course->title}}</a></td>
 											<td class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i> <i class="icon-star voted"></i></td>
 										</tr>
-										<tr>
-											<td>Business</td>
-											<td><a href="#">Economy pinciples</a></td>
-											<td class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i> <i class="icon-star"></i></td>
-										</tr>
-										<tr>
-											<td>Business</td>
-											<td><a href="#">Understand diagrams</a></td>
-											<td class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i> <i class="icon-star"></i></td>
-										</tr>
-										<tr>
-											<td>Business</td>
-											<td><a href="#">Marketing strategies</a></td>
-											<td class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i> <i class="icon-star"></i></td>
-										</tr>
-										<tr>
-											<td>Business</td>
-											<td><a href="#">Marketing</a></td>
-											<td class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i> <i class="icon-star voted"></i></td>
-										</tr>
-										<tr>
-											<td>Business</td>
-											<td><a href="#">Business Plan</a></td>
-											<td class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i> <i class="icon-star"></i></td>
-										</tr>
-										<tr>
-											<td>Business</td>
-											<td><a href="#">Economy pinciples</a></td>
-											<td class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i> <i class="icon-star"></i></td>
-										</tr>
-										<tr>
-											<td>Business</td>
-											<td><a href="#">Understand diagrams</a></td>
-											<td class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i> <i class="icon-star"></i></td>
-										</tr>
+                                    @endforeach
 									</tbody>
 								</table>
 							</div>

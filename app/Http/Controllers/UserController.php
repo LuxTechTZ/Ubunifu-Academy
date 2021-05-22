@@ -16,11 +16,7 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $user = Auth::user();
@@ -29,7 +25,6 @@ class UserController extends Controller
             return redirect('/account/dashboard');
         }
 
-        return redirect('/account/dashboard');
-        return view('pages.user.home');
+        return redirect('/courses-grid');
     }
 }

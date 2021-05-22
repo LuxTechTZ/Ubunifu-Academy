@@ -52,7 +52,7 @@
     <script src="{{url('/')}}/js/main.js"></script>
     <script src="{{url('/')}}/assets/validate.js"></script>
 
-
+    @yield('footer_script')
 
 </body>
 

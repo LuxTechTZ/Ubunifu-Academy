@@ -48,7 +48,7 @@
 									Item
 								</th>
 								<th>
-									Discount
+									Product
 								</th>
 								<th>
 									Price
@@ -71,18 +71,30 @@
 							<tr>
 								<td>
 									<div class="thumb_cart">
-										<img src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($item->course->image)}}" alt="Image">
+                                        @if(isset($item->course->image))
+										<img src="{{url('/')}}/{{Storage::url($item->course->image)}}" alt="Image">
+                                        @else
+										<img src="{{url('/')}}/{{Storage::url($item->book->cover_image)}}" alt="Image">
+                                        @endif
 									</div>
-									<span class="item_cart">{{$item->course->title}}</span>
+                                    @if(isset($item->course->image))
+                                         <span class="item_cart">{{$item->course->title}}</span>
+                                    @else
+										<span class="item_cart">{{$item->book->title}}</span>
+                                    @endif
 								</td>
 								<td>
-									0%
+									 @if(isset($item->course->image))
+                                         Course
+                                    @else
+                                         Book
+                                    @endif
 								</td>
 								<td>
 									<strong>{{number_format($item->total_price)}} TSH</strong>
 								</td>
 								<td class="options" style="width:5%; text-align:center;">
-									<a href="#"><i class="icon-trash"></i></a>
+									<a href="{{route('remove_item',[$item->id])}}"><i class="icon-trash"></i></a>
 								</td>
 							</tr>
 							@endforeach

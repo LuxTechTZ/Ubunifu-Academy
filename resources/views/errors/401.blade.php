@@ -10,7 +10,8 @@
 						<p>We're sorry, but the page you were looking for doesn't exist.</p>
 						<form>
 							<div class="search_bar_error">
-								<input type="text" class="form-control" placeholder="What are you looking for?">
+								<input type="text" class="form-control"
+                                       placeholder="What are you looking for?">
 								<input type="submit" value="Search">
 							</div>
 						</form>

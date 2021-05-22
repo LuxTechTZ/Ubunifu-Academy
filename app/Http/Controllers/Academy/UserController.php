@@ -42,18 +42,18 @@ class UserController extends Controller
         return Validator::make(
             $data,
             [
-                'name'                  => 'required|max:255|unique:users|alpha_dash',
+//                'name'                  => 'required|max:255|unique:users|alpha_dash',
                 'first_name'            => 'alpha_dash',
                 'last_name'             => 'alpha_dash',
                 'email'                 => 'required|email|max:255|unique:users',
                 'password'              => 'required|min:6|max:30|confirmed',
                 'password_confirmation' => 'required|same:password',
-                'g-recaptcha-response'  => '',
-                'captcha'               => 'required|min:1',
+//                'g-recaptcha-response'  => '',
+//                'captcha'               => 'required|min:1',
             ],
             [
-                'name.unique'                   => trans('auth.userNameTaken'),
-                'name.required'                 => trans('auth.userNameRequired'),
+//                'name.unique'                   => trans('auth.userNameTaken'),
+//                'name.required'                 => trans('auth.userNameRequired'),
                 'first_name.required'           => trans('auth.fNameRequired'),
                 'last_name.required'            => trans('auth.lNameRequired'),
                 'email.required'                => trans('auth.emailRequired'),
@@ -61,8 +61,8 @@ class UserController extends Controller
                 'password.required'             => trans('auth.passwordRequired'),
                 'password.min'                  => trans('auth.PasswordMin'),
                 'password.max'                  => trans('auth.PasswordMax'),
-                'g-recaptcha-response.required' => trans('auth.captchaRequire'),
-                'captcha.min'                   => trans('auth.CaptchaWrong'),
+//                'g-recaptcha-response.required' => trans('auth.captchaRequire'),
+//                'captcha.min'                   => trans('auth.CaptchaWrong'),
             ]
         );
     }
@@ -70,6 +70,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+//        return $request;
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
@@ -77,14 +78,14 @@ class UserController extends Controller
         }
          $ipAddress = new CaptureIpTrait();
          $user = User::create([
-            'name'              => strip_tags($request['name']),
+            'name'              => strip_tags($request['first_name']) .' '. strip_tags($request['last_name']),
             'first_name'        => strip_tags($request['first_name']),
             'last_name'         => strip_tags($request['last_name']),
             'email'             => $request['email'],
             'password'          => Hash::make($request['password']),
             'token'             => str_random(64),
             'signup_ip_address' => $ipAddress->getClientIp(),
-            'activated'         => true,
+            'activated'         => false,
         ]);
 
          $role = Role::where('slug', '=', 'user')->first();
@@ -93,7 +94,8 @@ class UserController extends Controller
         $profile = new Profile();
         $user->profile()->save($profile);
         $user->save();
-        return $request;
+
+        return redirect('/');
     }
 
     /**

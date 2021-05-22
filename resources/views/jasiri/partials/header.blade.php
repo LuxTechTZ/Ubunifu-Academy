@@ -17,8 +17,16 @@
                 <span style=" vertical-align: text-bottom" class="pe-7s-cart pulsate">
 
                 </span>
-                @if(isset(App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first()->id ))
-                <sup><span class="">{{count(App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first()->items)}}</span></sup>
+                @php
+                    if(isset(App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first()->id)){
+                        $cart = App\Models\Jasiri\Cart::where('session_id','=',Session::getId())->first();
+                    }elseif(isset(Auth::user()->id)){
+                        $cart = App\Models\Jasiri\Cart::where('user_id','=',Auth::user()->id)->first();
+                    }
+                @endphp
+
+                @if(isset($cart->id))
+                    <sup><span class="">{{count($cart->items)}}</span></sup>
                 @endif
 
             </a>
@@ -47,6 +55,8 @@
             <li><span><a href="{{url('/')}}/courses-grid">{{ trans('titles.courses') }}</a></span></li>
             <li><span><a href="{{url('/')}}/books">{{ trans('titles.books') }}</a></span></li>
             <li><span><a href="/blog">{{ trans('titles.blog') }}</a></span></li>
+            <li><span><a href="/about">About</a></span></li>
+            <li><span><a href="/contact">Contacts</a></span></li>
 
         <!-- Authentication Links -->
                     @php $locale = session()->get('locale'); @endphp
