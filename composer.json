@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3",
         "ext-intl": "*",
+        "ext-simplexml": "*",
         "aminyazdanpanah/php-ffmpeg-video-streaming": "^1.2",
         "char0n/ffmpeg-php": "^3.0",
         "creativeorange/gravatar": "^1.0",
@@ -19,6 +20,7 @@
         "google/recaptcha": "^1.2",
         "guzzlehttp/guzzle": "^7.2.0",
         "intervention/image": "^2.5",
+        "james-heinrich/getid3": "^1.9",
         "jaybizzle/laravel-crawler-detect": "^1.2",
         "jeremykenedy/laravel-blocker": "^3.1",
         "jeremykenedy/laravel-exception-notifier": "1.2",
@@ -46,8 +48,7 @@
         "socialiteproviders/linkedin": "^3.1",
         "socialiteproviders/twitch": "^5.1",
         "socialiteproviders/youtube": "^3.0",
-        "vimeo/vimeo-api": "^3.0",
-        "ext-simplexml": "*"
+        "vimeo/vimeo-api": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

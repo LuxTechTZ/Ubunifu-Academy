@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Storage;
 use Jwplayer\JwplatformAPI;
+use \getID3;
 
 class MaterialController extends Controller
 {
@@ -24,17 +25,30 @@ class MaterialController extends Controller
     public function uploadVideo(Request $request)
     {
         $images = $request['fileAttachment2'];
+
+        $getID3 = new getID3;
+
         if (is_array($images)){
             foreach ($images as $image){
+
                 $jw = $this->uploadToJW($image);
+
+                $video_file = $getID3->analyze($image);
+
+                $data['video_length'] = $video_file['playtime_string'];
+                $data['video_height'] = $video_file['video']['resolution_y'];
+                $data['video_width'] = $video_file['video']['resolution_x'];
+
                 $data['size'] = $jw['file']['size'];
                 $data['token'] = $jw['file']['md5'];
                 $data['type'] = $jw['media']['type'];
                 $data['key'] = $jw['media']['key'];
                 $data['status'] = $jw['status'];
+
                 $data['lesson_id'] = $request['lesson_id'];
                 $data['user_id'] = 1;
                 $file = $image->getClientOriginalName();
+
                 $data['name'] = pathinfo($file, PATHINFO_FILENAME);
                 return Material::create($data);
             }
