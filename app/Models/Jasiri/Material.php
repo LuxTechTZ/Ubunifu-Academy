@@ -24,15 +24,18 @@ class Material extends Model
         'type',
         'status',
         'size',
+        'video_length',
+        'video_height',
+        'video_width',
         'local_file',
     ];
 
-    
+
     public function part()
     {
         return $this->belongsTo(\App\Models\Jasiri\Part::class);
     }
-    
+
     public function lesson()
     {
         return $this->belongsTo(\App\Models\Jasiri\Lesson::class);
