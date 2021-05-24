@@ -30,26 +30,50 @@ class MaterialController extends Controller
 
         if (is_array($images)){
             foreach ($images as $image){
-
-                $jw = $this->uploadToJW($image);
-
                 $video_file = $getID3->analyze($image);
 
-                $data['video_length'] = $video_file['playtime_string'];
-                $data['video_height'] = $video_file['video']['resolution_y'];
-                $data['video_width'] = $video_file['video']['resolution_x'];
+                if($video_file['fileformat'] === "mp4"){
+                    $jw = $this->uploadToJW($image);
 
-                $data['size'] = $jw['file']['size'];
-                $data['token'] = $jw['file']['md5'];
-                $data['type'] = $jw['media']['type'];
-                $data['key'] = $jw['media']['key'];
-                $data['status'] = $jw['status'];
+                    $data['video_length'] = $video_file['playtime_string'];
+                    $data['video_height'] = $video_file['video']['resolution_y'];
+                    $data['video_width'] = $video_file['video']['resolution_x'];
 
-                $data['lesson_id'] = $request['lesson_id'];
-                $data['user_id'] = 1;
+                    $data['size'] = $jw['file']['size'];
+                    $data['token'] = $jw['file']['md5'];
+                    $data['type'] = $jw['media']['type'];
+                    $data['key'] = $jw['media']['key'];
+                    $data['status'] = $jw['status'];
+
+                    $data['lesson_id'] = $request['lesson_id'];
+                    $data['user_id'] = 1;
+
+                }elseif ($video_file['fileformat'] === "pdf"){
+                    $data['path'] = Storage::putFile('public/pdf', $image, 'public');
+                    $data['type'] = $video_file['fileformat'];
+                    $data['size'] = $video_file['filesize'];
+                    if (isset($video_file['pdf']['pages']))
+                        $data['pages'] = $video_file['pdf']['pages'];
+
+                    $data['status'] = "ok";
+                    $data['lesson_id'] = $request['lesson_id'];
+                    $data['user_id'] = 1;
+                }else{
+                    $data['path'] = Storage::putFile('public/other', $image, 'public');
+                    $data['type'] = $video_file['fileformat'];
+                    $data['size'] = $video_file['filesize'];
+                    if (isset($video_file['pdf']['pages']))
+                        $data['pages'] = $video_file['pdf']['pages'];
+
+                    $data['status'] = "ok";
+                    $data['lesson_id'] = $request['lesson_id'];
+                    $data['user_id'] = 1;
+                }
+
                 $file = $image->getClientOriginalName();
 
                 $data['name'] = pathinfo($file, PATHINFO_FILENAME);
+
                 return Material::create($data);
             }
         }

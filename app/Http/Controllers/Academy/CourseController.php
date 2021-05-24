@@ -28,6 +28,7 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
+        return $request;
         $request['owner_id'] = Auth::user()->id;
         $request['image'] = Storage::putFile('public/courses', $request['img'], 'public');
 
@@ -35,12 +36,13 @@ class CourseController extends Controller
         return redirect()->route('admin_courses');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //    Teacher
+    public function TeachersCourse($value='')
+    {
+        return view('jasiri.back.courses.mycourses');
+    }
+
+
     public function show($id)
     {
         //
@@ -67,14 +69,9 @@ class CourseController extends Controller
         return redirect()->route('admin_courses');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+
     }
 }

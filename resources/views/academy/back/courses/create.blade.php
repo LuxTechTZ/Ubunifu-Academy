@@ -16,7 +16,7 @@
     <i class="hs-admin-angle-right g-font-size-12 g-color-gray-light-v6 g-valign-middle g-ml-10"></i>
   </li>
   <li class="list-inline-item">
-    <span class="g-valign-middle">Create Category</span>
+    <span class="g-valign-middle">Create Course</span>
   </li>
 </ul>
 </div>
@@ -30,17 +30,23 @@
 
 
 <div class="g-pa-20">
-    <h1 class="g-font-weight-300 g-font-size-28 g-color-black g-mb-28">Create Category</h1>
+    <h1 class="g-font-weight-300 g-font-size-28 g-color-black g-mb-28">Create Course</h1>
 
     <div class="row">
         <!-- 1-st column -->
         <div class="col-md-12">
             <!-- Basic Text Inputs -->
-            <form method="POST" action="{{route('store_course')}}" enctype="multipart/form-data">
+            <form method="POST"
+                  @if($user->isTeacher())
+                    action="{{route('teacher_store_course')}}"
+                  @else
+                    action="{{route('store_course')}}"
+                  @endif
+                  enctype="multipart/form-data">
                 @csrf
                 <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-15 g-pa-20--md g-mb-30">
                   <h3 class="d-flex align-self-center text-uppercase g-font-size-12 g-font-size-default--md g-color-black g-mb-20">
-                      Category Details
+                      Course Details
                   </h3>
                   <!-- Default Input -->
                     <div class="row">
@@ -71,6 +77,19 @@
                                     <option value="{{$category->id}}">{{$category->title}}</option>
                                   @endforeach
                               </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group g-mb-30 col-md-12">
+                            <label class="g-mb-10" for="description-1_1">Introduction Details</label>
+                            <div class="g-pos-rel">
+                              <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success">
+                                <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-secondary"></i>
+                                </span>
+                              <input id="description" required
+                                     class="form-control form-control-md g-brd-gray-light-v7 g-brd-gray-light-v3--focus g-rounded-4 g-px-14 g-py-10"
+                                     type="text"
+                                     name="description">
                             </div>
                         </div>
 
@@ -119,7 +138,7 @@
                         <button class="js-fancybox btn btn-xl u-btn-secondary g-width-160--md g-font-size-default g-ml-10"
                            h
                         type="submit">
-                            Save Category
+                            Save Course
                         </button>
                       </div>
                 </div>

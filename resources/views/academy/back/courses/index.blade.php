@@ -57,7 +57,7 @@
       <div class="media-body align-self-center text-right">
         <a class="js-fancybox btn btn-xl u-btn-secondary g-width-160--md g-font-size-default g-ml-10"
            href="{{url('/')}}/admin/courses/create" >
-            New Category
+            New Course
         </a>
       </div>
     </div>

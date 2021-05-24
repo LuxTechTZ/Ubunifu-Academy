@@ -70,7 +70,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        return $request;
+//        return $request;
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
@@ -95,7 +95,7 @@ class UserController extends Controller
         $user->profile()->save($profile);
         $user->save();
 
-        return redirect('/cart');
+        return redirect('/');
     }
 
     /**

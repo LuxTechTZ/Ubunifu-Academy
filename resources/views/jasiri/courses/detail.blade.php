@@ -160,7 +160,14 @@
                                         @foreach($course->teachers as $teacher)
                                         <li>
                                             <a href="{{url('/')}}/teacher/{{$teacher->id}}">
-                                                <figure><img src="{{url('/')}}/img/teacher_1_thumb.jpg" alt=""></figure>
+                                                <figure>
+
+                                                    <img src="@if ($teacher->user->profile && $teacher->user->profile->avatar_status == 1)
+                                                    {{ $teacher->user->profile->avatar }}
+                                                    @else
+                                                    {{ Gravatar::get($teacher->user->email) }}
+                                                    @endif" alt="">
+                                                </figure>
                                                 <h5>{{$teacher->user->first_name}} {{$teacher->user->last_name}}</h5>
                                                 <p>Category</p><i class="pe-7s-angle-right-circle"></i></a>
                                         </li>

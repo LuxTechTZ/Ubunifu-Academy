@@ -43,7 +43,7 @@ class CourseController extends Controller
                         ->first();
             $courses = $categ->courses;
         }else{
-            $courses = $this->course->get();
+            $courses = $this->course->where('status','=',2)->get();
         }
         $categories = $this->category->get();
 
@@ -68,6 +68,7 @@ class CourseController extends Controller
 
     public function show($category,$course_name)
     {
+
 
         $config = [
             'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
@@ -106,11 +107,7 @@ class CourseController extends Controller
         return view('jasiri.courses.course_detalis',compact('course'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $categories = $this->category->get();
@@ -300,12 +297,6 @@ class CourseController extends Controller
         print_r($ans);
     }
 
-
-
-    public function TeachersCourse($value='')
-    {
-        return view('jasiri.back.courses.mycourses');
-    }
 
     /**
      * Show the form for editing the specified resource.

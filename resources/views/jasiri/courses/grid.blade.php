@@ -23,14 +23,23 @@
                         <div class="block-horizzontal"></div>
                         <a href="#0" class="wish_bt"></a>
                         <a href="{{url('/')}}/courses/{{$course->category->title}}/{{$course->title}}">
-                            <img src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($course->image)}}" class="img-fluid" alt=""></a>
+                            <img class="img-fluid"
+                                src="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($course->image)}}"
+                                alt="{{$course->title}}">
+                        </a>
                         <div class="price">{{number_format($course->price)}} TSH</div>
                         <div class="preview"><span>{{ trans('course.preview') }}</span></div>
                     </figure>
                     <div class="wrapper">
                         <small>{{$course->category->title}}</small>
                         <h3>{{$course->title}}</h3>
-                        <p>{!! $course->description !!} .</p>
+                        <p>
+                            @if (strlen($course->description) > 80)
+                                {!! $course->description = substr($course->description, 0, 77) . '...' !!}
+                            @else
+                                {!! $course->description !!}
+                            @endif
+                        </p>
                         <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i>
                             <i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
                     </div>

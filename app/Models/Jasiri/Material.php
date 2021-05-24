@@ -19,6 +19,7 @@ class Material extends Model
         'protocol',
         'address',
         'path',
+        'pages',
         'key',
         'token',
         'type',

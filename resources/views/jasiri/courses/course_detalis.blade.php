@@ -72,8 +72,8 @@
 							<div class="intro_title">
                             <h2>Lessons</h2>
                             <ul>
-                                <li>{{count($course->lessons)}} lessons</li>
-                                <li>01:02:10</li>
+                                <li>{{count($course->lessons)}} Lessons/Topics</li>
+
                             </ul>
                         </div>
                         <div id="accordion_lessons" role="tablist" class="add_bottom_45">
@@ -82,7 +82,14 @@
                                 <div class="card-header" role="tab" id="heading{{$lesson->id}}">
                                     <h5 class="mb-0">
                                         @if($lesson->order != 1)
-                                        <a class="collapsed" data-toggle="collapse" href="#collapse{{$lesson->id}}" aria-expanded="false" aria-controls="collapse{{$lesson->id}}"><i class="indicator ti-plus"></i> {{$lesson->name}}</a>
+                                            <a class="collapsed"
+                                               data-toggle="collapse"
+                                               href="#collapse{{$lesson->id}}"
+                                               aria-expanded="false"
+                                               aria-controls="collapse{{$lesson->id}}">
+                                                <i class="indicator ti-plus"></i>
+                                                {{$lesson->name}}
+                                            </a>
                                         @else
                                         <a data-toggle="collapse" href="#collapse{{$lesson->id}}" aria-expanded="true" aria-controls="collapse{{$lesson->id}}"><i class="indicator ti-minus"></i> {{$lesson->name}}</a>
                                         @endif
@@ -97,7 +104,10 @@
                                                 @foreach($lesson->materials as $material)
                                                 @if($material->type == "video")
                                                 <li>
-                                                    <a href="https://cdn.jwplayer.com/players/{{$material->key}}-S2YTpsbY.html" class="video">{{$material->name}}</a><span>00:59</span></li>
+                                                    <a href="https://cdn.jwplayer.com/players/{{$material->key}}-S2YTpsbY.html" class="video">
+                                                        {{$material->name}}</a>
+                                                    <span>{{$material->video_length}}</span>
+                                                </li>
                                                 @elseif($material->type == "pdf")
                                                 <li><a href="{{url('/')}}/uploads/pdf/Bill Manager Doc.pdf" class="txt_doc">{{$material->name}}</a><span>9 Pages</span></li>
                                                 @endif
@@ -185,16 +195,22 @@
                                 <div class="intro_title">
                                     <h2>Teachers</h2>
                                 </div>
-                                <p>Meet the proffesionals behind these courses.</p>
+                                <p>Meet the professionals behind this courses.</p>
                                 <div class="row add_top_20 add_bottom_30">
                                     <div class="col-lg-6">
                                         <ul class="list_teachers">
                                             @foreach($course->teachers as $teacher)
                                             <li>
                                                 <a href="{{url('/')}}/teacher/{{$teacher->id}}">
-                                                    <figure><img src="{{url('/')}}/img/teacher_1_thumb.jpg" alt=""></figure>
+                                                    <figure>
+                                                        <img src="@if ($teacher->user->profile && $teacher->user->profile->avatar_status == 1)
+                                                        {{ $teacher->user->profile->avatar }}
+                                                        @else
+                                                        {{ Gravatar::get($teacher->user->email) }}
+                                                        @endif" alt="">
+                                                    </figure>
                                                     <h5>{{$teacher->user->first_name}} {{$teacher->user->last_name}}</h5>
-                                                    <p>Category</p><i class="pe-7s-angle-right-circle"></i></a>
+                                                    <p>Instructor</p><i class="pe-7s-angle-right-circle"></i></a>
                                             </li>
                                             @endforeach
                                         </ul>
@@ -246,13 +262,12 @@
 								{{number_format($course->price)}} TSH<br> <span class="original_price"><em>{{number_format($course->price * 1.6)}} TSH </em>60% discount price</span>
 							</div>
 							<a href="{{url('/')}}/course/purchase/{{$course->id}}" class="btn_1 full-width">Purchase</a>
-							<a href="{{url('/')}}/#0" class="btn_1 full-width outline"><i class="icon_heart"></i> Add to wishlist</a>
+{{--							<a href="{{url('/')}}/#0" class="btn_1 full-width outline"><i class="icon_heart"></i> Add to wishlist</a>--}}
 							<div id="list_feat">
 								<h3>What's includes</h3>
 								<ul>
 									<li><i class="icon_mobile"></i>Mobile support</li>
 									<li><i class="icon_archive_alt"></i>Lesson archive</li>
-									<li><i class="icon_mobile"></i>Mobile support</li>
 									<li><i class="icon_chat_alt"></i>Tutor chat</li>
 									<li><i class="icon_document_alt"></i>Course certificate</li>
 								</ul>

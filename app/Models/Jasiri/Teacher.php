@@ -32,4 +32,9 @@ class Teacher extends Model
     {
         return $this->belongsToMany(\App\Models\Jasiri\Course::class)->withTimestamps();
     }
+
+    public function course()
+    {
+        return $this->hasMany(\App\Models\Jasiri\Course::class);
+    }
 }

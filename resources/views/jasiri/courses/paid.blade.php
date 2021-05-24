@@ -28,8 +28,8 @@
                         <div class="box_highlight">
                             <ul class="additional_info">
                                 <li><i class="pe-7s-timer"></i>Course Progress<strong>20 %</strong></li>
-                                <li><i class="pe-7s-date"></i>Course Start<strong>{{date('d M Y',strtotime($course->pivot->created_at))}}</strong></li>
-
+                                <li><i class="pe-7s-date">
+                                    </i>Course Start<strong>{{date('d M Y',strtotime($course->pivot->created_at))}}</strong></li>
                             </ul>
                         </div>
                         <!-- /box_highlight -->
@@ -52,8 +52,6 @@
                                         @else
                                         <a data-toggle="collapse" href="#collapse{{$lesson->id}}" aria-expanded="true" aria-controls="collapse{{$lesson->id}}"><i class="indicator ti-plus"></i> {{$lesson->name}}</a>
                                         @endif
-
-
                                     </h5>
                                 </div>
 
@@ -70,14 +68,19 @@
                                                 <li>
                                                     <a href="https://cdn.jwplayer.com/players/{{$material->key}}-S2YTpsbY.html" class="video">
                                                         <i class="ti-check"></i> {{$material->name}}
-                                                    </a><span><i class="ti-layout-width-default"></i> 00:59</span></li>
+                                                    </a><span><i class="ti-layout-width-default"></i> {{$material->video_length}}</span></li>
                                                 @elseif($material->type == "pdf")
-                                                <li><a style="color: black" href="{{url('/')}}/{{$material->local_file}}" class="video">{{$material->name}}</a><span><i class="ti-book"></i>  9 Pages</span></li>
+                                                <li>
+                                                    <a
+                                                       href="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($material->path)}}"
+                                                       class="video">
+                                                        {{$material->name}}
+                                                    </a>
+                                                    <span><i class="ti-book"></i>  {{$material->pages}} Pages</span></li>
                                                 @elseif($material->type == "test")
                                                 <li onclick="openTest{{$material->id}}()">{{$material->name}}<span><a href="#detail-{{$material->id}}"><i class="fs1" aria-hidden="true" data-icon="l"> </i> Test</a></span></li>
                                                 @endif
                                                 @endforeach
-
                                             </ul>
                                         </div>
 
@@ -101,13 +104,19 @@
                         <div class="row add_top_20 add_bottom_30">
                             <div class="col-lg-6">
                                 <ul class="list_teachers">
-                                    @foreach($course->teachers as $teacher)
-                                    <li>
-                                        <a href="{{url('/')}}/teacher/{{$teacher->id}}">
-                                            <figure><img src="{{url('/')}}/img/teacher_1_thumb.jpg" alt=""></figure>
-                                            <h5>{{$teacher->user->first_name}} {{$teacher->user->last_name}}</h5>
-                                            <p>Category</p><i class="pe-7s-angle-right-circle"></i></a>
-                                    </li>
+                                     @foreach($course->teachers as $teacher)
+                                        <li>
+                                            <a href="{{url('/')}}/teacher/{{$teacher->id}}">
+                                                <figure>
+                                                    <img src="@if ($teacher->user->profile && $teacher->user->profile->avatar_status == 1)
+                                                    {{ $teacher->user->profile->avatar }}
+                                                    @else
+                                                    {{ Gravatar::get($teacher->user->email) }}
+                                                    @endif" alt="">
+                                                </figure>
+                                                <h5>{{$teacher->user->first_name}} {{$teacher->user->last_name}}</h5>
+                                                <p>Instructor</p><i class="pe-7s-angle-right-circle"></i></a>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </div>

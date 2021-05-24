@@ -177,7 +177,7 @@
             </div>
                   <h3 class="g-font-weight-300 g-font-size-20 g-color-black g-mb-15">{{$lesson->title}}</h3>
                   <a class="u-tags-v1 text-center g-width-150 g-brd-around g-brd-lightblue-v3 g-bg-lightblue-v3 g-color-white g-rounded-50 g-py-4 g-px-15"
-                     href="{{route('admin_course_material',[$lesson->id])}}" >
+                     href="{{route('teacher_add_material',[$lesson->id])}}" >
                       Add Material
                   </a>
 
@@ -189,23 +189,28 @@
           	<div class="card-block d-flex justify-content-between g-px-20 g-px-30--sm g-py-15 g-py-20--sm">
 	            <div>
 	              <h4 class="g-line-height-1_2 g-font-weight-300 g-font-size-28 g-color-black">
-                      10
+                      {{count($lesson->materials->where('type','video'))}}
                   </h4>
 	              <em class="g-font-style-normal g-font-weight-300 g-font-size-16 g-color-gray-dark-v6">
-                      Videos</em>
+                      Videos
+                  </em>
 	            </div>
 
 	            <div>
 	              <h4 class="g-line-height-1_2 g-font-weight-300 g-font-size-28 g-color-black">
-                      5</h4>
+                      {{count($lesson->materials->where('type','pdf'))}}
+                  </h4>
 	              <em class="g-font-style-normal g-font-weight-300 g-font-size-16 g-color-gray-dark-v6">
-                      Materials</em>
+                      PDF</em>
 	            </div>
 
 	            <div>
 	              <h4 class="g-line-height-1_2 g-font-weight-300 g-font-size-28 g-color-black">
-                      2</h4>
-	              <em class="g-font-style-normal g-font-weight-300 g-font-size-16 g-color-gray-dark-v6">Pending</em>
+                      {{count($lesson->materials->where('type','test'))}}
+                  </h4>
+	              <em class="g-font-style-normal g-font-weight-300 g-font-size-16 g-color-gray-dark-v6">
+                      Tests
+                  </em>
 	            </div>
           	</div>
 
@@ -263,7 +268,7 @@
 	    </header>
 
 	    <div class="g-pa-15 g-pa-30--sm">
-		    <form method="POST" action="{{route('store_lessons')}}">
+		    <form method="POST" action="{{route('teacher_store_lessons')}}">
                 @csrf
                 <input hidden name="course_id" value="{{$course->id}}">
 		        <h3 class="g-mb-20">

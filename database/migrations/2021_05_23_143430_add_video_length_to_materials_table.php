@@ -16,7 +16,7 @@ class AddVideoLengthToMaterialsTable extends Migration
         Schema::table('materials', function (Blueprint $table) {
             $table->string('video_width')->nullable()->after('size');
             $table->string('video_height')->nullable()->after('size');
-            $table->string('video_length')->nullable()->after('size');
+            $table->time('video_length')->nullable()->after('size');
         });
     }
 

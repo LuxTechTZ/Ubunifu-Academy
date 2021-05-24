@@ -20,7 +20,7 @@ class CreateMaterialsTable extends Migration
             $table->unsignedBigInteger('part_id')->unsigned()->index();
             $table->string('name');
             $table->string('protocol')->nullable();
-            $table->string('address')->nullable();
+            $table->integer('pages')->nullable();
             $table->string('path')->nullable();
             $table->string('key')->nullable();
             $table->string('token')->nullable();

@@ -41,12 +41,17 @@
     <i class="hs-admin-angle-right g-font-size-12 g-color-gray-light-v6 g-valign-middle g-ml-10"></i>
   </li>
     <li class="list-inline-item g-mr-10">
-    <a class="u-link-v5 g-color-gray-dark-v6 g-color-secondary--hover g-valign-middle"
-       href="{{url('/')}}/admin/courses">Courses</a>
-    <i class="hs-admin-angle-right g-font-size-12 g-color-gray-light-v6 g-valign-middle g-ml-10"></i>
-  </li>
+        <a class="u-link-v5 g-color-gray-dark-v6 g-color-secondary--hover g-valign-middle"
+           href="{{url('/')}}/admin/courses">Courses</a>
+        <i class="hs-admin-angle-right g-font-size-12 g-color-gray-light-v6 g-valign-middle g-ml-10"></i>
+    </li>
+    <li class="list-inline-item g-mr-10">
+        <a class="u-link-v5 g-color-gray-dark-v6 g-color-secondary--hover g-valign-middle"
+           href="{{url('/')}}/admin/courses/lessons">Lessons</a>
+        <i class="hs-admin-angle-right g-font-size-12 g-color-gray-light-v6 g-valign-middle g-ml-10"></i>
+    </li>
   <li class="list-inline-item">
-    <span class="g-valign-middle">Lessons</span>
+    <span class="g-valign-middle">Materials</span>
   </li>
 </ul>
 </div>
@@ -54,13 +59,144 @@
 @endsection
 
 @section('content')
-<div class="g-pa-20">
-            <h1 class="g-font-weight-300 g-font-size-28 g-color-black g-mb-28"><b>{{$lesson->name}}</b>  Materials</h1>
+    <div class="g-pa-20">
+        <h1 class="g-font-weight-300 g-font-size-28 g-color-black g-mb-28"><b>{{$lesson->name}}:</b>
+            <small>Materials</small>
+        </h1>
+        <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-15 g-pa-20--md">
+            <div class="row">
+                @foreach($lesson->materials as $material)
+                  <div class="col-md-4 g-mb-30">
+                    <div class="d-flex flex-wrap h-100 g-brd-around g-brd-gray-light-v7 g-rounded-2 g-pa-25">
+                      <header class="w-100 align-self-start text-right justify-content-end g-pos-rel g-mb-10">
+                        <span class="u-badge-v2--xs g-absolute-centered--y g-left-0 g-transform-origin--top-left g-bg-darkblue-v2"></span>
 
-            <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-15 g-pa-20--md">
+                        <div class="g-pos-rel g-z-index-2">
+                          <a id="dropDown1Invoker" class="u-link-v5 g-line-height-0 g-font-size-24 g-color-gray-light-v6 g-color-secondary--hover" href="#!" aria-controls="dropDown1" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#dropDown1"
+                          data-dropdown-type="jquery-slide">
+                            <i class="hs-admin-more-alt"></i>
+                          </a>
 
+                          <div id="dropDown1" class="u-shadow-v31 g-pos-abs g-right-0 g-bg-white u-dropdown--jquery-slide u-dropdown--hidden" aria-labelledby="dropDown1Invoker" style="display: none;">
+                            <ul class="list-unstyled g-nowrap mb-0">
+                              <li>
+                                <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
+                                  <i class="hs-admin-pencil g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
+                                  Edit
+                                </a>
+                              </li>
+                              <li>
+                                <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
+                                  <i class="hs-admin-cloud-up g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
+                                  Archive
+                                </a>
+                              </li>
+                              <li>
+                                <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
+                                  <i class="hs-admin-bookmark g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
+                                  Add to Favorites
+                                </a>
+                              </li>
+                              <li>
+                                <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
+                                  <i class="hs-admin-trash g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
+                                  Delete
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </header>
 
+                      <section class="w-100 align-self-center text-center g-color-darkblue-v2 g-mb-30">
+                        <svg width="50px" height="64px" viewbox="0 0 58 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g transform="translate(-359.000000, -868.000000)" fill="#FF4B00">
+                              <g transform="translate(284.000000, 730.000000)">
+                                <g transform="translate(0.000000, 76.000000)">
+                                  <g transform="translate(75.000000, 62.000000)">
+                                    <rect opacity="0.15" x="0" y="36" width="58" height="27"></rect>
+                                    <path d="M40.0002553,0 L0,0 L0,74 L58,74 L58,17.9894 L40.0002553,0 Z M40.7234043,4.2106 L53.7869787,17.2666667 L40.7234043,17.2666667 L40.7234043,4.2106 Z M2.46808511,71.5333333 L2.46808511,2.46666667 L38.2553191,2.46666667 L38.2553191,19.7333333 L55.5319149,19.7333333 L55.5319149,71.5333333 L2.46808511,71.5333333 Z"
+                                    fill-rule="nonzero"></path>
+                                    <text font-size="14" font-weight="normal" letter-spacing="0.209999993">
+                                      <tspan x="12.0208985" y="52">.{{$material->type}}</tspan>
+                                    </text>
+                                  </g>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                      </section>
 
+                      <footer class="w-100 align-self-end text-center">
+                        <div class="d-flex align-items-center justify-content-center g-mb-10">
+                          <span class="g-line-height-1_2 g-font-size-default g-color-black">
+                              {{$material->name}}
+                          </span>
+                        </div>
+
+                        <p class="g-font-weight-300 g-font-size-default g-color-gray-dark-v6 mb-0">
+                            {{number_format($material->size/1000/1024,2)}} MB
+                        </p>
+                      </footer>
+                    </div>
+                  </div>
+                @endforeach
+                  <div class="col-md-4 g-mb-30">
+                    <div class="d-flex flex-wrap h-100 g-brd-around g-brd-gray-light-v7 g-rounded-2 g-pa-25">
+                      <header class="w-100 align-self-start text-right justify-content-end g-pos-rel g-mb-10">
+                        <div class="g-pos-rel g-z-index-2">
+                          <a id="dropDown11Invoker" class="u-link-v5 g-line-height-0 g-font-size-24 g-color-gray-light-v6 g-color-secondary--hover" href="#!" aria-controls="dropDown11" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#dropDown11"
+                          data-dropdown-type="jquery-slide">
+                            <i class="hs-admin-more-alt"></i>
+                          </a>
+
+                          <div id="dropDown11" class="u-shadow-v31 g-pos-abs g-right-0 g-bg-white u-dropdown--jquery-slide u-dropdown--hidden" aria-labelledby="dropDown11Invoker" style="display: none;">
+                            <ul class="list-unstyled g-nowrap mb-0">
+                              <li>
+                                <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
+                                  <i class="hs-admin-pencil g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
+                                  Edit
+                                </a>
+                              </li>
+                              <li>
+                                <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
+                                  <i class="hs-admin-cloud-up g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
+                                  Archive
+                                </a>
+                              </li>
+                              <li>
+                                <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
+                                  <i class="hs-admin-bookmark g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
+                                  Add to Favorites
+                                </a>
+                              </li>
+                              <li>
+                                <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
+                                  <i class="hs-admin-trash g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
+                                  Delete
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </header>
+
+                      <section class="w-100 align-self-center text-center g-color-darkblue-v2 g-mb-30">
+                        <img class="img-fluid g-rounded-2" src="{{url('/')}}/academy/assets/img-temp/354x180/img1.jpg" alt="Image description">
+                      </section>
+
+                      <footer class="w-100 align-self-end text-center">
+                        <div class="d-flex align-items-center justify-content-center g-mb-10">
+                          <span class="g-line-height-1_2 g-font-size-default g-color-black">Photo.png</span>
+                        </div>
+
+                        <p class="g-font-weight-300 g-font-size-default g-color-gray-dark-v6 mb-0">1.1 mb</p>
+                      </footer>
+                    </div>
+                  </div>
+            </div>
               <hr class="g-brd-gray-light-v7 g-mx-minus-20">
                 <input hidden id="lesson" value="{{$lesson->id}}">
 
@@ -68,7 +204,8 @@
               <div class="form-group mb-0">
                 <h4 class="h6 g-font-weight-600 g-color-black g-mb-20">Upload Materials in Order</h4>
                 <input class="js-file-attachment" name="fileAttachment2[]"
-                       type="file" accept="video/mp4, video/3gp, video/avi, video/mov, video/flv, video/wmv">
+                       type="file"
+                       accept="video/mp4, video/3gp, video/avi, video/mov, video/flv, video/wmv,application/pdf">
               </div>
               <!-- End Advanced File Input -->
             </div>

@@ -213,7 +213,7 @@
       <!-- Course Settings: Submenu-1 -->
       <ul id="course" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
         <!-- Header Static -->
-        @if(Auth::user()->hasRole('5'))
+        @if(Auth::user()->level() > 2)
         <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
           <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12 {{ Request::is('account/student/my_courses') ? 'active' : null }}"
              href="{{url('/')}}/account/student/my_courses">
@@ -225,11 +225,11 @@
         </li>
         @endif
         <!-- End Header Static -->
-        @if(Auth::user()->hasRole('4'))
+        @if(Auth::user()->isTeacher())
         <!-- Hide Sidebar -->
         <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
           <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12 {{ Request::is('account/teacher/my_courses') ? 'active' : null }}"
-             href="{{url('/')}}/account/teacher/my_courses">
+             href="{{route('teacher_courses')}}">
             <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
               <i class="hs-admin-layout-sidebar-none"></i>
             </span>

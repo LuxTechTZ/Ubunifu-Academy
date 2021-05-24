@@ -1,7 +1,7 @@
 @extends('layouts.academy')
 
 @section('page')
-  Lessons
+  courses
 @endsection
 
 @section('template_linked_css')
@@ -36,13 +36,8 @@
        href="{{url('/')}}/home">Dashboard</a>
     <i class="hs-admin-angle-right g-font-size-12 g-color-gray-light-v6 g-valign-middle g-ml-10"></i>
   </li>
-    <li class="list-inline-item g-mr-10">
-    <a class="u-link-v5 g-color-gray-dark-v6 g-color-secondary--hover g-valign-middle"
-       href="{{url('/')}}/admin/courses">Courses</a>
-    <i class="hs-admin-angle-right g-font-size-12 g-color-gray-light-v6 g-valign-middle g-ml-10"></i>
-  </li>
   <li class="list-inline-item">
-    <span class="g-valign-middle">Lessons</span>
+    <span class="g-valign-middle">Courses</span>
   </li>
 </ul>
 </div>
@@ -54,13 +49,13 @@
 <div class="g-pa-20">
     <div class="media">
       <div class="d-flex align-self-center">
-        <h1 class="g-font-weight-300 g-font-size-28 g-color-black mb-0">{{$course->title}} Lessons</h1>
+        <h1 class="g-font-weight-300 g-font-size-28 g-color-black mb-0">{{$user->name}} courses</h1>
       </div>
 
       <div class="media-body align-self-center text-right">
-        <a class="js-fancybox btn btn-xl u-btn-secondary g-width-160--md g-font-size-default g-ml-10"
-           href="#!" data-src="#new-project-form" data-speed="350" data-options='{"touch" : false}'>
-            New Lesson
+        <a class="btn btn-xl u-btn-secondary g-width-160--md g-font-size-default g-ml-10"
+           href="{{route('teacher_create_courses')}}" >
+            New course
       </a>
       </div>
     </div>
@@ -79,10 +74,10 @@
                 <span class="d-flex align-items-center">
                     <span class="u-badge-v2--md g-pos-stc g-transform-origin--top-left g-bg-lightblue-v3 g-mr-8--sm"></span>
                     <span class="g-hidden-sm-down g-line-height-1_2 g-color-black">
-                    All Lessons
+                    All courses
                     </span>
                 </span>'>
-                All Lessons
+                All courses
             </option>
             <option data-content='<span class="d-flex align-items-center"><span class="u-badge-v2--md g-pos-stc g-transform-origin--top-left g-bg-lightblue-v3 g-mr-8--sm"></span><span class="g-hidden-sm-down g-line-height-1_2 g-color-black">In Progress</span></span>'>In Progress</option>
             <option data-content='<span class="d-flex align-items-center"><span class="u-badge-v2--md g-pos-stc g-transform-origin--top-left g-bg-teal-v2 g-mr-8--sm"></span><span class="g-hidden-sm-down g-line-height-1_2 g-color-black">Pending</span></span>'>Pending</option>
@@ -117,51 +112,76 @@
     </div>
 
     <div class="row">
-    	@foreach($course->lessons as $lesson)
+    	@foreach($courses as $course)
+
+            @if($course->status == 0)
+                @php
+                    $colour  = 'lightred-v3';
+                    $status  = 'Pending';
+                @endphp
+            @elseif($course->status == 1)
+                @php  $colour  = 'lightblue-v3';  $status  = 'In Verification';
+                @endphp
+            @elseif($course->status == 2)
+                @php  $colour  = 'teal-v2';
+                $status  = 'Verified';
+                @endphp
+            @elseif($course->status == 3)
+                @php  $colour  = 'teal-v2';
+                $status  = 'Pending';
+                @endphp
+            @else
+                @php  $colour  = 'darkred';
+                $status  = 'Pending';
+                @endphp
+            @endif
+
             <div class="col-md-6 col-lg-4 g-mb-30">
           <div class="card h-100 g-brd-gray-light-v7 rounded">
               <header class="card-header g-bg-transparent g-brd-bottom-none g-pa-20 g-pa-30--sm">
 
                 <div class="media g-mb-15">
-                  <div class="d-flex align-self-center">{{$lesson->name}}</div>
+                  <div class="d-flex align-self-center">{{$course->category->title}}</div>
 
                   <div class="media-body d-flex justify-content-end">
                 <div class="g-pos-rel g-z-index-2">
-                  <a id="dropDown{{$lesson->id}}Invoker"
+                  <a id="dropDown{{$course->id}}Invoker"
                      class="u-link-v5 g-line-height-0 g-font-size-24 g-color-gray-light-v6 g-color-secondary--hover"
-                     href="#!" aria-controls="dropDown{{$lesson->id}}" aria-haspopup="true" aria-expanded="false"
-                     data-dropdown-event="click" data-dropdown-target="#dropDown{{$lesson->id}}"
+                     href="#!" aria-controls="dropDown{{$course->id}}" aria-haspopup="true" aria-expanded="false"
+                     data-dropdown-event="click" data-dropdown-target="#dropDown{{$course->id}}"
                   data-dropdown-type="jquery-slide">
                     <i class="hs-admin-more-alt g-ml-20"></i>
                   </a>
 
-                  <div id="dropDown{{$lesson->id}}"
+                  <div id="dropDown{{$course->id}}"
                        class="u-shadow-v31 g-pos-abs g-right-0 g-bg-white"
-                       aria-labelledby="dropDown{{$lesson->id}}Invoker">
+                       aria-labelledby="dropDown{{$course->id}}Invoker">
                     <ul class="list-unstyled g-nowrap mb-0">
                         <li>
-                        <a class="js-fancybox d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14"
-                           href="#!" data-src="#edit_lesson{{$lesson->id}}" data-speed="350" data-options='{"touch" : false}'>
+                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14"
+                           href="{{route('teacher_edit_course',[$course->id])}}" data-src="#edit_course{{$course->id}}" data-speed="350" data-options='{"touch" : false}'>
                           <i class="hs-admin-pencil g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
                           Edit
                         </a>
                       </li>
                       <li>
-                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
+                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14"
+                           href="{{route('teacher_course_lessons',[$course->id])}}">
                           <i class="hs-admin-archive g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
-                          Archive
+                          Lessons
+                        </a>
+                      </li>
+                      <li>
+                        <a class="js-fancybox d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14"
+                           href="#!" data-src="#new-project-form" data-speed="350" data-options='{"touch" : false}'>
+                          <i class="hs-admin-plus g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
+                          New Lesson
                         </a>
                       </li>
                       <li>
                         <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
                           <i class="hs-admin-check g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
                           Mark as Done
-                        </a>
-                      </li>
-                      <li>
-                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
-                          <i class="hs-admin-plus g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i>
-                          New Task
                         </a>
                       </li>
                       <li>
@@ -175,13 +195,12 @@
                 </div>
               </div>
             </div>
-                  <h3 class="g-font-weight-300 g-font-size-20 g-color-black g-mb-15">{{$lesson->title}}</h3>
-                  <a class="u-tags-v1 text-center g-width-150 g-brd-around g-brd-lightblue-v3 g-bg-lightblue-v3 g-color-white g-rounded-50 g-py-4 g-px-15"
-                     href="{{route('admin_course_material',[$lesson->id])}}" >
-                      Add Material
+                  <h3 class="g-font-weight-300 g-font-size-20 g-color-black g-mb-15">{{$course->title}}</h3>
+                  <a class="u-tags-v1 text-center g-width-150 g-brd-around
+                  g-brd-{{$colour}}
+                  g-bg-{{$colour}} g-color-white g-rounded-50 g-py-4 g-px-15">
+                      {{$status}}
                   </a>
-
-
           	</header>
 
           	<hr class="d-flex g-brd-gray-light-v7 g-mx-20 g-mx-30--sm my-0">
@@ -189,29 +208,76 @@
           	<div class="card-block d-flex justify-content-between g-px-20 g-px-30--sm g-py-15 g-py-20--sm">
 	            <div>
 	              <h4 class="g-line-height-1_2 g-font-weight-300 g-font-size-28 g-color-black">
-                      10
+                      {{count($course->lessons)}}
                   </h4>
 	              <em class="g-font-style-normal g-font-weight-300 g-font-size-16 g-color-gray-dark-v6">
-                      Videos</em>
+                      Lessons</em>
 	            </div>
 
 	            <div>
 	              <h4 class="g-line-height-1_2 g-font-weight-300 g-font-size-28 g-color-black">
-                      5</h4>
+                      {{$course->students->count()}}
+                  </h4>
 	              <em class="g-font-style-normal g-font-weight-300 g-font-size-16 g-color-gray-dark-v6">
-                      Materials</em>
+                      Students</em>
 	            </div>
 
 	            <div>
 	              <h4 class="g-line-height-1_2 g-font-weight-300 g-font-size-28 g-color-black">
-                      2</h4>
-	              <em class="g-font-style-normal g-font-weight-300 g-font-size-16 g-color-gray-dark-v6">Pending</em>
+                      {{$course->teachers->count()}}
+                  </h4>
+	              <em class="g-font-style-normal g-font-weight-300 g-font-size-16 g-color-gray-dark-v6">
+                      Teachers
+                  </em>
 	            </div>
           	</div>
 
           	<hr class="d-flex g-brd-gray-light-v7 g-mx-20 g-mx-30--sm my-0">
 
 
+          	<div class="card-block g-px-20 g-px-30--sm g-py-10 g-py-15--sm">
+	            <div class="media align-self-center g-mb-5">
+	              <div class="d-flex g-width-100 g-font-weight-300 g-color-gray-dark-v10">Pending</div>
+
+	              <div class="media-body align-self-center">
+	                <div class="progress g-height-4 g-rounded-2">
+	                  <div class="progress-bar g-bg-primary g-rounded-2" role="progressbar"
+                           style="width: 100%"
+                           aria-valuenow="100%"
+                           aria-valuemin="0" aria-valuemax="100"></div>
+	                </div>
+	              </div>
+
+	              <div class="d-flex align-self-center justify-content-end g-font-weight-300 g-color-black g-width-40">100%</div>
+	            </div>
+
+	            <div class="media align-self-center g-mb-5">
+	              <div class="d-flex g-width-100 g-font-weight-300 g-color-gray-dark-v10">In Progress</div>
+
+	              <div class="media-body align-self-center">
+	                <div class="progress g-height-4 g-rounded-2">
+	                  <div class="progress-bar g-bg-lightblue-v3 g-rounded-2" role="progressbar"
+                           style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+	                </div>
+	              </div>
+
+	              <div class="d-flex align-self-center justify-content-end g-font-weight-300 g-color-black g-width-40">16</div>
+	            </div>
+
+	            <div class="media align-self-center">
+	              <div class="d-flex g-width-100 g-font-weight-300 g-color-gray-dark-v10">Done</div>
+
+	              <div class="media-body align-self-center">
+	                <div class="progress g-height-4 g-rounded-2">
+	                  <div class="progress-bar g-bg-teal-v2 g-rounded-2" role="progressbar"
+                           style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+	                </div>
+	              </div>
+
+	              <div class="d-flex align-self-center justify-content-end g-font-weight-300 g-color-black g-width-40">8</div>
+	            </div>
+          	</div>
+          	<hr class="d-flex g-brd-gray-light-v7 g-mx-20 g-mx-30--sm my-0">
 
           	<div class="card-block g-px-20 g-px-30--sm g-py-15 g-py-20--sm">
 	            <div class="row g-mb-25">
@@ -256,20 +322,19 @@
 
 
 
-{{--  Create Lesson --}}
+{{--  Create course --}}
 	 <div id="new-project-form" class="rounded-0 p-0" style="display: none; width: 790px; max-width: 100%;">
 	    <header class="g-bg-gray-light-v8 g-px-15 g-px-30--sm g-py-20">
 	      <h2 class="g-font-weight-300 g-font-size-16 g-color-black mb-0">Create New Course</h2>
 	    </header>
 
 	    <div class="g-pa-15 g-pa-30--sm">
-		    <form method="POST" action="{{route('store_lessons')}}">
+		    <form method="POST" action="{{route('store_course')}}">
                 @csrf
-                <input hidden name="course_id" value="{{$course->id}}">
 		        <h3 class="g-mb-20">
 				<!--         <span class="d-inline-block g-line-height-1_6 g-font-weight-300 g-font-size-20 g-color-black g-brd-bottom--dashed g-brd-gray-light-v6">Dropbox design</span>
 		        <i class="hs-admin-pencil g-font-size-18 g-color-gray-light-v6 g-ml-15"></i> -->
-		        <span class="g-font-weight-300 g-font-size-20 g-color-black">Lesson DEtails</span>
+		        <span class="g-font-weight-300 g-font-size-20 g-color-black">course DEtails</span>
 		      </h3>
 
                 <div class="row">
@@ -300,7 +365,7 @@
 
 		        <div class="d-flex">
 		          <button class="btn btn-xl u-btn-secondary g-width-160--md g-font-size-14 g-mr-15"
-                          type="submit">Create Lesson</button>
+                          type="submit">Create course</button>
 		          <button class="btn btn-xl u-btn-outline-gray-dark-v6 g-width-160--md g-font-size-14" type="reset" data-fancybox-close>Cancel</button>
 		        </div>
 		    </form>
@@ -308,21 +373,21 @@
 	 </div>
 
 
-{{-- Edit Lesson --}}
-    @foreach($course->lessons as $edit)
-        <div id="edit_lesson{{$edit->id}}" class="rounded-0 p-0" style="display: none; width: 790px; max-width: 100%;">
+{{-- Edit course --}}
+    @foreach($courses as $edit)
+        <div id="edit_course{{$edit->id}}" class="rounded-0 p-0" style="display: none; width: 790px; max-width: 100%;">
             <header class="g-bg-gray-light-v8 g-px-15 g-px-30--sm g-py-20">
               <h2 class="g-font-weight-300 g-font-size-16 g-color-black mb-0">Create New Course</h2>
             </header>
 
             <div class="g-pa-15 g-pa-30--sm">
-                <form method="POST" action="{{route('update_lessons',[$edit->id])}}">
+                <form method="POST" action="{{route('teacher_update_course',[$edit->id])}}">
                     @csrf
                     <input hidden name="course_id" value="{{$course->id}}">
                     <h3 class="g-mb-20">
                     <!--         <span class="d-inline-block g-line-height-1_6 g-font-weight-300 g-font-size-20 g-color-black g-brd-bottom--dashed g-brd-gray-light-v6">Dropbox design</span>
                     <i class="hs-admin-pencil g-font-size-18 g-color-gray-light-v6 g-ml-15"></i> -->
-                    <span class="g-font-weight-300 g-font-size-20 g-color-black">Edit Lesson Details</span>
+                    <span class="g-font-weight-300 g-font-size-20 g-color-black">Edit course Details</span>
                   </h3>
 
                     <div class="row">
@@ -353,7 +418,7 @@
 
                     <div class="d-flex">
                       <button class="btn btn-xl u-btn-secondary g-width-160--md g-font-size-14 g-mr-15"
-                              type="submit">Create Lesson</button>
+                              type="submit">Create course</button>
                       <button class="btn btn-xl u-btn-outline-gray-dark-v6 g-width-160--md g-font-size-14" type="reset" data-fancybox-close>Cancel</button>
                     </div>
                 </form>

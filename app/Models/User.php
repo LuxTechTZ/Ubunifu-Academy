@@ -173,4 +173,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(\App\Models\Jasiri\Teacher::class);
     }
+
+    public function isTeacher()
+    {
+        if (isset($this->teacher->id)){
+            return true;
+        }
+        return false;
+    }
 }
