@@ -108,8 +108,15 @@
                                                         {{$material->name}}</a>
                                                     <span>{{$material->video_length}}</span>
                                                 </li>
-                                                @elseif($material->type == "pdf")
-                                                <li><a href="{{url('/')}}/uploads/pdf/Bill Manager Doc.pdf" class="txt_doc">{{$material->name}}</a><span>9 Pages</span></li>
+                                                    @elseif($material->type == "pdf")
+                                                        <li>
+                                                            <a
+                                                                href="{{url('/')}}/{{Illuminate\Support\Facades\Storage::url($material->path)}}"
+                                                                class="video">
+                                                                {{$material->name}}
+                                                            </a>
+                                                            <span><i class="ti-book"></i>  {{$material->pages}} Pages</span>
+                                                        </li>
                                                 @endif
                                                 @endforeach
 

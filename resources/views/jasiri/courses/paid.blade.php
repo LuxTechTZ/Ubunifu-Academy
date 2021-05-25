@@ -76,7 +76,8 @@
                                                        class="video">
                                                         {{$material->name}}
                                                     </a>
-                                                    <span><i class="ti-book"></i>  {{$material->pages}} Pages</span></li>
+                                                    <span><i class="ti-book"></i>  {{$material->pages}} Pages</span>
+                                                </li>
                                                 @elseif($material->type == "test")
                                                 <li onclick="openTest{{$material->id}}()">{{$material->name}}<span><a href="#detail-{{$material->id}}"><i class="fs1" aria-hidden="true" data-icon="l"> </i> Test</a></span></li>
                                                 @endif
