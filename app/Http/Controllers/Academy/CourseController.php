@@ -28,7 +28,7 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
-        return $request;
+//        return $request;
         $request['owner_id'] = Auth::user()->id;
         $request['image'] = Storage::putFile('public/courses', $request['img'], 'public');
 
