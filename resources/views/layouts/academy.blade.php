@@ -18,7 +18,6 @@
 
 
 
-<!-- Mirrored from htmlstream.com/preview/unify-v2.6/admin-template/dashboards/dashboard-v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Feb 2021 07:25:31 GMT -->
 <head>
   <!-- Title -->
   <title>@hasSection('template_title')@yield('template_title') | @endif @yield('page') | {{ config('app.name', Lang::get('titles.app')) }}</title>
@@ -74,5 +73,4 @@
 </body>
 
 
-<!-- Mirrored from htmlstream.com/preview/unify-v2.6/admin-template/dashboards/dashboard-v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Feb 2021 07:25:31 GMT -->
 </html>

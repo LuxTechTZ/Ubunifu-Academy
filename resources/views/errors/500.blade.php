@@ -7,7 +7,7 @@
 				<div class="row justify-content-center text-center">
 					<div class="col-xl-7 col-lg-9">
 						<h2>500 <i class="icon_error-triangle_alt"></i></h2>
-						<p>We're sorry, but the page you were looking for doesn't exist.</p>
+						<p>We're sorry, We have a server error! <b>We are working on it.</p>
 						<form>
 							<div class="search_bar_error">
 								<input type="text" class="form-control" placeholder="What are you looking for?">

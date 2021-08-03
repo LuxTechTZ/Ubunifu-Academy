@@ -40,7 +40,7 @@ class Course extends Model
 
     public function lessons()
     {
-        return $this->hasMany(\App\Models\Jasiri\Lesson::class)->orderBy('order');
+        return $this->hasMany(\App\Models\Jasiri\Lesson::class)->orderBy('name');
     }
 
     public function teachers()

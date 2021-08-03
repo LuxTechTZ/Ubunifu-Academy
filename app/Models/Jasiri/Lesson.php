@@ -25,6 +25,6 @@ class Lesson extends Model
 
     public function materials()
     {
-        return $this->hasMany(\App\Models\Jasiri\Material::class);
+        return $this->hasMany(\App\Models\Jasiri\Material::class)->orderBy('name');
     }
 }
